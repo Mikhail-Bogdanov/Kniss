@@ -11,6 +11,11 @@ import android.webkit.WebView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import com.example.gray.ui.gray.mvi.GrayEvent
+import com.example.gray.ui.gray.mvi.GrayEvent.CheckUrlForError
+import com.example.gray.ui.gray.mvi.GrayEvent.RequestPermissions
+import com.example.gray.ui.gray.mvi.GrayEvent.SetLoadingFalse
+import com.example.gray.ui.gray.mvi.GrayEvent.SetLoadingTrue
+import com.example.gray.ui.gray.mvi.GrayEvent.UpdateForLeakedSsl
 import com.google.accompanist.web.AccompanistWebViewClient
 
 class WebViewClient(
@@ -19,12 +24,13 @@ class WebViewClient(
 ) : AccompanistWebViewClient() {
     override fun onPageStarted(view: WebView, url: String?, favicon: Bitmap?) {
         super.onPageStarted(view, url, favicon)
-        onEvent(GrayEvent.SetLoadingTrue)
+        onEvent(SetLoadingTrue)
     }
 
     override fun onPageFinished(view: WebView, url: String?) {
         super.onPageFinished(view, url)
-        onEvent(GrayEvent.SetLoadingFalse)
+        onEvent(RequestPermissions)
+        onEvent(SetLoadingFalse)
     }
 
     override fun shouldOverrideUrlLoading(
@@ -70,13 +76,13 @@ class WebViewClient(
         errorName?.let {
             val errorUrl = url?.host
             errorUrl?.let {
-                onEvent(GrayEvent.CheckUrlForError(errorUrl, errorName.toString()))
+                onEvent(CheckUrlForError(errorUrl, errorName.toString()))
             }
         }
     }
 
     override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
         super.onReceivedSslError(view, handler, error)
-        onEvent(GrayEvent.UpdateForLeakedSsl)
+        onEvent(UpdateForLeakedSsl)
     }
 }

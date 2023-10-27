@@ -6,7 +6,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.gray.ui.gray.mvi.GrayEvent
 import com.example.gray.ui.gray.mvi.GrayState
@@ -16,11 +15,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 @Composable
 fun GrayScreen(
     state: GrayState,
-    onEvent: (GrayEvent) -> Unit
+    onEvent: (GrayEvent) -> Unit,
+    snackbarHostState: SnackbarHostState
 ) {
-    val snackBarHostState = remember {
-        SnackbarHostState()
-    }
     val controller = rememberSystemUiController()
 
     SideEffect {
@@ -34,12 +31,11 @@ fun GrayScreen(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = {
-            SnackbarHost(hostState = snackBarHostState)
+            SnackbarHost(hostState = snackbarHostState)
         }
     ) { paddingValues ->
         GrayScreenContent(
             paddingValues = paddingValues,
-            snackbarState = snackBarHostState,
             grayState = state,
             onEvent = onEvent
         )

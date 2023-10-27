@@ -1,5 +1,6 @@
 package com.example.gray.ui.gray.mvi
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.webkit.ValueCallback
@@ -11,6 +12,10 @@ sealed class GrayEvent {
     data object SetLoadingTrue : GrayEvent()
     data object DisableCallback : GrayEvent()
     data object UpdateForLeakedSsl : GrayEvent()
+    data object RequestPermissions : GrayEvent()
+    data class SetOneSignal(
+        val context: Context
+    ) : GrayEvent()
 
     @Keep
     data class CheckUrlForError(
@@ -24,11 +29,19 @@ sealed class GrayEvent {
     ) : GrayEvent()
 
     @Keep
+    data class NullCallbackValue(
+        val message: String
+    ) : GrayEvent()
+
+    @Keep
     data class EnableCallback(
         val callback: ValueCallback<Array<Uri>>
     ) : GrayEvent()
 
-    data object SetUrl : GrayEvent()
+    data class Setup(
+        val context: Context
+    ) : GrayEvent()
+
     data object CreateIntent : GrayEvent()
 
     @Keep
