@@ -1,12 +1,13 @@
 package com.example.gray.ui.error.mvi
 
-import androidx.lifecycle.viewModelScope
 import com.example.domaingray.useCases.local.GetSavedUrlUseCase
 import com.example.domaingray.useCases.local.SaveUrlUseCase
 import com.example.domaingray.useCases.remote.GetServiceResponseUseCase
 import com.example.gray.mviViewModel.MviViewModel
+import com.example.gray.ui.error.mvi.ErrorSideEffect.NavigateToGray
+import com.example.gray.ui.error.mvi.ErrorSideEffect.ShowSnackBar
+import com.example.gray.utils.Constants.SslErrorMessage
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 
@@ -20,41 +21,37 @@ class ErrorViewModel(
     override fun dispatch(event: ErrorEvent) {
         when (event) {
             ErrorEvent.UpdateRequest -> updateRequest()
-            is ErrorEvent.UpdateSslRequest -> updateSslRequest(event.onCLick)
+            is ErrorEvent.UpdateSslRequest -> updateSslRequest()
             ErrorEvent.ChangeToGray -> changeToGray()
         }
     }
 
     private fun changeToGray() = intent {
-        postSideEffect(ErrorSideEffect.NavigateToGray)
+        postSideEffect(NavigateToGray)
     }
 
-    private fun updateRequest() {
-        viewModelScope.launch {
-            val savedUrl = getSavedUrlUseCase().firstOrNull()
-            if (savedUrl.isNullOrEmpty()) {
-                try {
-                    val url = getServiceResponseUseCase().answer
-                    saveUrlUseCase(url)
-                    dispatch(ErrorEvent.ChangeToGray)
-                } catch (_: Exception) {
-
-                }
-            } else {
-                dispatch(ErrorEvent.ChangeToGray)
-            }
-        }
-    }
-
-    private fun updateSslRequest(onError: () -> Unit) {
-        viewModelScope.launch {
+    private fun updateRequest() = intent {
+        val savedUrl = getSavedUrlUseCase().firstOrNull()
+        if (savedUrl.isNullOrEmpty()) {
             try {
                 val url = getServiceResponseUseCase().answer
                 saveUrlUseCase(url)
                 dispatch(ErrorEvent.ChangeToGray)
             } catch (_: Exception) {
-                onError()
+
             }
+        } else {
+            dispatch(ErrorEvent.ChangeToGray)
+        }
+    }
+
+    private fun updateSslRequest() = intent {
+        try {
+            val url = getServiceResponseUseCase().answer
+            saveUrlUseCase(url)
+            dispatch(ErrorEvent.ChangeToGray)
+        } catch (_: Exception) {
+            postSideEffect(ShowSnackBar(SslErrorMessage))
         }
     }
 }

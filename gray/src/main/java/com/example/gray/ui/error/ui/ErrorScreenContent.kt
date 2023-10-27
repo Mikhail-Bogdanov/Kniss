@@ -8,26 +8,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.gray.ui.error.mvi.ErrorEvent
+import com.example.gray.ui.error.mvi.ErrorEvent.UpdateRequest
+import com.example.gray.ui.error.mvi.ErrorEvent.UpdateSslRequest
 import com.example.gray.utils.Constants
 import com.example.gray.utils.Constants.retry
-import kotlinx.coroutines.launch
 
 @Composable
 fun ErrorScreenContent(
     paddingValues: PaddingValues,
     errorMsg: String?,
-    snackBarHostState: SnackbarHostState,
     onEvent: (ErrorEvent) -> Unit
 ) {
-    val scope = rememberCoroutineScope()
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -48,21 +44,13 @@ fun ErrorScreenContent(
             modifier = Modifier
                 .fillMaxWidth(0.75f),
             onClick = {
-                if (errorMsg == Constants.sslError) {
-                    onEvent(
-                        ErrorEvent.UpdateSslRequest {
-                            scope.launch {
-                                snackBarHostState.showSnackbar(
-                                    Constants.SslErrorMessage
-                                )
-                            }
-                        }
-                    )
-                } else {
-                    onEvent(
-                        ErrorEvent.UpdateRequest
-                    )
-                }
+                onEvent(
+                    if (errorMsg == Constants.sslError) {
+                        UpdateSslRequest
+                    } else {
+                        UpdateRequest
+                    }
+                )
             },
             shape = MaterialTheme.shapes.medium
         ) {
