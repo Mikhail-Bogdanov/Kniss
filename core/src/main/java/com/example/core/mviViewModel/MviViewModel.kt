@@ -1,4 +1,4 @@
-package com.example.gray.mviViewModel
+package com.example.core.mviViewModel
 
 import androidx.lifecycle.ViewModel
 import org.orbitmvi.orbit.ContainerHost
