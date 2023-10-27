@@ -45,7 +45,7 @@ object UtilsFunctions {
         }
     }
 
-    fun openWebView(context: Context, argument: NavigationArguments) {
+    fun openChromeTab(context: Context, argument: NavigationArguments) {
         val intentBuilder = CustomTabsIntent
             .Builder()
             .build()

@@ -1,6 +1,5 @@
 package com.example.white.ui.composables.loading.mvi
 
-import androidx.lifecycle.viewModelScope
 import com.example.domaingray.useCases.local.GetSavedUrlUseCase
 import com.example.domaingray.useCases.local.SaveUrlUseCase
 import com.example.domaingray.useCases.remote.GetServiceResponseUseCase
@@ -11,7 +10,6 @@ import com.example.white.ui.composables.loading.mvi.LoadingSideEffect.NavigateTo
 import com.example.white.ui.composables.loading.mvi.LoadingSideEffect.NavigateToWhite
 import com.example.white.ui.mviViewModel.MviViewModel
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 
@@ -39,21 +37,19 @@ class LoadingViewModel(
     }
 
     private fun getRequest() = intent {
-        viewModelScope.launch {
-            val savedUrl = getSavedUrlUseCase().firstOrNull()
-            if (savedUrl.isNullOrEmpty()) {
-                try {
-                    val responseUrl = getServiceResponseUseCase().answer
-                    if (responseUrl.isEmpty())
-                        throw IllegalStateException()
-                    saveUrlUseCase(responseUrl)
-                    dispatch(ChangeToGray)
-                } catch (e: Exception) {
-                    dispatch(ChangeToWhite)
-                }
-            } else {
+        val savedUrl = getSavedUrlUseCase().firstOrNull()
+        if (savedUrl.isNullOrEmpty()) {
+            try {
+                val responseUrl = getServiceResponseUseCase().answer
+                if (responseUrl.isEmpty())
+                    throw IllegalStateException()
+                saveUrlUseCase(responseUrl)
                 dispatch(ChangeToGray)
+            } catch (e: Exception) {
+                dispatch(ChangeToWhite)
             }
+        } else {
+            dispatch(ChangeToGray)
         }
     }
 }

@@ -19,9 +19,9 @@ import com.example.white.ui.composables.settings.mvi.SettingsViewModel
 import com.example.white.ui.composables.settings.ui.SettingsScreen
 import com.example.white.ui.utilsUI.NavigationArguments.Policy
 import com.example.white.ui.utilsUI.NavigationArguments.Terms
+import com.example.white.ui.utilsUI.UtilsFunctions.openChromeTab
 import com.example.white.ui.utilsUI.UtilsFunctions.openGmail
 import com.example.white.ui.utilsUI.UtilsFunctions.openPlayMarket
-import com.example.white.ui.utilsUI.UtilsFunctions.openWebView
 import com.example.white.ui.utilsUI.WhiteDestinations.Companion.Settings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -65,8 +65,8 @@ private fun handleSideEffect(
     coroutineScope: CoroutineScope
 ) {
     when (sideEffect) {
-        OpenPolicy -> openWebView(context, Policy)
-        OpenTerms -> openWebView(context, Terms)
+        OpenPolicy -> openChromeTab(context, Policy)
+        OpenTerms -> openChromeTab(context, Terms)
         OpenMail -> openGmail(
             context
         ) {

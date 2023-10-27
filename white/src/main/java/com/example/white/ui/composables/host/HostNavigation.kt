@@ -12,7 +12,7 @@ import com.example.white.ui.composables.host.mvi.HostViewModel
 import com.example.white.ui.composables.host.ui.HostScreen
 import com.example.white.ui.utilsUI.NavigationArguments.Policy
 import com.example.white.ui.utilsUI.NavigationArguments.Terms
-import com.example.white.ui.utilsUI.UtilsFunctions.openWebView
+import com.example.white.ui.utilsUI.UtilsFunctions.openChromeTab
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -37,7 +37,7 @@ private fun handleSideEffect(
     context: Context
 ) {
     when (sideEffect) {
-        OpenPolicy -> openWebView(context, Policy)
-        OpenTerms -> openWebView(context, Terms)
+        OpenPolicy -> openChromeTab(context, Policy)
+        OpenTerms -> openChromeTab(context, Terms)
     }
 }
