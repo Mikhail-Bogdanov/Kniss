@@ -15,7 +15,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.appdestinations.AppDestinations
 import com.example.appdestinations.AppDestinations.Error
-import com.example.gray.ui.generalComponents.navigate
+import com.example.core.extensions.navigate
 import com.example.gray.ui.gray.mvi.GrayEvent
 import com.example.gray.ui.gray.mvi.GraySideEffect
 import com.example.gray.ui.gray.mvi.GraySideEffect.NavigateToError

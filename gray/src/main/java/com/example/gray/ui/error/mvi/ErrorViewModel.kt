@@ -1,9 +1,9 @@
 package com.example.gray.ui.error.mvi
 
+import com.example.core.mviViewModel.MviViewModel
 import com.example.domaingray.useCases.local.GetSavedUrlUseCase
 import com.example.domaingray.useCases.local.SaveUrlUseCase
 import com.example.domaingray.useCases.remote.GetServiceResponseUseCase
-import com.example.gray.mviViewModel.MviViewModel
 import com.example.gray.ui.error.mvi.ErrorSideEffect.NavigateToGray
 import com.example.gray.ui.error.mvi.ErrorSideEffect.ShowSnackBar
 import com.example.gray.utils.Constants.SslErrorMessage

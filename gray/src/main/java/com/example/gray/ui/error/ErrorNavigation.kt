@@ -6,10 +6,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import com.example.appdestinations.AppDestinations
+import com.example.core.extensions.composableArguments
 import com.example.gray.ui.error.mvi.ErrorSideEffect
 import com.example.gray.ui.error.mvi.ErrorViewModel
 import com.example.gray.ui.error.ui.ErrorScreen
-import com.example.gray.ui.generalComponents.composableArguments
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel

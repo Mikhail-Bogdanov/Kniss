@@ -1,8 +1,6 @@
 package com.example.white.ui.utilsUI
 
 object ConstantsUI {
-    const val NavArgument = "NavArgument"
-
     //TODO PP TOU GMAIL
     const val PolicyLink = ""
     const val TermsLink = ""

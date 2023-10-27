@@ -1,5 +1,6 @@
 package com.example.white.ui.composables.loading.mvi
 
+import com.example.core.mviViewModel.MviViewModel
 import com.example.domaingray.useCases.local.GetSavedUrlUseCase
 import com.example.domaingray.useCases.local.SaveUrlUseCase
 import com.example.domaingray.useCases.remote.GetServiceResponseUseCase
@@ -8,7 +9,6 @@ import com.example.white.ui.composables.loading.mvi.LoadingEvent.ChangeToWhite
 import com.example.white.ui.composables.loading.mvi.LoadingEvent.GetRequest
 import com.example.white.ui.composables.loading.mvi.LoadingSideEffect.NavigateToGray
 import com.example.white.ui.composables.loading.mvi.LoadingSideEffect.NavigateToWhite
-import com.example.white.ui.mviViewModel.MviViewModel
 import kotlinx.coroutines.flow.firstOrNull
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect

@@ -12,6 +12,7 @@ object Dependencies {
         const val AppDestinations = ":appDestinations"
         const val DomainGray = ":domainGray"
         const val DomainWhite = ":domainWhite"
+        const val Core = ":core"
     }
 
     object Android {

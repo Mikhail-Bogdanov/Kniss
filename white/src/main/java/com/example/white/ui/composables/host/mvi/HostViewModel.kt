@@ -3,6 +3,7 @@ package com.example.white.ui.composables.host.mvi
 import androidx.appcompat.app.AppCompatDelegate.setApplicationLocales
 import androidx.core.os.LocaleListCompat.forLanguageTags
 import androidx.lifecycle.viewModelScope
+import com.example.core.mviViewModel.MviViewModel
 import com.example.domainwhite.useCases.accepting.GetAcceptingRequiredUseCase
 import com.example.domainwhite.useCases.accepting.SetAcceptedUseCase
 import com.example.domainwhite.useCases.locale.GetSavedLocaleUseCase
@@ -15,7 +16,6 @@ import com.example.white.ui.composables.host.mvi.HostEvent.PolicyLinkClicked
 import com.example.white.ui.composables.host.mvi.HostEvent.TermsLinkClicked
 import com.example.white.ui.composables.host.mvi.HostSideEffect.OpenPolicy
 import com.example.white.ui.composables.host.mvi.HostSideEffect.OpenTerms
-import com.example.white.ui.mviViewModel.MviViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.orbitmvi.orbit.syntax.simple.SimpleSyntax

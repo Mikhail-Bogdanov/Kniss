@@ -7,8 +7,8 @@ import android.provider.MediaStore
 import android.webkit.ValueCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.viewModelScope
+import com.example.core.mviViewModel.MviViewModel
 import com.example.domaingray.useCases.local.GetSavedUrlUseCase
-import com.example.gray.mviViewModel.MviViewModel
 import com.example.gray.ui.gray.mvi.GrayEvent.ChangeToError
 import com.example.gray.ui.gray.mvi.GrayEvent.CheckUrlForError
 import com.example.gray.ui.gray.mvi.GrayEvent.CreateIntent

@@ -6,12 +6,12 @@ import androidx.navigation.compose.composable
 import com.example.appdestinations.AppDestinations
 import com.example.appdestinations.AppDestinations.Gray
 import com.example.appdestinations.AppDestinations.White
+import com.example.core.extensions.navigateClear
 import com.example.white.ui.composables.loading.mvi.LoadingSideEffect
 import com.example.white.ui.composables.loading.mvi.LoadingSideEffect.NavigateToGray
 import com.example.white.ui.composables.loading.mvi.LoadingSideEffect.NavigateToWhite
 import com.example.white.ui.composables.loading.mvi.LoadingViewModel
 import com.example.white.ui.composables.loading.ui.LoadingScreen
-import com.example.white.ui.generalComponents.navigateClear
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectSideEffect
 

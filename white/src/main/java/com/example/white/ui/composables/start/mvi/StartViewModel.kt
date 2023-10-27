@@ -1,10 +1,10 @@
 package com.example.white.ui.composables.start.mvi
 
+import com.example.core.mviViewModel.MviViewModel
 import com.example.white.ui.composables.start.mvi.StartEvent.SettingsButtonClicked
 import com.example.white.ui.composables.start.mvi.StartEvent.StartButtonClicked
 import com.example.white.ui.composables.start.mvi.StartSideEffect.NavigateToMain
 import com.example.white.ui.composables.start.mvi.StartSideEffect.NavigateToSettings
-import com.example.white.ui.mviViewModel.MviViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 

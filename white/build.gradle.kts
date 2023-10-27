@@ -39,6 +39,7 @@ dependencies {
     implementation(project(Dependencies.Modules.AppDestinations))
     implementation(project(Dependencies.Modules.DomainWhite))
     implementation(project(Dependencies.Modules.DomainGray))
+    implementation(project(Dependencies.Modules.Core))
 
     implementation(Dependencies.Compose.ComposeUi)
     implementation(Dependencies.Compose.ComposeUiGraphics)

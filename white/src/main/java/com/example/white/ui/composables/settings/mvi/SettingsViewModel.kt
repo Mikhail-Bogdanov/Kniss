@@ -1,6 +1,7 @@
 package com.example.white.ui.composables.settings.mvi
 
 import androidx.lifecycle.viewModelScope
+import com.example.core.mviViewModel.MviViewModel
 import com.example.domainwhite.useCases.locale.SaveLocaleUseCase
 import com.example.domainwhite.useCases.theme.SaveThemeUseCase
 import com.example.white.ui.composables.settings.mvi.SettingsEvent.BackButtonClicked
@@ -19,7 +20,6 @@ import com.example.white.ui.composables.settings.mvi.SettingsSideEffect.OpenPlay
 import com.example.white.ui.composables.settings.mvi.SettingsSideEffect.OpenPolicy
 import com.example.white.ui.composables.settings.mvi.SettingsSideEffect.OpenTerms
 import com.example.white.ui.composables.settings.mvi.SettingsSideEffect.PopBackStack
-import com.example.white.ui.mviViewModel.MviViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
