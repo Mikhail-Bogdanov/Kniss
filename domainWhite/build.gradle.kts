@@ -11,5 +11,4 @@ java {
 dependencies {
     implementation(Dependencies.Koin.KoinCore)
     implementation(Dependencies.Kotlin.KotlinCoroutines)
-    implementation(Dependencies.Android.Annotations) //is this ok?
 }
