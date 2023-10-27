@@ -32,8 +32,6 @@ android {
 dependencies {
     implementation(project(Dependencies.Modules.DomainGray))
 
-    implementation(Dependencies.Android.Annotations)
-
     implementation(Dependencies.Koin.KoinAndroid)
     implementation(Dependencies.Koin.KoinCompose)
 

@@ -62,8 +62,6 @@ dependencies {
     implementation(Dependencies.Android.AndroidCore)
     implementation(Dependencies.Android.AndroidLifecycle)
 
-    implementation(Dependencies.Android.Annotations)
-
     implementation(Dependencies.Koin.KoinAndroid)
     implementation(Dependencies.Koin.KoinCompose)
 
