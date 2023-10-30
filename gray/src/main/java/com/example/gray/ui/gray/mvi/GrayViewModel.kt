@@ -1,6 +1,5 @@
 package com.example.gray.ui.gray.mvi
 
-import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_PICK
 import android.net.Uri
@@ -25,14 +24,12 @@ import com.example.gray.ui.gray.mvi.GrayEvent.UpdatePermissionState
 import com.example.gray.ui.gray.mvi.GraySideEffect.NavigateToError
 import com.example.gray.ui.gray.mvi.GraySideEffect.RequestPermissions
 import com.example.gray.ui.gray.mvi.GraySideEffect.ShowSnackbar
-import com.example.gray.utils.Constants.ONE_SIGNAL_ID
+import com.example.gray.ui.gray.utils.OneSignalHolder
 import com.example.gray.utils.Constants.errorSslMap
 import com.example.gray.utils.Constants.googleUrl
 import com.example.gray.utils.Constants.hashMapErrors
 import com.example.gray.utils.Constants.permissionDeniedMes
 import com.example.gray.utils.Constants.urlsHashMap
-import com.onesignal.OneSignal
-import com.onesignal.OneSignal.LOG_LEVEL.NONE
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -43,7 +40,8 @@ import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class GrayViewModel(
-    private val getSavedUrlUseCase: GetSavedUrlUseCase
+    private val getSavedUrlUseCase: GetSavedUrlUseCase,
+    private val oneSignalHolder: OneSignalHolder
 ) : MviViewModel<GrayState, GraySideEffect, GrayEvent>(
     initialState = GrayState()
 ) {
@@ -56,7 +54,7 @@ class GrayViewModel(
             is EnableCallback -> enableCallback(event.callback)
             is SetCallbackValue -> setCallbackValue(event.results)
             is UpdateForLeakedSsl -> updateForLeakedSsl(event.message)
-            is Setup -> setup(event.context)
+            Setup -> setup()
             CreateIntent -> createIntent()
             is SetImg -> setImg(event.img)
             is UpdatePermissionState -> updatePermissionState(event.isGranted)
@@ -78,11 +76,8 @@ class GrayViewModel(
         changeToError(message)
     }
 
-    private fun setOneSignal(context: Context) {
-        OneSignal.setLogLevel(NONE, NONE)
-        OneSignal.initWithContext(context)
-        OneSignal.setAppId(ONE_SIGNAL_ID)
-        OneSignal.promptForPushNotifications()
+    private fun setOneSignal() {
+        oneSignalHolder.setupOneSignal()
     }
 
     private suspend fun SimpleSyntax<GrayState, GraySideEffect>.changeToError(message: String) {
@@ -152,10 +147,10 @@ class GrayViewModel(
         changeToError(errorSslMap.getValue(message))
     }
 
-    private fun setup(context: Context) = intent {
+    private fun setup() = intent {
         getSavedUrlUseCase().onEach { url ->
             if (url != null)
-                setOneSignal(context)
+                setOneSignal()
             reduce {
                 state.copy(
                     url = url,

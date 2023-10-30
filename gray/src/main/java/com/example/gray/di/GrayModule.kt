@@ -2,6 +2,8 @@ package com.example.gray.di
 
 import com.example.gray.ui.error.mvi.ErrorViewModel
 import com.example.gray.ui.gray.mvi.GrayViewModel
+import com.example.gray.ui.gray.utils.OneSignalHolder
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -14,11 +16,14 @@ object GrayModule {
                 getServiceResponseUseCase = get()
             )
         }
-
         viewModel {
             GrayViewModel(
-                getSavedUrlUseCase = get()
+                getSavedUrlUseCase = get(),
+                oneSignalHolder = get()
             )
+        }
+        single {
+            OneSignalHolder(context = androidContext())
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.gray.ui.gray.mvi
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.webkit.ValueCallback
@@ -32,9 +31,7 @@ sealed class GrayEvent {
         val callback: ValueCallback<Array<Uri>>
     ) : GrayEvent()
 
-    data class Setup(
-        val context: Context
-    ) : GrayEvent()
+    data object Setup : GrayEvent()
 
     data object CreateIntent : GrayEvent()
 

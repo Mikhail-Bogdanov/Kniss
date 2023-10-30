@@ -49,7 +49,7 @@ fun GrayScreenContent(
     context: Context = LocalContext.current
 ) {
     LaunchedEffect(key1 = Unit) {
-        onEvent(Setup(context))
+        onEvent(Setup)
     }
 
     CheckPermissions(onEvent)
