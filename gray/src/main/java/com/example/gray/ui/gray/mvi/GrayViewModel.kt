@@ -76,10 +76,6 @@ class GrayViewModel(
         changeToError(message)
     }
 
-    private fun setOneSignal() {
-        oneSignalHolder.setupOneSignal()
-    }
-
     private suspend fun SimpleSyntax<GrayState, GraySideEffect>.changeToError(message: String) {
         postSideEffect(NavigateToError(message))
     }
@@ -150,7 +146,7 @@ class GrayViewModel(
     private fun setup() = intent {
         getSavedUrlUseCase().onEach { url ->
             if (url != null)
-                setOneSignal()
+                oneSignalHolder.setupOneSignal()
             reduce {
                 state.copy(
                     url = url,
