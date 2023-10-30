@@ -22,26 +22,19 @@ class ErrorViewModel(
         when (event) {
             ErrorEvent.UpdateRequest -> updateRequest()
             is ErrorEvent.UpdateSslRequest -> updateSslRequest()
-            ErrorEvent.ChangeToGray -> changeToGray()
         }
     }
-
-    private fun changeToGray() = intent {
-        postSideEffect(NavigateToGray)
-    }
-
     private fun updateRequest() = intent {
         val savedUrl = getSavedUrlUseCase().firstOrNull()
         if (savedUrl.isNullOrEmpty()) {
             try {
                 val url = getServiceResponseUseCase().answer
                 saveUrlUseCase(url)
-                dispatch(ErrorEvent.ChangeToGray)
+                postSideEffect(NavigateToGray)
             } catch (_: Exception) {
-
             }
         } else {
-            dispatch(ErrorEvent.ChangeToGray)
+            postSideEffect(NavigateToGray)
         }
     }
 
@@ -49,7 +42,7 @@ class ErrorViewModel(
         try {
             val url = getServiceResponseUseCase().answer
             saveUrlUseCase(url)
-            dispatch(ErrorEvent.ChangeToGray)
+            postSideEffect(NavigateToGray)
         } catch (_: Exception) {
             postSideEffect(ShowSnackBar(SslErrorMessage))
         }

@@ -10,12 +10,11 @@ sealed class GrayEvent {
     data object SetLoadingFalse : GrayEvent()
     data object SetLoadingTrue : GrayEvent()
     data object DisableCallback : GrayEvent()
-    data object UpdateForLeakedSsl : GrayEvent()
-    data object RequestPermissions : GrayEvent()
-    data class SetOneSignal(
-        val context: Context
+    data class UpdateForLeakedSsl(
+        val message: String
     ) : GrayEvent()
 
+    data object RequestPermissions : GrayEvent()
     data class CheckUrlForError(
         val errorUrl: String,
         val errorName: String

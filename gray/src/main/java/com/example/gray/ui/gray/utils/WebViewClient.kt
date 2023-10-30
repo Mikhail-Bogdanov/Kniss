@@ -16,6 +16,7 @@ import com.example.gray.ui.gray.mvi.GrayEvent.RequestPermissions
 import com.example.gray.ui.gray.mvi.GrayEvent.SetLoadingFalse
 import com.example.gray.ui.gray.mvi.GrayEvent.SetLoadingTrue
 import com.example.gray.ui.gray.mvi.GrayEvent.UpdateForLeakedSsl
+import com.example.gray.utils.Constants.sslError
 import com.google.accompanist.web.AccompanistWebViewClient
 
 class WebViewClient(
@@ -83,6 +84,6 @@ class WebViewClient(
 
     override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
         super.onReceivedSslError(view, handler, error)
-        onEvent(UpdateForLeakedSsl)
+        onEvent(UpdateForLeakedSsl(sslError))
     }
 }

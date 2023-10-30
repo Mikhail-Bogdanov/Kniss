@@ -2,8 +2,9 @@ package com.example.gray.ui.gray.mvi
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.ACTION_PICK
 import android.net.Uri
-import android.provider.MediaStore
+import android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 import android.webkit.ValueCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.viewModelScope
@@ -24,9 +25,9 @@ import com.example.gray.ui.gray.mvi.GrayEvent.UpdatePermissionState
 import com.example.gray.ui.gray.mvi.GraySideEffect.NavigateToError
 import com.example.gray.ui.gray.mvi.GraySideEffect.RequestPermissions
 import com.example.gray.ui.gray.mvi.GraySideEffect.ShowSnackbar
-import com.example.gray.utils.Constants
 import com.example.gray.utils.Constants.ONE_SIGNAL_ID
 import com.example.gray.utils.Constants.errorSslMap
+import com.example.gray.utils.Constants.googleUrl
 import com.example.gray.utils.Constants.hashMapErrors
 import com.example.gray.utils.Constants.permissionDeniedMes
 import com.example.gray.utils.Constants.urlsHashMap
@@ -36,6 +37,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import okhttp3.HttpUrl.Companion.toHttpUrl
+import org.orbitmvi.orbit.syntax.simple.SimpleSyntax
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -53,14 +55,13 @@ class GrayViewModel(
             DisableCallback -> disableCallback()
             is EnableCallback -> enableCallback(event.callback)
             is SetCallbackValue -> setCallbackValue(event.results)
-            UpdateForLeakedSsl -> updateForLeakedSsl()
+            is UpdateForLeakedSsl -> updateForLeakedSsl(event.message)
             is Setup -> setup(event.context)
-            CreateIntent -> intent()
+            CreateIntent -> createIntent()
             is SetImg -> setImg(event.img)
             is UpdatePermissionState -> updatePermissionState(event.isGranted)
             is ChangeToError -> changeToError(event.message)
             GrayEvent.RequestPermissions -> requestPermissions()
-            is GrayEvent.SetOneSignal -> setOneSignal(event.context)
             is GrayEvent.NullCallbackValue -> nullCallbackValue(event.message)
         }
     }
@@ -73,14 +74,18 @@ class GrayViewModel(
         postSideEffect(RequestPermissions)
     }
 
-    private fun setOneSignal(context: Context) = intent {
+    private fun changeToError(message: String) = intent {
+        changeToError(message)
+    }
+
+    private fun setOneSignal(context: Context) {
         OneSignal.setLogLevel(NONE, NONE)
         OneSignal.initWithContext(context)
         OneSignal.setAppId(ONE_SIGNAL_ID)
         OneSignal.promptForPushNotifications()
     }
 
-    private fun changeToError(message: String) = intent {
+    private suspend fun SimpleSyntax<GrayState, GraySideEffect>.changeToError(message: String) {
         postSideEffect(NavigateToError(message))
     }
 
@@ -94,8 +99,8 @@ class GrayViewModel(
         reduce { state.copy(img = newImg) }
     }
 
-    private fun intent() = intent {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+    private fun createIntent() = intent {
+        val intent = Intent(ACTION_PICK, EXTERNAL_CONTENT_URI)
         state.img?.launch(intent)
     }
 
@@ -132,32 +137,29 @@ class GrayViewModel(
         if (!httpUrl.isNullOrEmpty()) {
             try {
                 if (errorUrl == httpUrl) {
-                    dispatch(ChangeToError(hashMapErrors.getValue(errorName)))
+                    changeToError(hashMapErrors.getValue(errorName))
                 } else {
-                    dispatch(ChangeToError(urlsHashMap.getValue(httpUrl)))
+                    changeToError(urlsHashMap.getValue(httpUrl))
                 }
             } catch (_: Exception) {
                 if (urlsHashMap.containsKey(errorUrl))
-                    dispatch(ChangeToError(urlsHashMap.getValue(httpUrl)))
+                    changeToError(urlsHashMap.getValue(httpUrl))
             }
         }
     }
 
-    private fun updateForLeakedSsl() {
-        dispatch(ChangeToError(errorSslMap.getValue(Constants.sslError)))
+    private fun updateForLeakedSsl(message: String) = intent {
+        changeToError(errorSslMap.getValue(message))
     }
 
     private fun setup(context: Context) = intent {
         getSavedUrlUseCase().onEach { url ->
+            if (url != null)
+                setOneSignal(context)
             reduce {
                 state.copy(
                     url = url,
-                    webViewUrl = if (url != null) {
-                        dispatch(GrayEvent.SetOneSignal(context))
-                        url
-                    } else {
-                        Constants.googleUrl
-                    }
+                    webViewUrl = url ?: googleUrl
                 )
             }
         }.launchIn(viewModelScope)

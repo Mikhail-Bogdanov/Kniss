@@ -30,8 +30,8 @@ import com.example.gray.ui.gray.mvi.GrayState
 import com.example.gray.ui.gray.utils.WebChromeClient
 import com.example.gray.ui.gray.utils.WebViewClient
 import com.example.gray.utils.ConnectionManager
-import com.example.gray.utils.Constants
 import com.example.gray.utils.Constants.fileError
+import com.example.gray.utils.Constants.googleUrl
 import com.example.gray.utils.Constants.hashMapErrors
 import com.example.gray.utils.Constants.internetDisconnected
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -54,29 +54,26 @@ fun GrayScreenContent(
 
     CheckPermissions(onEvent)
 
-    when (ConnectionManager().internet(context)) {
-        true -> onEvent(
-            SetImg(
-                createImg(
-                    onEvent = onEvent,
-                    state = grayState
+    val img = createImg(
+        onEvent = onEvent,
+        state = grayState
+    )
+
+    LaunchedEffect(key1 = Unit) {
+        when (ConnectionManager().internet(context)) {
+            true -> onEvent(
+                SetImg(img)
+            )
+
+            false -> onEvent(
+                ChangeToError(
+                    hashMapErrors.getValue(internetDisconnected)
                 )
             )
-        )
-
-        false -> onEvent(
-            ChangeToError(
-                hashMapErrors.getValue(internetDisconnected)
-            )
-        )
+        }
     }
 
-    val webViewUrl = if (grayState.url != null) {
-        onEvent(SetOneSignal(context))
-        grayState.url
-    } else {
-        Constants.googleUrl
-    }
+    val webViewUrl = grayState.url ?: googleUrl
 
     val webViewState = rememberWebViewState(url = webViewUrl)
 
