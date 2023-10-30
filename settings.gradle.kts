@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
+//TODO CHANGE BRANCH
 //TODO SET ID
 rootProject.name = "TemplateSecond"
 include(":app")
