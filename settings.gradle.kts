@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 
 //TODO SET ID
-rootProject.name = "TemplateSecond"
+rootProject.name = "main_template"
 include(":app")
 include(":entryPoint")
 include(":remoteData")
