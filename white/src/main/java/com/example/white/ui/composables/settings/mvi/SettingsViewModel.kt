@@ -68,6 +68,7 @@ class SettingsViewModel(
     }
 
     private fun languageClicked(locale: String) = intent {
+        reduce { state.copy(localeDialogShowing = false) }
         viewModelScope.launch {
             saveLocaleUseCase(locale)
         }
@@ -86,6 +87,7 @@ class SettingsViewModel(
     }
 
     private fun themeClicked(darkTheme: Boolean) = intent {
+        reduce { state.copy(themeDialogShowing = false) }
         viewModelScope.launch {
             saveThemeUseCase(darkTheme)
         }
