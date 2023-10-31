@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "${Settings.PackageName}.templatesecond"
+    namespace = "${Settings.PackageName}.te"
     compileSdk = Settings.CompileSDK
 
     defaultConfig {
-        applicationId = "${Settings.PackageName}.templatesecond"
+        applicationId = "${Settings.PackageName}.te"
         minSdk = Settings.MinSDK
         targetSdk = Settings.TargetSDK
         versionCode = Settings.VersionCode

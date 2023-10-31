@@ -13,6 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
+//TODO CREATE BRANCH
 //TODO SET ID
 rootProject.name = "main_template"
 include(":app")

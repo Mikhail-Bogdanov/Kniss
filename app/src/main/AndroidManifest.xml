@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name="com.example.templatesecond.App"
+        android:name="com.ex.te.App"
         android:icon="@mipmap/ic_launcher"
         android:label=""
         android:largeHeap="true"
@@ -15,4 +15,5 @@
 
 </manifest>
 
-    <!-- TODO APP ICON -->
+    <!-- TODO SET APP ICON -->
+    <!-- TODO SET NAME -->
