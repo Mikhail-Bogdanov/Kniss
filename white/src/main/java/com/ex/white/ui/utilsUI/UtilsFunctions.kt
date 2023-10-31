@@ -3,13 +3,12 @@ package com.ex.white.ui.utilsUI
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.EXTRA_EMAIL
 import android.net.Uri.parse
 import androidx.browser.customtabs.CustomTabsIntent
 import com.ex.white.ui.utilsUI.ConstantsUI.DeveloperGmail
 import com.ex.white.ui.utilsUI.ConstantsUI.MailRequestCode
 import com.ex.white.ui.utilsUI.ConstantsUI.PlayMarketUri
-import com.ex.white.ui.utilsUI.ConstantsUI.PolicyLink
-import com.ex.white.ui.utilsUI.ConstantsUI.TermsLink
 import com.ex.white.ui.utilsUI.ConstantsUI.WebPlayMarketUri
 
 object UtilsFunctions {
@@ -19,7 +18,7 @@ object UtilsFunctions {
     ) {
         val intentToGmail = Intent(Intent.ACTION_SEND)
             .setType(MailRequestCode)
-            .putExtra(Intent.EXTRA_EMAIL, listOf(DeveloperGmail).toTypedArray())
+            .putExtra(EXTRA_EMAIL, listOf(DeveloperGmail).toTypedArray())
 
         if (intentToGmail.resolveActivity(context.packageManager) == null)
             onError()
@@ -45,19 +44,8 @@ object UtilsFunctions {
         }
     }
 
-    fun openChromeTab(context: Context, argument: NavigationArguments) {
-        val intentBuilder = CustomTabsIntent
-            .Builder()
-            .build()
-
-        when (argument) {
-            NavigationArguments.Policy -> {
-                intentBuilder.launchUrl(context, parse(PolicyLink))
-            }
-
-            NavigationArguments.Terms -> {
-                intentBuilder.launchUrl(context, parse(TermsLink))
-            }
-        }
-    }
+    fun openChromeTab(context: Context, link: String) = CustomTabsIntent
+        .Builder()
+        .build()
+        .launchUrl(context, parse(link))
 }

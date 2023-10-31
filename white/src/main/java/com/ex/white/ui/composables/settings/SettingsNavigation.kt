@@ -17,8 +17,8 @@ import com.ex.white.ui.composables.settings.mvi.SettingsSideEffect.OpenTerms
 import com.ex.white.ui.composables.settings.mvi.SettingsSideEffect.PopBackStack
 import com.ex.white.ui.composables.settings.mvi.SettingsViewModel
 import com.ex.white.ui.composables.settings.ui.SettingsScreen
-import com.ex.white.ui.utilsUI.NavigationArguments.Policy
-import com.ex.white.ui.utilsUI.NavigationArguments.Terms
+import com.ex.white.ui.utilsUI.ConstantsUI.PolicyLink
+import com.ex.white.ui.utilsUI.ConstantsUI.TermsLink
 import com.ex.white.ui.utilsUI.UtilsFunctions.openChromeTab
 import com.ex.white.ui.utilsUI.UtilsFunctions.openGmail
 import com.ex.white.ui.utilsUI.UtilsFunctions.openPlayMarket
@@ -65,8 +65,8 @@ private fun handleSideEffect(
     coroutineScope: CoroutineScope
 ) {
     when (sideEffect) {
-        OpenPolicy -> openChromeTab(context, Policy)
-        OpenTerms -> openChromeTab(context, Terms)
+        OpenPolicy -> openChromeTab(context, PolicyLink)
+        OpenTerms -> openChromeTab(context, TermsLink)
         OpenMail -> openGmail(
             context
         ) {

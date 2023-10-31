@@ -10,8 +10,8 @@ import com.ex.white.ui.composables.host.mvi.HostSideEffect.OpenPolicy
 import com.ex.white.ui.composables.host.mvi.HostSideEffect.OpenTerms
 import com.ex.white.ui.composables.host.mvi.HostViewModel
 import com.ex.white.ui.composables.host.ui.HostScreen
-import com.ex.white.ui.utilsUI.NavigationArguments.Policy
-import com.ex.white.ui.utilsUI.NavigationArguments.Terms
+import com.ex.white.ui.utilsUI.ConstantsUI.PolicyLink
+import com.ex.white.ui.utilsUI.ConstantsUI.TermsLink
 import com.ex.white.ui.utilsUI.UtilsFunctions.openChromeTab
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
@@ -37,7 +37,7 @@ private fun handleSideEffect(
     context: Context
 ) {
     when (sideEffect) {
-        OpenPolicy -> openChromeTab(context, Policy)
-        OpenTerms -> openChromeTab(context, Terms)
+        OpenPolicy -> openChromeTab(context, PolicyLink)
+        OpenTerms -> openChromeTab(context, TermsLink)
     }
 }
