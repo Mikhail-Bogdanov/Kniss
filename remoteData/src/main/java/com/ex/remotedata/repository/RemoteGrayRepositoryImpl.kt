@@ -22,6 +22,7 @@ class RemoteGrayRepositoryImpl(
         api.getAnswer(authDtoData).toAnswerEntity()
     }
 
+    //TODO CHANGE AUTH
     private val authDtoData = AuthDto(
         usbCharge = false,
         device = "Test device",
