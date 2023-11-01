@@ -19,25 +19,22 @@ class RemoteGrayRepositoryImpl(
 ) : RemoteGrayRepository {
 
     override suspend fun getServiceResponse() = withContext(Dispatchers.IO) {
-        api.getAnswer(authDtoData).toAnswerEntity()
+        api.getAnswer(
+            AuthDto(
+                //TODO CHANGE AUTH
+                usbCharge = false,
+                device = "Test device",
+//                usbCharge = ucStatus(),
+//                device = getDevice(),
+                page = URL
+            )
+        ).toAnswerEntity()
     }
 
-    //TODO CHANGE AUTH
-    private val authDtoData = AuthDto(
-        usbCharge = false,
-        device = "Test device",
-//        usbCharge = ucStatus(),
-//        device = getDevice(),
-        page = URL
-    )
-
-    private fun ucStatus(): Boolean {
-        val intent = context.registerReceiver(
-            null,
-            IntentFilter(ACTION)
-        )
-        return intent?.extras?.getBoolean(RESULT) ?: false
-    }
+    private fun ucStatus() = context.registerReceiver(
+        null,
+        IntentFilter(ACTION)
+    )?.extras?.getBoolean(RESULT) ?: false
 
     private fun getDevice(): String = "$MANUFACTURER $MODEL $BRAND $DEVICE"
 
