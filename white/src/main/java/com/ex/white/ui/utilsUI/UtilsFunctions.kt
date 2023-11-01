@@ -16,8 +16,7 @@ object UtilsFunctions {
         context: Context,
         onError: () -> Unit
     ) {
-        val intentToGmail = Intent(Intent.ACTION_SEND)
-            .setType(MailRequestCode)
+        val intentToGmail = Intent(Intent.ACTION_SEND).setType(MailRequestCode)
             .putExtra(EXTRA_EMAIL, listOf(DeveloperGmail).toTypedArray())
 
         if (intentToGmail.resolveActivity(context.packageManager) == null)
@@ -26,22 +25,18 @@ object UtilsFunctions {
             context.startActivity(intentToGmail)
     }
 
-    fun openPlayMarket(context: Context) {
-        try {
-            context.startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    parse(PlayMarketUri + context.packageName)
-                )
+    fun openPlayMarket(context: Context) = try {
+        context.startActivity(
+            Intent(
+                Intent.ACTION_VIEW, parse(PlayMarketUri + context.packageName)
             )
-        } catch (e: ActivityNotFoundException) {
-            context.startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    parse(WebPlayMarketUri + context.packageName)
-                )
+        )
+    } catch (e: ActivityNotFoundException) {
+        context.startActivity(
+            Intent(
+                Intent.ACTION_VIEW, parse(WebPlayMarketUri + context.packageName)
             )
-        }
+        )
     }
 
     fun openChromeTab(context: Context, link: String) = CustomTabsIntent
