@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "*********************************************************"
+echo "Running git pre-commit hook..."
+echo "*********************************************************"
+
+path=$(realpath "$0")
+newPath=$(cut -c 1-66 <<< "$path")
+
+kotlinc -script $newPath/.scripts/VersionIncreaser.kts
+
+#Adding changed version file in the commit
+# shellcheck disable=SC2046
+git add $newPath/.scripts/AppVersion.txt
+
+echo "*********************************************************"
+echo "Git pre-commit hook ended..."
+echo "*********************************************************"
+
+#Exit
+exit 0

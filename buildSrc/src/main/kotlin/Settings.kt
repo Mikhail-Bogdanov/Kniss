@@ -4,5 +4,5 @@ object Settings {
     const val MinSDK = 24
     const val TargetSDK = 34
     const val VersionCode = 1
-    const val VersionName = "1.0"
+    var VersionName = "1.0"
 }
