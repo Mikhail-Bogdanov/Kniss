@@ -5,5 +5,5 @@ data class HostState(
     val darkTheme: Boolean = false,
     val policyAccepted: Boolean = false,
     val termsAccepted: Boolean = false,
-    val acceptingDialogShowing: Boolean = true //TODO SHOWING DIALOG
+    val acceptingDialogShowing: Boolean = false
 )
