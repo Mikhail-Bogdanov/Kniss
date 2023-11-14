@@ -50,11 +50,11 @@ fun MainAppTheme(
     SideEffect {
 //        controller.setStatusBarColor(
 //            color = colorScheme.background,
-//            darkIcons = !darkTheme
+//            darkIcons = darkTheme
 //        )
 //        controller.setNavigationBarColor(
 //            color = colorScheme.background,
-//            darkIcons = !darkTheme,
+//            darkIcons = darkTheme,
 //            navigationBarContrastEnforced = false
 //        )
     }
