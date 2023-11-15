@@ -5,32 +5,30 @@ import com.qwertyuiop.domainwhite.repositories.accepting.AcceptingRepository
 import com.qwertyuiop.domainwhite.repositories.database.DatabaseWhiteRepository
 import com.qwertyuiop.domainwhite.repositories.locale.LocaleRepository
 import com.qwertyuiop.domainwhite.repositories.theme.ThemeRepository
-import com.qwertyuiop.localdatawhite.dataStore.DataStoreUtils.dataStore
 import com.qwertyuiop.localdatawhite.database.AppDatabase
 import com.qwertyuiop.localdatawhite.repository.accepting.AcceptingRepositoryImpl
 import com.qwertyuiop.localdatawhite.repository.database.DatabaseWhiteRepositoryImpl
 import com.qwertyuiop.localdatawhite.repository.locale.LocaleRepositoryImpl
 import com.qwertyuiop.localdatawhite.repository.theme.ThemeRepositoryImpl
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.bind
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 object LocalWhiteModule {
 
     val module = module {
-        single<DatabaseWhiteRepository> {
-            DatabaseWhiteRepositoryImpl(appDao = get())
+        singleOf(::DatabaseWhiteRepositoryImpl) {
+            bind<DatabaseWhiteRepository>()
         }
-        single<LocaleRepository> {
-            LocaleRepositoryImpl(dataStore = get())
+        singleOf(::LocaleRepositoryImpl) {
+            bind<LocaleRepository>()
         }
-        single<AcceptingRepository> {
-            AcceptingRepositoryImpl(dataStore = get())
+        singleOf(::AcceptingRepositoryImpl) {
+            bind<AcceptingRepository>()
         }
-        single<ThemeRepository> {
-            ThemeRepositoryImpl(dataStore = get())
-        }
-        single {
-            androidContext().dataStore
+        singleOf(::ThemeRepositoryImpl) {
+            bind<ThemeRepository>()
         }
         single {
             Room.databaseBuilder(
