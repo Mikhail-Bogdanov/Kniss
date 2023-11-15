@@ -4,7 +4,24 @@ echo "Running git pre-commit hook..."
 echo "*********************************************************"
 
 path=$(realpath "$0")
-newPath=$(cut -c 1-66 <<< "$path")
+
+echo PATH:
+echo $path
+
+pathLength=${#path}
+
+echo LENGTH:
+echo $pathLength
+
+let "pathLength -= 22"
+
+echo NEW_LENGTH:
+echo $pathLength
+
+newPath=$(cut -c 1-$pathLength <<< "$path")
+
+echo NEW_PATH:
+echo $newPath
 
 kotlinc -script $newPath/.scripts/VersionIncreaser.kts
 
