@@ -7,7 +7,6 @@ import com.qwertyuiop.core.mviViewModel.MviViewModel
 import com.qwertyuiop.domainwhite.useCases.accepting.GetAcceptingRequiredUseCase
 import com.qwertyuiop.domainwhite.useCases.accepting.SetAcceptedUseCase
 import com.qwertyuiop.domainwhite.useCases.locale.GetSavedLocaleUseCase
-import com.qwertyuiop.domainwhite.useCases.theme.GetSavedThemeUseCase
 import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.AcceptPolicyClicked
 import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.AcceptTermsClicked
 import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.AcceptingDialogDoneClicked
@@ -24,7 +23,6 @@ import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class HostViewModel(
-    private val getSavedThemeUseCase: GetSavedThemeUseCase,
     private val getSavedLocaleUseCase: GetSavedLocaleUseCase,
     private val getAcceptingRequiredUseCase: GetAcceptingRequiredUseCase,
     private val setAcceptedUseCase: SetAcceptedUseCase
@@ -72,15 +70,8 @@ class HostViewModel(
     }
 
     private fun initialize() = intent {
-        collectTheme()
         collectLocale()
         collectAccepting()
-    }
-
-    private fun SimpleSyntax<HostState, HostSideEffect>.collectTheme() {
-        getSavedThemeUseCase().onEach { theme ->
-            reduce { state.copy(darkTheme = theme) }
-        }.launchIn(viewModelScope)
     }
 
     private fun SimpleSyntax<HostState, HostSideEffect>.collectAccepting() {

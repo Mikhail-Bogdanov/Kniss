@@ -1,4 +1,4 @@
-package com.qwertyuiop.entrypoint.ui
+package com.qwertyuiop.entrypoint.ui.mainActivity.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost

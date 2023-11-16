@@ -1,4 +1,4 @@
-package com.qwertyuiop.white.ui.theme
+package com.qwertyuiop.entrypoint.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight.Companion.W700
 import androidx.compose.ui.text.font.FontWeight.Companion.W800
 import androidx.compose.ui.text.font.FontWeight.Companion.W900
 import androidx.compose.ui.unit.sp
-import com.qwertyuiop.white.R
+import com.qwertyuiop.entrypoint.R
 
 val Inter = FontFamily(
     Font(R.font.inter_100, W100),

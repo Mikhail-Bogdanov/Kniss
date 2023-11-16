@@ -18,7 +18,6 @@ import com.qwertyuiop.white.ui.composables.host.mvi.HostState
 import com.qwertyuiop.white.ui.composables.main.addMainScreen
 import com.qwertyuiop.white.ui.composables.settings.addSettingsScreen
 import com.qwertyuiop.white.ui.composables.start.addStartScreen
-import com.qwertyuiop.white.ui.theme.MainAppTheme
 import com.qwertyuiop.white.ui.utilsUI.WhiteDestinations
 
 @Composable
@@ -30,22 +29,18 @@ fun HostScreen(
 
     val navController = rememberNavController()
 
-    MainAppTheme(
-        darkTheme = state.darkTheme
-    ) {
-        AcceptingDialog(state = state, onEvent = onEvent)
+    AcceptingDialog(state = state, onEvent = onEvent)
 
-        NavHost(
-            navController = navController,
-            startDestination = WhiteDestinations.Start,
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            addStartScreen(navController)
-            addMainScreen(navController)
-            addSettingsScreen(navController)
-        }
+    NavHost(
+        navController = navController,
+        startDestination = WhiteDestinations.Start,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        addStartScreen(navController)
+        addMainScreen(navController)
+        addSettingsScreen(navController)
     }
 }
 

@@ -1,4 +1,4 @@
-package com.qwertyuiop.white.ui.theme
+package com.qwertyuiop.entrypoint.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

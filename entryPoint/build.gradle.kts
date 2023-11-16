@@ -36,20 +36,21 @@ android {
 }
 
 dependencies {
-
     implementation(project(Dependencies.Modules.Gray))
     implementation(project(Dependencies.Modules.White))
-    implementation(project(Dependencies.Modules.RemoteData))
-    implementation(project(Dependencies.Modules.LocalDataGray))
+    implementation(project(Dependencies.Modules.DomainWhite))
     implementation(project(Dependencies.Modules.AppDestinations))
-
-    implementation(Dependencies.Android.AppCompat)
-    implementation(Dependencies.Android.AndroidCore)
-    implementation(Dependencies.Compose.Material)
-    implementation(Dependencies.Android.AndroidLifecycle)
+    implementation(project(Dependencies.Modules.Core))
 
     implementation(Dependencies.Compose.ComposeActivity)
+    implementation(Dependencies.Compose.ComposeViewModel)
     implementation(Dependencies.Compose.ComposeNavigation)
+    implementation(Dependencies.Compose.ComposeMaterial3)
+    implementation(Dependencies.Compose.ComposeSystemUiController)
+    implementation(platform(Dependencies.Compose.ComposeBOM))
+
+    implementation(Dependencies.Orbit.OrbitCompose)
 
     implementation(Dependencies.Koin.KoinAndroid)
+    implementation(Dependencies.Koin.KoinCompose)
 }

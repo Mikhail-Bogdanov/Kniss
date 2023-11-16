@@ -17,7 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.qwertyuiop.white.R
 import com.qwertyuiop.white.ui.composables.loading.mvi.LoadingEvent
-import com.qwertyuiop.white.ui.theme.MainAppTheme
 
 @Composable
 fun LoadingScreen(onEvent: (LoadingEvent) -> Unit) {
@@ -25,28 +24,26 @@ fun LoadingScreen(onEvent: (LoadingEvent) -> Unit) {
 //        onEvent(LoadingEvent.GetRequest) //TODO GET REQUEST
     }
 
-    MainAppTheme {
-        Column(
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceEvenly,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator(
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .fillMaxWidth(0.5f)
-                    .aspectRatio(1f),
-                color = MaterialTheme.colorScheme.primary,
-                trackColor = MaterialTheme.colorScheme.background,
-                strokeWidth = 4.dp,
-                strokeCap = StrokeCap.Round
-            )
+                .fillMaxWidth(0.5f)
+                .aspectRatio(1f),
+            color = MaterialTheme.colorScheme.primary,
+            trackColor = MaterialTheme.colorScheme.background,
+            strokeWidth = 4.dp,
+            strokeCap = StrokeCap.Round
+        )
 
-            Text(
-                text = stringResource(R.string.loading),
-                style = MaterialTheme.typography.displaySmall,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-        }
+        Text(
+            text = stringResource(R.string.loading),
+            style = MaterialTheme.typography.displaySmall,
+            color = MaterialTheme.colorScheme.onBackground
+        )
     }
 }
