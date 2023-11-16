@@ -1,4 +1,4 @@
-package com.qwertyuiop.entrypoint.ui.mainActivity.mvi
+package com.qwertyuiop.entrypoint.ui.components.mainActivity.mvi
 
 import androidx.lifecycle.viewModelScope
 import com.qwertyuiop.core.mviViewModel.MviViewModel

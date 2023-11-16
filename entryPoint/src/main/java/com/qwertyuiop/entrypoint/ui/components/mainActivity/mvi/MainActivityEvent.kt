@@ -1,4 +1,4 @@
-package com.qwertyuiop.entrypoint.ui.mainActivity.mvi
+package com.qwertyuiop.entrypoint.ui.components.mainActivity.mvi
 
 sealed class MainActivityEvent {
 

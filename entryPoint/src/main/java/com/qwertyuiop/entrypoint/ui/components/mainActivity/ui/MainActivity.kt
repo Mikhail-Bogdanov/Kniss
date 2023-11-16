@@ -1,9 +1,9 @@
-package com.qwertyuiop.entrypoint.ui.mainActivity.ui
+package com.qwertyuiop.entrypoint.ui.components.mainActivity.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.qwertyuiop.entrypoint.ui.mainActivity.mvi.MainActivityViewModel
+import com.qwertyuiop.entrypoint.ui.components.mainActivity.mvi.MainActivityViewModel
 import com.qwertyuiop.entrypoint.ui.theme.MainAppTheme
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
