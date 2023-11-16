@@ -5,11 +5,14 @@ println("*********************")
 println("KOTLIN SCRIPT STARTED")
 println("*********************")
 
-val path = Paths.get("").toAbsolutePath().toString()
+val path = args[0]
+//val path = Paths.get("").toAbsolutePath().toString()
 
 val versionFile = File("${path}/.scripts/AppVersion.txt")
 
 val versionString = versionFile.readText()
+
+println(versionString)
 
 var version = versionString.drop(2).toInt()
 
