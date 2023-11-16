@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "${Settings.PackageName}.qwertyuiop"
+    namespace = "${Settings.PackageName}.asdfghjkl"
     compileSdk = Settings.CompileSDK
 
     defaultConfig {
-        applicationId = "${Settings.PackageName}.qwertyuiop"
+        applicationId = "${Settings.PackageName}.asdfghjkl"
         minSdk = Settings.MinSDK
         targetSdk = Settings.TargetSDK
         versionCode = Settings.VersionCode

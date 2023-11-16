@@ -1,11 +1,11 @@
-package com.qwertyuiop.qwertyuiop
+package com.qwertyuiop.asdfghjkl
 
 import android.app.Application
-import com.qwertyuiop.entrypoint.di.EntryPointModule.module as EntryPointModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import com.qwertyuiop.domaingray.di.DomainGrayModule.module as DomainGrayModule
 import com.qwertyuiop.domainwhite.di.DomainWhiteModule.module as DomainWhiteModule
+import com.qwertyuiop.entrypoint.di.EntryPointModule.module as EntryPointModule
 import com.qwertyuiop.gray.di.GrayModule.module as GrayModule
 import com.qwertyuiop.localdatagray.di.LocalGrayModule.module as LocalGrayModule
 import com.qwertyuiop.localdatawhite.di.LocalWhiteModule.module as LocalWhiteModule

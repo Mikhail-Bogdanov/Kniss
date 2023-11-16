@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name="com.qwertyuiop.qwertyuiop.App"
+        android:name="com.qwertyuiop.asdfghjkl.App"
         android:icon="@mipmap/ic_launcher"
         android:label=""
         android:largeHeap="true"
