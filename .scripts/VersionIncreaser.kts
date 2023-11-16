@@ -12,8 +12,6 @@ val versionFile = File("${path}/.scripts/AppVersion.txt")
 
 val versionString = versionFile.readText()
 
-println(versionString)
-
 var version = versionString.drop(2).toInt()
 
 println("Old Version: $version")
