@@ -40,7 +40,7 @@ class RemoteGrayRepositoryImpl(
 
     private companion object {
         //TODO PAGE
-        const val URL = "tapp2"
+        const val URL = "tapps2"
 
         const val ACTION = "android.hardware.usb.action.USB_STATE"
         const val RESULT = "connected"
