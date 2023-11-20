@@ -58,61 +58,55 @@ fun AcceptingDialog(state: HostState, onEvent: (HostEvent) -> Unit) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.privacy_policy),
-                        style = MaterialTheme.typography.bodySmall,
-                        textDecoration = TextDecoration.Underline,
+                repeat(2) { index ->
+                    Row(
                         modifier = Modifier
-                            .clickable {
-                                onEvent(PolicyLinkClicked)
-                            }
-                    )
-                    Checkbox(
-                        checked = state.policyAccepted,
-                        onCheckedChange = {
-                            onEvent(AcceptPolicyClicked)
-                        },
-                        colors = CheckboxDefaults.colors(
-                            checkmarkColor = MaterialTheme.colorScheme.primary,
-                            checkedColor = MaterialTheme.colorScheme.background,
-                            uncheckedColor = MaterialTheme.colorScheme.primary
+                            .fillMaxWidth()
+                            .padding(4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = stringResource(
+                                id = when (index) {
+                                    0 -> R.string.privacy_policy
+                                    else -> R.string.terms_of_use
+                                }
+                            ),
+                            style = MaterialTheme.typography.bodySmall,
+                            textDecoration = TextDecoration.Underline,
+                            modifier = Modifier
+                                .clickable {
+                                    onEvent(
+                                        when (index) {
+                                            0 -> PolicyLinkClicked
+                                            else -> TermsLinkClicked
+
+                                        }
+                                    )
+                                }
                         )
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.terms_of_use),
-                        style = MaterialTheme.typography.bodySmall,
-                        textDecoration = TextDecoration.Underline,
-                        modifier = Modifier
-                            .clickable {
-                                onEvent(TermsLinkClicked)
-                            }
-                    )
-                    Checkbox(
-                        checked = state.termsAccepted,
-                        onCheckedChange = {
-                            onEvent(AcceptTermsClicked)
-                        },
-                        colors = CheckboxDefaults.colors(
-                            checkmarkColor = MaterialTheme.colorScheme.primary,
-                            checkedColor = MaterialTheme.colorScheme.background,
-                            uncheckedColor = MaterialTheme.colorScheme.primary
+                        Checkbox(
+                            checked = when (index) {
+                                0 -> state.policyAccepted
+                                else -> state.termsAccepted
+                            },
+                            onCheckedChange = {
+                                onEvent(
+                                    when (index) {
+                                        0 -> AcceptPolicyClicked
+                                        else -> AcceptTermsClicked
+
+                                    }
+                                )
+                            },
+                            colors = CheckboxDefaults.colors(
+                                checkmarkColor = MaterialTheme.colorScheme.onBackground,
+                                checkedColor = MaterialTheme.colorScheme.primary,
+                                uncheckedColor = MaterialTheme.colorScheme.primary
+                            )
                         )
-                    )
+                    }
                 }
             }
         },
