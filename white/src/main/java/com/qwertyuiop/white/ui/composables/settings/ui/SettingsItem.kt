@@ -49,9 +49,7 @@ fun SettingsItem(
         modifier = Modifier
             .fillMaxWidth()
             .clip(MaterialTheme.shapes.medium)
-            .clickable {
-                onClick()
-            },
+            .clickable(onClick = onClick),
         colors = ListItemDefaults.colors(
             headlineColor = MaterialTheme.colorScheme.onBackground,
             trailingIconColor = MaterialTheme.colorScheme.onBackground,
