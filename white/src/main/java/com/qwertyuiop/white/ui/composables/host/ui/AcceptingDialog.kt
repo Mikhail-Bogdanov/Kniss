@@ -22,16 +22,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import com.qwertyuiop.white.R
 import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent
-import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.AcceptPolicyClicked
-import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.AcceptTermsClicked
 import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.AcceptingDialogDoneClicked
-import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.PolicyLinkClicked
-import com.qwertyuiop.white.ui.composables.host.mvi.HostEvent.TermsLinkClicked
 import com.qwertyuiop.white.ui.composables.host.mvi.HostState
+import com.qwertyuiop.white.ui.composables.host.utils.DialogType
 
 @Composable
 fun AcceptingDialog(state: HostState, onEvent: (HostEvent) -> Unit) {
     if (!state.acceptingDialogShowing) return
+
     AlertDialog(
         onDismissRequest = {}, //this dialog can't be dismissed
         confirmButton = {
@@ -41,8 +39,8 @@ fun AcceptingDialog(state: HostState, onEvent: (HostEvent) -> Unit) {
                 },
                 enabled = state.termsAccepted && state.policyAccepted,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.secondary,
-                    contentColor = MaterialTheme.colorScheme.onSecondary
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
                 )
             ) {
                 Text(
@@ -58,7 +56,7 @@ fun AcceptingDialog(state: HostState, onEvent: (HostEvent) -> Unit) {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                repeat(2) { index ->
+                DialogType.entries.forEach { type ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -67,39 +65,18 @@ fun AcceptingDialog(state: HostState, onEvent: (HostEvent) -> Unit) {
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
                         Text(
-                            text = stringResource(
-                                id = when (index) {
-                                    0 -> R.string.privacy_policy
-                                    else -> R.string.terms_of_use
-                                }
-                            ),
+                            text = type.title,
                             style = MaterialTheme.typography.bodySmall,
                             textDecoration = TextDecoration.Underline,
                             modifier = Modifier
-                                .clickable {
-                                    onEvent(
-                                        when (index) {
-                                            0 -> PolicyLinkClicked
-                                            else -> TermsLinkClicked
-
-                                        }
-                                    )
-                                }
+                                .clickable { onEvent(type.onClickEvent) }
                         )
                         Checkbox(
-                            checked = when (index) {
-                                0 -> state.policyAccepted
-                                else -> state.termsAccepted
+                            checked = when (type) {
+                                DialogType.Policy -> state.policyAccepted
+                                DialogType.Terms -> state.termsAccepted
                             },
-                            onCheckedChange = {
-                                onEvent(
-                                    when (index) {
-                                        0 -> AcceptPolicyClicked
-                                        else -> AcceptTermsClicked
-
-                                    }
-                                )
-                            },
+                            onCheckedChange = { onEvent(type.onChangeEvent) },
                             colors = CheckboxDefaults.colors(
                                 checkmarkColor = MaterialTheme.colorScheme.onBackground,
                                 checkedColor = MaterialTheme.colorScheme.primary,
