@@ -6,5 +6,5 @@ import com.qwertyuiop.localdatawhite.dto.AppDto
 
 @Database(entities = [AppDto::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun getAppDao(): AppDao
+    abstract val appDao: AppDao
 }

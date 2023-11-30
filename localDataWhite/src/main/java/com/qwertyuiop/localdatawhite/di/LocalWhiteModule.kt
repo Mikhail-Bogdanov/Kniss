@@ -13,6 +13,7 @@ import com.qwertyuiop.localdatawhite.repository.theme.ThemeRepositoryImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 object LocalWhiteModule {
@@ -30,13 +31,16 @@ object LocalWhiteModule {
         singleOf(::ThemeRepositoryImpl) {
             bind<ThemeRepository>()
         }
-        single {
+
+        single(named("main")) {
             Room.databaseBuilder(
                 androidContext(),
                 AppDatabase::class.java,
                 APP_DATABASE_NAME
-            ).build().getAppDao()
+            ).build()
         }
+
+        single { get<AppDatabase>(named("main")).appDao }
     }
 
     private const val APP_DATABASE_NAME = "app_database"

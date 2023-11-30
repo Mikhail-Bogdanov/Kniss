@@ -58,6 +58,25 @@ object Dependencies {
         const val ComposePermissionsAccompanist = "com.google.accompanist:accompanist-permissions:$AccompanistVersion"
         const val ComposeUiTooling = "androidx.compose.ui:ui-tooling"
         const val Material = "com.google.android.material:material:$MaterialVersion"
+        const val ComposeTracing = "androidx.compose.runtime:runtime-tracing:1.0.0-alpha05"
+    }
+
+    object Testing {
+        const val JUnitVersion = "4.13.2"
+        const val MockitoCoreVersion = "5.7.0"
+        const val MockitoKotlinVersion = "4.0.0"
+        const val AndroidMonitorVersion = "1.6.1"
+
+        const val JUnit = "junit:junit:$JUnitVersion"
+        const val AndroidJUnit = "androidx.compose.ui:ui-test-junit4"
+
+        const val AndroidMonitor = "androidx.test:monitor:$AndroidMonitorVersion"
+
+        const val MockitoCore = "org.mockito:mockito-core:$MockitoCoreVersion"
+        const val MockitoKotlin = "org.mockito.kotlin:mockito-kotlin:$MockitoKotlinVersion"
+        const val MockitoAndroid = "org.mockito:mockito-android:$MockitoCoreVersion"
+
+        const val TestRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     object Jvm {
@@ -75,6 +94,7 @@ object Dependencies {
 
         const val KotlinBOM = "org.jetbrains.kotlin:kotlin-bom:$KotlinVersion"
         const val KotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$KotlinCoroutinesVersion"
+        const val KotlinCoroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$KotlinCoroutinesVersion"
         const val Kotlin = "org.jetbrains.kotlin.android"
     }
 

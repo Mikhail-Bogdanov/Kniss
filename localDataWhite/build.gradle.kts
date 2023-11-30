@@ -10,6 +10,8 @@ android {
 
     defaultConfig {
         minSdk = Settings.MinSDK
+
+        testInstrumentationRunner = Dependencies.Testing.TestRunner
     }
 
     buildTypes {
@@ -36,10 +38,25 @@ dependencies {
     implementation(Dependencies.Room.RoomKotlin)
     ksp(Dependencies.Room.RoomCompiler)
 
-    implementation(Dependencies.Android.Annotations)
-
     implementation(Dependencies.Koin.KoinAndroid)
     implementation(Dependencies.Koin.KoinCompose)
 
     implementation(Dependencies.DataStore.PreferenceDataStore)
+
+    implementation(platform(Dependencies.Compose.ComposeBOM))
+
+    //TESTS
+
+    androidTestImplementation(Dependencies.Testing.AndroidJUnit)
+    androidTestImplementation(Dependencies.Testing.JUnit)
+    androidTestImplementation(Dependencies.Testing.AndroidMonitor)
+    androidTestImplementation(Dependencies.Testing.MockitoAndroid)
+    androidTestImplementation(Dependencies.Testing.MockitoKotlin)
+    androidTestImplementation(Dependencies.Kotlin.KotlinCoroutinesTest)
+    androidTestImplementation(Dependencies.Koin.KoinCore)
+
+    testImplementation(Dependencies.Testing.JUnit)
+    testImplementation(Dependencies.Kotlin.KotlinCoroutinesTest)
+    testImplementation(Dependencies.Testing.MockitoKotlin)
+    testImplementation(Dependencies.Testing.MockitoCore)
 }
