@@ -42,4 +42,6 @@ dependencies {
 
     implementation(Dependencies.Orbit.OrbitCompose)
     implementation(Dependencies.Orbit.OrbitAndroid)
+
+    implementation(Dependencies.Koin.KoinCore)
 }

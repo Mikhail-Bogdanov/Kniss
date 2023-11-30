@@ -1,6 +1,9 @@
 package com.qwertyuiop.white.ui.composables.loading.mvi
 
 import com.qwertyuiop.core.mviViewModel.MviViewModel
+import com.qwertyuiop.core.remote.RemoteUtils
+import com.qwertyuiop.core.remote.RemoteUtils.Companion.URL
+import com.qwertyuiop.domaingray.entities.AuthEntity
 import com.qwertyuiop.domaingray.useCases.local.GetSavedUrlUseCase
 import com.qwertyuiop.domaingray.useCases.local.SaveUrlUseCase
 import com.qwertyuiop.domaingray.useCases.remote.GetServiceResponseUseCase
@@ -16,7 +19,8 @@ import org.orbitmvi.orbit.syntax.simple.postSideEffect
 class LoadingViewModel(
     private val getServiceResponseUseCase: GetServiceResponseUseCase,
     private val getSavedUrlUseCase: GetSavedUrlUseCase,
-    private val saveUrlUseCase: SaveUrlUseCase
+    private val saveUrlUseCase: SaveUrlUseCase,
+    private val remoteUtils: RemoteUtils
 ) : MviViewModel<Any, LoadingSideEffect, LoadingEvent>(
     initialState = Any()
 ) {
@@ -40,7 +44,13 @@ class LoadingViewModel(
         val savedUrl = getSavedUrlUseCase().firstOrNull()
         if (savedUrl.isNullOrEmpty()) {
             try {
-                val responseUrl = getServiceResponseUseCase().answer
+                val responseUrl = getServiceResponseUseCase(
+                    AuthEntity(
+                        remoteUtils.ucStatus(),
+                        remoteUtils.getDevice(),
+                        URL
+                    )
+                ).answer
                 if (responseUrl.isEmpty())
                     throw IllegalStateException()
                 saveUrlUseCase(responseUrl)

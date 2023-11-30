@@ -45,11 +45,10 @@ fun ErrorScreenContent(
                 .fillMaxWidth(0.75f),
             onClick = {
                 onEvent(
-                    if (errorMsg == Constants.sslError) {
+                    if (errorMsg == Constants.sslError)
                         UpdateSslRequest
-                    } else {
+                    else
                         UpdateRequest
-                    }
                 )
             },
             shape = MaterialTheme.shapes.medium

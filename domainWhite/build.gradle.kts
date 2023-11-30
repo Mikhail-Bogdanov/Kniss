@@ -11,4 +11,8 @@ java {
 dependencies {
     implementation(Dependencies.Koin.KoinCore)
     implementation(Dependencies.Kotlin.KotlinCoroutines)
+    implementation(Dependencies.Kotlin.KotlinCoroutinesTest)
+
+    testImplementation(Dependencies.Testing.JUnit)
+    testImplementation(Dependencies.Testing.MockitoKotlin)
 }

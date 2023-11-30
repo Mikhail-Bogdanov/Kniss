@@ -13,6 +13,8 @@ android {
     defaultConfig {
         minSdk = Settings.MinSDK
 
+        testInstrumentationRunner = Dependencies.Testing.TestRunner
+
         val properties = Properties()
         properties.load(project.rootProject.file("keys.properties").inputStream())
 
@@ -41,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(Dependencies.Modules.DomainGray))
+    implementation(project(Dependencies.Modules.Core))
 
     implementation(Dependencies.Network.Retrofit)
     implementation(Dependencies.Network.GsonConverter)
@@ -52,5 +55,14 @@ dependencies {
     implementation(Dependencies.Koin.KoinAndroid)
     implementation(Dependencies.Koin.KoinCompose)
 
-    implementation(Dependencies.Android.Annotations)
+    implementation(platform(Dependencies.Compose.ComposeBOM))
+
+    //TESTS
+
+    androidTestImplementation(Dependencies.Testing.AndroidJUnit)
+    androidTestImplementation(Dependencies.Testing.JUnit)
+    androidTestImplementation(Dependencies.Testing.AndroidMonitor)
+    androidTestImplementation(Dependencies.Testing.MockitoAndroid)
+    androidTestImplementation(Dependencies.Testing.MockitoKotlin)
+    androidTestImplementation(Dependencies.Kotlin.KotlinCoroutinesTest)
 }

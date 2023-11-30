@@ -6,11 +6,13 @@ import com.qwertyuiop.localdatawhite.dto.AppDto
 object WhiteLocalMapper {
 
     fun AppEntity.toAppDto() = AppDto(
-        id = id
+        id = id,
+        name = name
     )
 
     fun AppDto.toAppEntity() = AppEntity(
-        id = id
+        id = id,
+        name = name
     )
 
 }
