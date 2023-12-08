@@ -1,17 +1,19 @@
+import Dependencies.Compose.ComposeDestinationsVersion
+import Dependencies.Compose.ComposeNavigationVersion
 import org.gradle.api.JavaVersion
 
 object Dependencies {
 
     object Modules {
-        const val RemoteData = ":remoteData"
-        const val LocalDataGray = ":localDataGray"
-        const val LocalDataWhite = ":localDataWhite"
-        const val Gray = ":gray"
-        const val White = ":white"
-        const val EntryPoint = ":entryPoint"
-        const val AppDestinations = ":appDestinations"
-        const val DomainGray = ":domainGray"
-        const val DomainWhite = ":domainWhite"
+        const val RemoteData = ":data:remoteData"
+        const val LocalDataGray = ":data:localDataGray"
+        const val LocalDataWhite = ":data:localDataWhite"
+        const val Gray = ":presentation:gray"
+        const val White = ":presentation:white"
+        const val EntryPoint = ":presentation:entryPoint"
+        const val AppEntryPoint = ":appEntryPoint"
+        const val DomainGray = ":domain:domainGray"
+        const val DomainWhite = ":domain:domainWhite"
         const val Core = ":core"
     }
 
@@ -37,7 +39,10 @@ object Dependencies {
         const val ComposeBomVersion = "2023.06.00"
         const val ComposeActivityVersion = "1.7.2"
         const val ComposeViewModelVersion = "2.6.1"
+
         const val ComposeNavigationVersion = "2.6.0"
+        const val ComposeDestinationsVersion = "1.9.55"
+
         const val MaterialVersion = "1.9.0"
         const val GridPadVersion = "1.0.0"
 
@@ -49,7 +54,11 @@ object Dependencies {
         const val ComposeMaterial3 = "androidx.compose.material3:material3"
         const val ComposeIcons = "androidx.compose.material:material-icons-extended"
         const val ComposeViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$ComposeViewModelVersion"
+
         const val ComposeNavigation = "androidx.navigation:navigation-compose:$ComposeNavigationVersion"
+        const val ComposeDestinationsCore = "io.github.raamcosta.compose-destinations:core:$ComposeDestinationsVersion"
+        const val ComposeDestinationsKsp = "io.github.raamcosta.compose-destinations:ksp:$ComposeDestinationsVersion"
+
         const val ComposeAnimation = "androidx.compose.animation:animation"
         const val GridPad = "com.touchlane:gridpad:$GridPadVersion"
         const val ComposeSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:$AccompanistVersion"
@@ -59,6 +68,15 @@ object Dependencies {
         const val ComposeUiTooling = "androidx.compose.ui:ui-tooling"
         const val Material = "com.google.android.material:material:$MaterialVersion"
         const val ComposeTracing = "androidx.compose.runtime:runtime-tracing:1.0.0-alpha05"
+    }
+
+    object Navigation {
+        const val ComposeNavigation = "androidx.navigation:navigation-compose:$ComposeNavigationVersion"
+        const val ComposeDestinationsCore = "io.github.raamcosta.compose-destinations:core:$ComposeDestinationsVersion"
+        const val ComposeDestinationsKsp = "io.github.raamcosta.compose-destinations:ksp:$ComposeDestinationsVersion"
+
+        const val ComposeDestinationsMode = "compose-destinations.mode"
+        const val ModeDestinations = "destinations"
     }
 
     object Testing {

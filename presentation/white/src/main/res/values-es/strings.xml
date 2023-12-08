@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unable_to_start_mail_app">No se puede iniciar la aplicación de correo</string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="terms_of_use">Condiciones de uso</string>
+    <string name="back">Atrás</string>
+    <string name="language">Idioma</string>
+    <string name="english">Inglés</string>
+    <string name="russian">Ruso</string>
+    <string name="rate_the_app">Califica la aplicación</string>
+    <string name="rate_us">Nos califica</string>
+    <string name="for_questions_and_suggestions">Para preguntas y sugerencias</string>
+    <string name="write_us">Escribenos</string>
+    <string name="app_usage_rules">Reglas de uso de la aplicación</string>
+    <string name="app_privacy_policy">Política de privacidad de la aplicación</string>
+    <string name="change_language">Cambiar idioma</string>
+    <string name="change_app_theme">Cambiar tema de aplicación</string>
+    <string name="theme">Tema</string>
+    <string name="dark">Oscuro</string>
+    <string name="light">Ligero</string>
+    <string name="settings">Ajustes</string>
+    <string name="turkish">Turco</string>
+    <string name="spanish">Español</string>
+    <string name="portuguese">Portugués</string>
+    <string name="ukrainian">Ucranio</string>
+    <string name="continue_use">Continuar</string>
+    <string name="loading">Cargando…</string>
+    <string name="kazakh">Kazajo</string>
+</resources>

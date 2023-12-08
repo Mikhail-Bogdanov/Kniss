@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unable_to_start_mail_app">Пошта қолданбасын іске қосу мүмкін емес</string>
+    <string name="privacy_policy">Құпиялылық саясаты</string>
+    <string name="terms_of_use">Қолдану ережелері</string>
+    <string name="back">Артқа</string>
+    <string name="language">Тіл</string>
+    <string name="english">Ағылшын</string>
+    <string name="russian">Oрыс</string>
+    <string name="rate_the_app">Қолданбаны бағалаңыз</string>
+    <string name="rate_us">Бізге баға беріңіз</string>
+    <string name="for_questions_and_suggestions">Сұрақтар мен ұсыныстар үшін</string>
+    <string name="write_us">Бізге жазыңыз</string>
+    <string name="app_usage_rules">Қолданбаны пайдалану ережелері</string>
+    <string name="app_privacy_policy">Қолданбаның құпиялылық саясаты</string>
+    <string name="change_language">Тілді өзгерту</string>
+    <string name="change_app_theme">Қолданба тақырыбын өзгерту</string>
+    <string name="theme">Тақырып</string>
+    <string name="dark">Қараңғы</string>
+    <string name="light">Жарық</string>
+    <string name="settings">Параметрлер</string>
+    <string name="turkish">Tүрік</string>
+    <string name="spanish">Испан</string>
+    <string name="portuguese">Португал тілі</string>
+    <string name="ukrainian">Украин</string>
+    <string name="continue_use">Жалғастыру</string>
+    <string name="loading">Жүктелуде…</string>
+    <string name="kazakh">Қазақ</string>
+</resources>
