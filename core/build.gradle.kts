@@ -39,6 +39,8 @@ dependencies {
     implementation(Dependencies.Compose.ComposeUi)
     implementation(Dependencies.Compose.ComposeViewModel)
     implementation(Dependencies.Compose.ComposeNavigation)
+    implementation(Dependencies.Compose.ComposeDestinationsCore)
+    ksp(Dependencies.Compose.ComposeDestinationsKsp)
 
     implementation(Dependencies.Orbit.OrbitCompose)
     implementation(Dependencies.Orbit.OrbitAndroid)

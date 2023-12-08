@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="unable_to_start_mail_app">Не вдається запустити поштову програму</string>
+    <string name="privacy_policy">Політика конфіденційності</string>
+    <string name="terms_of_use">Умови використання</string>
+    <string name="back">Назад</string>
+    <string name="language">Мова</string>
+    <string name="english">Англійська</string>
+    <string name="russian">Російський</string>
+    <string name="rate_the_app">Оцініть програму</string>
+    <string name="rate_us">Оцініть нас</string>
+    <string name="for_questions_and_suggestions">Для питань та пропозицій</string>
+    <string name="write_us">Напишіть нам</string>
+    <string name="app_usage_rules">Правила використання програми</string>
+    <string name="app_privacy_policy">Політика конфіденц. програми</string>
+    <string name="change_language">Змінити мову</string>
+    <string name="change_app_theme">Змінити тему програми</string>
+    <string name="theme">Тема</string>
+    <string name="dark">Темний</string>
+    <string name="light">Світло</string>
+    <string name="settings">Налаштування</string>
+    <string name="turkish">Турецька</string>
+    <string name="spanish">Іспанська</string>
+    <string name="portuguese">Португальська</string>
+    <string name="ukrainian">Українська</string>
+    <string name="continue_use">Продовжити</string>
+    <string name="loading">Завантаження…</string>
+    <string name="kazakh">Казахська</string>
+</resources>
