@@ -49,9 +49,9 @@ dependencies {
 
     implementation(Dependencies.Compose.ComposeActivity)
     implementation(Dependencies.Compose.ComposeViewModel)
-    implementation(Dependencies.Compose.ComposeNavigation)
-    implementation(Dependencies.Compose.ComposeDestinationsCore)
-    ksp(Dependencies.Compose.ComposeDestinationsKsp)
+    implementation(Dependencies.Navigation.ComposeNavigation)
+    implementation(Dependencies.Navigation.ComposeDestinationsAnimationsCore)
+    ksp(Dependencies.Navigation.ComposeDestinationsKsp)
     implementation(Dependencies.Compose.ComposeMaterial3)
     implementation(Dependencies.Compose.ComposeSystemUiController)
     implementation(platform(Dependencies.Compose.ComposeBOM))

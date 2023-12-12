@@ -52,8 +52,8 @@ dependencies {
     implementation(Dependencies.Compose.ComposeMaterial3)
     implementation(Dependencies.Compose.ComposeIcons)
     implementation(Dependencies.Compose.ComposeViewModel)
-    implementation(Dependencies.Compose.ComposeDestinationsCore)
-    ksp(Dependencies.Compose.ComposeDestinationsKsp)
+    implementation(Dependencies.Navigation.ComposeDestinationsAnimationsCore)
+    ksp(Dependencies.Navigation.ComposeDestinationsKsp)
     implementation(platform(Dependencies.Compose.ComposeBOM))
 
     implementation(platform(Dependencies.Kotlin.KotlinBOM))

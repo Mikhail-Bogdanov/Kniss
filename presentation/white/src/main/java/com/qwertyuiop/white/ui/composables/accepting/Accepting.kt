@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import com.qwertyuiop.core.extensions.navigateClear
+import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.white.ui.composables.accepting.mvi.AcceptingSideEffect.*
 import com.qwertyuiop.white.ui.composables.accepting.mvi.AcceptingViewModel
 import com.qwertyuiop.white.ui.composables.accepting.ui.AcceptingScreen
@@ -17,7 +18,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
-@Destination
+@Destination(style = Transitions::class)
 @Composable
 fun Accepting(
     navigator: DestinationsNavigator,

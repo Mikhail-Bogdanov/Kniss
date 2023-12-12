@@ -2,6 +2,7 @@ package com.qwertyuiop.entrypoint
 
 import androidx.compose.runtime.Composable
 import com.qwertyuiop.core.extensions.navigateClear
+import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.entrypoint.mvi.LoadingSideEffect.NavigateToGray
 import com.qwertyuiop.entrypoint.mvi.LoadingSideEffect.NavigateToWhite
 import com.qwertyuiop.entrypoint.mvi.LoadingViewModel
@@ -13,7 +14,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectSideEffect
 
-@Destination
+@Destination(style = Transitions::class)
 @Composable
 fun EntryPointHost(
     navigator: DestinationsNavigator

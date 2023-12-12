@@ -1,6 +1,7 @@
 package com.qwertyuiop.white.ui.composables.main
 
 import androidx.compose.runtime.Composable
+import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.white.ui.composables.destinations.SettingsDestination
 import com.qwertyuiop.white.ui.composables.main.mvi.MainSideEffect.NavigateToSettings
 import com.qwertyuiop.white.ui.composables.main.mvi.MainViewModel
@@ -11,7 +12,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
-@Destination
+@Destination(style = Transitions::class)
 @Composable
 fun Main(
     navigator: DestinationsNavigator

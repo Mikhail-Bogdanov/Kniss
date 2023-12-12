@@ -55,10 +55,6 @@ object Dependencies {
         const val ComposeIcons = "androidx.compose.material:material-icons-extended"
         const val ComposeViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$ComposeViewModelVersion"
 
-        const val ComposeNavigation = "androidx.navigation:navigation-compose:$ComposeNavigationVersion"
-        const val ComposeDestinationsCore = "io.github.raamcosta.compose-destinations:core:$ComposeDestinationsVersion"
-        const val ComposeDestinationsKsp = "io.github.raamcosta.compose-destinations:ksp:$ComposeDestinationsVersion"
-
         const val ComposeAnimation = "androidx.compose.animation:animation"
         const val GridPad = "com.touchlane:gridpad:$GridPadVersion"
         const val ComposeSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:$AccompanistVersion"
@@ -74,6 +70,7 @@ object Dependencies {
         const val ComposeNavigation = "androidx.navigation:navigation-compose:$ComposeNavigationVersion"
         const val ComposeDestinationsCore = "io.github.raamcosta.compose-destinations:core:$ComposeDestinationsVersion"
         const val ComposeDestinationsKsp = "io.github.raamcosta.compose-destinations:ksp:$ComposeDestinationsVersion"
+        const val ComposeDestinationsAnimationsCore = "io.github.raamcosta.compose-destinations:animations-core:$ComposeDestinationsVersion"
 
         const val ComposeDestinationsMode = "compose-destinations.mode"
         const val ModeDestinations = "destinations"

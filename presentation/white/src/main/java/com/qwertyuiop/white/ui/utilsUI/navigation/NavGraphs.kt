@@ -12,12 +12,12 @@ import com.ramcosta.composedestinations.spec.Route
 object NavGraphs {
     val WhiteNavGraph = object : NavGraphSpec {
         override val destinationsByRoute: Map<String, DestinationSpec<*>> = listOf(
+            WhiteEntryPointDestination,
             StartDestination,
             MainDestination,
             SettingsDestination,
             AcceptingDestination
         ).associateBy { it.route }
         override val route: String = "white"
-        override val startRoute: Route = AcceptingDestination //TODO: SET ACCORDING TO DESIGN
-    }
+        override val startRoute: Route = WhiteEntryPointDestination
 }

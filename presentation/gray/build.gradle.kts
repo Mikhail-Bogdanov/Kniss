@@ -53,8 +53,8 @@ dependencies {
     implementation(Dependencies.Compose.ComposePermissionsAccompanist)
     implementation(Dependencies.Compose.ComposeWebViewAccompanist)
     implementation(Dependencies.Compose.ComposeSystemUiController)
-    implementation(Dependencies.Compose.ComposeDestinationsCore)
-    ksp(Dependencies.Compose.ComposeDestinationsKsp)
+    implementation(Dependencies.Navigation.ComposeDestinationsAnimationsCore)
+    ksp(Dependencies.Navigation.ComposeDestinationsKsp)
     implementation(platform(Dependencies.Compose.ComposeBOM))
 
     implementation(platform(Dependencies.Kotlin.KotlinBOM))

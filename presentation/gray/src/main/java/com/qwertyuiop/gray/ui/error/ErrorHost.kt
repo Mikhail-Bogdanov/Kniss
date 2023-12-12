@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.qwertyuiop.core.extensions.navigateClear
+import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.gray.ui.destinations.GrayHostDestination
 import com.qwertyuiop.gray.ui.error.mvi.ErrorSideEffect.NavigateToGray
 import com.qwertyuiop.gray.ui.error.mvi.ErrorSideEffect.ShowSnackBar
@@ -17,7 +18,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 
-@Destination
+@Destination(style = Transitions::class)
 @Composable
 fun ErrorHost(
     navigator: DestinationsNavigator,

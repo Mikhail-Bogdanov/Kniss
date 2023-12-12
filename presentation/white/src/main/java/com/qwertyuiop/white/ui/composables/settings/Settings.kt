@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
+import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.white.R
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsSideEffect.OpenMail
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsSideEffect.OpenPlayMarket
@@ -25,7 +26,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
-@Destination
+@Destination(style = Transitions::class)
 @Composable
 fun Settings(
     navigator: DestinationsNavigator
