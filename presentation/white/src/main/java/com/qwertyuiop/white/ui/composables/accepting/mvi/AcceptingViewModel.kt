@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.viewModelScope
 import com.qwertyuiop.core.mviViewModel.MviViewModel
-import com.qwertyuiop.domainwhite.useCases.accepting.GetAcceptingRequiredUseCase
 import com.qwertyuiop.domainwhite.useCases.accepting.SetAcceptedUseCase
 import com.qwertyuiop.domainwhite.useCases.locale.GetSavedLocaleUseCase
 import com.qwertyuiop.white.ui.composables.accepting.mvi.AcceptingEvent.AcceptPolicyClicked
@@ -16,13 +15,11 @@ import com.qwertyuiop.white.ui.composables.accepting.mvi.AcceptingEvent.TermsLin
 import com.qwertyuiop.white.ui.composables.accepting.mvi.AcceptingSideEffect.NavigateToStart
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.orbitmvi.orbit.syntax.simple.SimpleSyntax
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class AcceptingViewModel(
-    private val getAcceptingRequiredUseCase: GetAcceptingRequiredUseCase,
     private val setAcceptedUseCase: SetAcceptedUseCase,
     private val getSavedLocaleUseCase: GetSavedLocaleUseCase
 ) : MviViewModel<AcceptingState, AcceptingSideEffect, AcceptingEvent>(
@@ -45,6 +42,7 @@ class AcceptingViewModel(
 
     private fun doneClicked() = intent {
         setAcceptedUseCase()
+        postSideEffect(NavigateToStart)
     }
 
     private fun acceptPolicyClicked() = intent {
@@ -68,15 +66,7 @@ class AcceptingViewModel(
     }
 
     private fun initialize() = intent {
-        collectAccepting()
         collectLocale()
-    }
-
-    private fun SimpleSyntax<AcceptingState, AcceptingSideEffect>.collectAccepting() {
-        getAcceptingRequiredUseCase().onEach { acceptingRequired ->
-            if (!acceptingRequired) postSideEffect(NavigateToStart)
-            reduce { state.copy(showAccepting = acceptingRequired) }
-        }.launchIn(viewModelScope)
     }
 
     private fun collectLocale() {
