@@ -18,7 +18,7 @@ object Dependencies {
     }
 
     object Android {
-        const val ApplicationVersion = "7.4.2"
+        const val ApplicationVersion = "8.1.0"
         const val Application = "com.android.application"
         const val AppCompatVersion = "1.6.1"
         const val AndroidLifecycleVersion = "2.5.1"
@@ -35,8 +35,8 @@ object Dependencies {
 
     object Compose {
         const val AccompanistVersion = "0.31.3-beta"
-        const val ComposeCompilerVersion = "1.5.1"
-        const val ComposeBomVersion = "2023.06.00"
+        const val ComposeCompilerVersion = "1.5.4"
+        const val ComposeBomVersion = "2023.10.01"
         const val ComposeActivityVersion = "1.7.2"
         const val ComposeViewModelVersion = "2.6.1"
 
@@ -54,7 +54,6 @@ object Dependencies {
         const val ComposeMaterial3 = "androidx.compose.material3:material3"
         const val ComposeIcons = "androidx.compose.material:material-icons-extended"
         const val ComposeViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$ComposeViewModelVersion"
-
         const val ComposeAnimation = "androidx.compose.animation:animation"
         const val GridPad = "com.touchlane:gridpad:$GridPadVersion"
         const val ComposeSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:$AccompanistVersion"
@@ -96,15 +95,14 @@ object Dependencies {
 
     object Jvm {
         const val JvmVersion = "1.8.0"
-        val CompileJavaVersion = JavaVersion.VERSION_11
-        const val JvmTarget = "11"
+        val CompileJavaVersion = JavaVersion.VERSION_17
 
         const val Jvm = "org.jetbrains.kotlin.jvm"
         const val JavaLibrary = "java-library"
     }
 
     object Kotlin {
-        const val KotlinVersion = "1.9.0"
+        const val KotlinVersion = "1.9.20"
         const val KotlinCoroutinesVersion = "1.7.3"
 
         const val KotlinBOM = "org.jetbrains.kotlin:kotlin-bom:$KotlinVersion"
@@ -148,7 +146,7 @@ object Dependencies {
     }
 
     object Ksp {
-        const val KspVersion = "1.9.0-1.0.13"
+        const val KspVersion = "1.9.20-1.0.14"
 
         const val KspGradlePlugin = "com.google.devtools.ksp"
         const val Ksp = "com.google.devtools.ksp"

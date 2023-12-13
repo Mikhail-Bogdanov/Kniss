@@ -9,3 +9,5 @@
     public static int d(...);
     public static int e(...);
 }
+
+-dontwarn java.lang.invoke.StringConcatFactory

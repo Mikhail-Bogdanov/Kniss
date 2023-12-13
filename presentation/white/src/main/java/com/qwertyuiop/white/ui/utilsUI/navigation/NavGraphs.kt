@@ -4,6 +4,7 @@ import com.qwertyuiop.white.ui.composables.destinations.AcceptingDestination
 import com.qwertyuiop.white.ui.composables.destinations.MainDestination
 import com.qwertyuiop.white.ui.composables.destinations.SettingsDestination
 import com.qwertyuiop.white.ui.composables.destinations.StartDestination
+import com.qwertyuiop.white.ui.composables.destinations.WhiteEntryPointDestination
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.ramcosta.composedestinations.spec.Route
@@ -20,4 +21,5 @@ object NavGraphs {
         ).associateBy { it.route }
         override val route: String = "white"
         override val startRoute: Route = WhiteEntryPointDestination
+    }
 }

@@ -25,7 +25,7 @@ android {
         targetCompatibility = Dependencies.Jvm.CompileJavaVersion
     }
     kotlinOptions {
-        jvmTarget = Dependencies.Jvm.JvmTarget
+        jvmTarget = Dependencies.Jvm.CompileJavaVersion.toString()
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Dependencies.Compose.ComposeCompilerVersion

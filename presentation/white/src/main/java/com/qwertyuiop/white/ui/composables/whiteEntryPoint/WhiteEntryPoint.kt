@@ -1,10 +1,11 @@
 package com.qwertyuiop.white.ui.composables.whiteEntryPoint
 
 import androidx.compose.runtime.Composable
+import com.qwertyuiop.core.extensions.navigateClear
 import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.white.ui.composables.destinations.AcceptingDestination
 import com.qwertyuiop.white.ui.composables.destinations.StartDestination
-import com.qwertyuiop.white.ui.composables.whiteEntryPoint.mvi.WhiteEntryPointSideEffect
+import com.qwertyuiop.white.ui.composables.whiteEntryPoint.mvi.WhiteEntryPointSideEffect.*
 import com.qwertyuiop.white.ui.composables.whiteEntryPoint.mvi.WhiteEntryPointViewModel
 import com.qwertyuiop.white.ui.composables.whiteEntryPoint.ui.WhiteEntryPointScreen
 import com.ramcosta.composedestinations.annotation.Destination
@@ -23,8 +24,9 @@ fun WhiteEntryPoint(
 
     viewModel.collectSideEffect { sideEffect ->
         when (sideEffect) {
-            WhiteEntryPointSideEffect.NavigateToAccepting -> navigator.navigate(AcceptingDestination)
-            WhiteEntryPointSideEffect.NavigateToStart -> navigator.navigate(StartDestination)
+            NavigateToAccepting -> navigator.navigateClear(AcceptingDestination)
+
+            NavigateToStart -> navigator.navigateClear(StartDestination)
         }
     }
 }
