@@ -43,6 +43,9 @@ android {
             enable = false
         }
     }
+    androidResources {
+        generateLocaleConfig = true
+    }
 }
 
 dependencies {

@@ -10,4 +10,4 @@
     public static int e(...);
 }
 
--dontwarn java.lang.invoke.StringConcatFactory
+-keepclassmembers class com.qwertyuiop.localdatawhite.dtos.** { *; }
