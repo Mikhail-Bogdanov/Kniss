@@ -1,7 +1,7 @@
 package com.qwertyuiop.localdatawhite.utils
 
 import com.qwertyuiop.domainwhite.entities.AppEntity
-import com.qwertyuiop.localdatawhite.dto.AppDto
+import com.qwertyuiop.localdatawhite.dtos.AppDto
 
 object WhiteLocalMapper {
 

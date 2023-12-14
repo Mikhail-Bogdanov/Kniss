@@ -1,8 +1,6 @@
 package com.qwertyuiop.white.ui.composables.settings.mvi
 
-import androidx.lifecycle.viewModelScope
 import com.qwertyuiop.core.mviViewModel.MviViewModel
-import com.qwertyuiop.domainwhite.useCases.locale.SaveLocaleUseCase
 import com.qwertyuiop.domainwhite.useCases.theme.SaveThemeUseCase
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsEvent.BackButtonClicked
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsEvent.HideLocaleDialogClicked
@@ -20,21 +18,22 @@ import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsSideEffect.OpenP
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsSideEffect.OpenPolicy
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsSideEffect.OpenTerms
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsSideEffect.PopBackStack
-import kotlinx.coroutines.launch
+import com.qwertyuiop.white.ui.composables.settings.utils.Language
+import com.qwertyuiop.white.ui.composables.settings.utils.LocaleHandler
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class SettingsViewModel(
-    private val saveLocaleUseCase: SaveLocaleUseCase,
-    private val saveThemeUseCase: SaveThemeUseCase
+    private val saveThemeUseCase: SaveThemeUseCase,
+    private val localeHandler: LocaleHandler
 ) : MviViewModel<SettingsState, SettingsSideEffect, SettingsEvent>(
     initialState = SettingsState()
 ) {
     override fun dispatch(event: SettingsEvent) {
         when (event) {
             BackButtonClicked -> backButtonCLicked()
-            is LocaleClicked -> languageClicked(event.locale)
+            is LocaleClicked -> languageClicked(event.language)
             PolicyClicked -> policyClicked()
             RateUsClicked -> rateUsClicked()
             TermsClicked -> termsClicked()
@@ -67,11 +66,9 @@ class SettingsViewModel(
         postSideEffect(PopBackStack)
     }
 
-    private fun languageClicked(locale: String) = intent {
+    private fun languageClicked(language: Language) = intent {
         reduce { state.copy(localeDialogShowing = false) }
-        viewModelScope.launch {
-            saveLocaleUseCase(locale)
-        }
+        localeHandler.setLocale(language)
     }
 
     private fun policyClicked() = intent {
@@ -88,9 +85,7 @@ class SettingsViewModel(
 
     private fun themeClicked(darkTheme: Boolean) = intent {
         reduce { state.copy(themeDialogShowing = false) }
-        viewModelScope.launch {
-            saveThemeUseCase(darkTheme)
-        }
+        saveThemeUseCase(darkTheme)
     }
 
     private fun writeUsClicked() = intent {

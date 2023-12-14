@@ -1,5 +1,7 @@
 package com.qwertyuiop.white.ui.composables.settings.mvi
 
+import com.qwertyuiop.white.ui.composables.settings.utils.Language
+
 sealed class SettingsEvent {
     data object BackButtonClicked : SettingsEvent()
     data object RateUsClicked : SettingsEvent()
@@ -13,7 +15,7 @@ sealed class SettingsEvent {
 
 
     data class LocaleClicked(
-        val locale: String
+        val language: Language
     ) : SettingsEvent()
 
 

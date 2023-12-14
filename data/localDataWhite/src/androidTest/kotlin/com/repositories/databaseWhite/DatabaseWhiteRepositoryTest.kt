@@ -4,7 +4,7 @@ import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.qwertyuiop.domainwhite.entities.AppEntity
 import com.qwertyuiop.localdatawhite.database.AppDatabase
 import com.qwertyuiop.localdatawhite.di.TestLocalWhiteModule
-import com.qwertyuiop.localdatawhite.dto.AppDto
+import com.qwertyuiop.localdatawhite.dtos.AppDto
 import com.qwertyuiop.localdatawhite.repository.database.DatabaseWhiteRepositoryImpl
 import com.qwertyuiop.localdatawhite.utils.WhiteLocalMapper.toAppDto
 import com.qwertyuiop.localdatawhite.utils.WhiteLocalMapper.toAppEntity

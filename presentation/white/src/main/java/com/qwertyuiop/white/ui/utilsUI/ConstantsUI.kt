@@ -6,10 +6,6 @@ object ConstantsUI {
     const val TermsLink = ""
     const val DeveloperGmail = ""
 
-    val Locales = listOf(
-        "en", "tr", "es", "pt", "uk", "ru"
-    )
-
     val Theme = listOf(
         true, false
     )

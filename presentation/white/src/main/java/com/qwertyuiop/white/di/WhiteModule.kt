@@ -3,9 +3,11 @@ package com.qwertyuiop.white.di
 import com.qwertyuiop.white.ui.composables.accepting.mvi.AcceptingViewModel
 import com.qwertyuiop.white.ui.composables.main.mvi.MainViewModel
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsViewModel
+import com.qwertyuiop.white.ui.composables.settings.utils.LocaleHandler
 import com.qwertyuiop.white.ui.composables.start.mvi.StartViewModel
 import com.qwertyuiop.white.ui.composables.whiteEntryPoint.mvi.WhiteEntryPointViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 object WhiteModule {
@@ -15,5 +17,6 @@ object WhiteModule {
         viewModelOf(::StartViewModel)
         viewModelOf(::MainViewModel)
         viewModelOf(::WhiteEntryPointViewModel)
+        singleOf(::LocaleHandler)
     }
 }

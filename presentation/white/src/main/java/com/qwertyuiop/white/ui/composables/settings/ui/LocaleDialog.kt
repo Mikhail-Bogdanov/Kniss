@@ -15,13 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.qwertyuiop.white.R
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsEvent
 import com.qwertyuiop.white.ui.composables.settings.mvi.SettingsEvent.*
-import com.qwertyuiop.white.ui.utilsUI.ConstantsUI.Locales
+import com.qwertyuiop.white.ui.composables.settings.utils.Language
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,7 +40,7 @@ fun LocaleDialog(show: Boolean, onEvent: (SettingsEvent) -> Unit) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            repeat(Locales.size) { index ->
+            Language.entries.forEach { language ->
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -52,20 +50,14 @@ fun LocaleDialog(show: Boolean, onEvent: (SettingsEvent) -> Unit) {
                         .padding(16.dp)
                         .clickable {
                             onEvent(
-                                LocaleClicked(Locales[index])
+                                LocaleClicked(language)
                             )
                         },
                     contentAlignment = Alignment.Center
                 ) {
+                    //TODO: ADD MARKK CURRENT LANGUAGE
                     Text(
-                        text = when (index) {
-                            0 -> stringResource(R.string.english)
-                            1 -> stringResource(R.string.turkish)
-                            2 -> stringResource(R.string.spanish)
-                            3 -> stringResource(R.string.portuguese)
-                            4 -> stringResource(R.string.ukrainian)
-                            else -> stringResource(R.string.russian)
-                        },
+                        text = language.title,
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onPrimary,
                         textAlign = TextAlign.Center
