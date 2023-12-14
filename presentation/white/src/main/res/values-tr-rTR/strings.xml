@@ -26,4 +26,5 @@
     <string name="continue_use">Devam etmek</string>
     <string name="loading">Yükleniyor…</string>
     <string name="kazakh">Kazak</string>
+    <string name="system_default">Sistem varsayılanı</string>
 </resources>

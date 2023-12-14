@@ -26,4 +26,5 @@
     <string name="continue_use">Жалғастыру</string>
     <string name="loading">Жүктелуде…</string>
     <string name="kazakh">Қазақ</string>
+    <string name="system_default">Жүйе әдепкі</string>
 </resources>

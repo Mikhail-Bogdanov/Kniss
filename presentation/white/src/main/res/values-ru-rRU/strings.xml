@@ -25,5 +25,6 @@
     <string name="ukrainian">Украинский</string>
     <string name="continue_use">Продолжить</string>
     <string name="loading">Загрузка…</string>
-    <string name="kazakh">казахский</string>
+    <string name="kazakh">Казахский</string>
+    <string name="system_default">По умолчанию</string>
 </resources>

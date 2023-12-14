@@ -26,4 +26,5 @@
     <string name="continue_use">Продовжити</string>
     <string name="loading">Завантаження…</string>
     <string name="kazakh">Казахська</string>
+    <string name="system_default">Системне за замовчуванням</string>
 </resources>

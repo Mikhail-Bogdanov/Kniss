@@ -26,4 +26,5 @@
     <string name="continue_use">Continue</string>
     <string name="loading">Loading…</string>
     <string name="kazakh">Kazakh</string>
+    <string name="system_default">System Default</string>
 </resources>
