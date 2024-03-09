@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.konan.properties.Properties
-
 plugins {
     id(Dependencies.Android.Android)
     id(Dependencies.Kotlin.Kotlin)
@@ -14,11 +12,6 @@ android {
         minSdk = Settings.MinSDK
 
         testInstrumentationRunner = Dependencies.Testing.TestRunner
-
-        val properties = Properties()
-        properties.load(project.rootProject.file("keys.properties").inputStream())
-
-        buildConfigField("String", "API_KEY", properties.getProperty("API_KEY"))
     }
 
     buildTypes {
@@ -42,7 +35,6 @@ android {
 }
 
 dependencies {
-    implementation(project(Dependencies.Modules.DomainGray))
     implementation(project(Dependencies.Modules.Core))
 
     implementation(Dependencies.Network.Retrofit)

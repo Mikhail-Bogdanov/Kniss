@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight.Companion.W700
 import androidx.compose.ui.text.font.FontWeight.Companion.W800
 import androidx.compose.ui.text.font.FontWeight.Companion.W900
 import androidx.compose.ui.unit.sp
-import com.qwertyuiop.entrypoint.R
+import com.evoteam.entrypoint.R
 
 val Inter = FontFamily(
     Font(R.font.inter_100, W100),

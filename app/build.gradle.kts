@@ -50,14 +50,10 @@ android {
 
 dependencies {
     implementation(project(Dependencies.Modules.AppEntryPoint))
-    implementation(project(Dependencies.Modules.Gray))
-    implementation(project(Dependencies.Modules.LocalDataGray))
-    implementation(project(Dependencies.Modules.LocalDataWhite))
+    implementation(project(Dependencies.Modules.LocalData))
     implementation(project(Dependencies.Modules.RemoteData))
-    implementation(project(Dependencies.Modules.White))
-    implementation(project(Dependencies.Modules.EntryPoint))
-    implementation(project(Dependencies.Modules.DomainGray))
-    implementation(project(Dependencies.Modules.DomainWhite))
+    implementation(project(Dependencies.Modules.Presentation))
+    implementation(project(Dependencies.Modules.Domain))
     implementation(project(Dependencies.Modules.Core))
 
     implementation(Dependencies.Koin.KoinAndroid)

@@ -43,17 +43,17 @@ android {
 }
 
 dependencies {
-    implementation(project(Dependencies.Modules.EntryPoint))
-    implementation(project(Dependencies.Modules.DomainWhite))
+    implementation(project(Dependencies.Modules.Domain))
     implementation(project(Dependencies.Modules.Core))
+    implementation(project(Dependencies.Modules.Presentation))
 
     implementation(Dependencies.Compose.ComposeActivity)
+    implementation(Dependencies.Android.AppCompat)
     implementation(Dependencies.Compose.ComposeViewModel)
     implementation(Dependencies.Navigation.ComposeNavigation)
     implementation(Dependencies.Navigation.ComposeDestinationsAnimationsCore)
     ksp(Dependencies.Navigation.ComposeDestinationsKsp)
     implementation(Dependencies.Compose.ComposeMaterial3)
-    implementation(Dependencies.Compose.ComposeSystemUiController)
     implementation(platform(Dependencies.Compose.ComposeBOM))
 
     implementation(Dependencies.Orbit.OrbitCompose)

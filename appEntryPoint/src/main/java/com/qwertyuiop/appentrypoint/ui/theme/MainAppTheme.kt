@@ -5,8 +5,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightColorScheme = lightColorScheme(
     background = BackgroundLight,
@@ -40,29 +38,12 @@ private val DarkColorScheme = darkColorScheme(
 fun MainAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
-) {
-    val colorScheme = when (darkTheme) {
+) = MaterialTheme(
+    colorScheme = when (darkTheme) {
         false -> LightColorScheme
         true -> DarkColorScheme
-    }
-
-    val controller = rememberSystemUiController()
-    SideEffect {
-//        controller.setStatusBarColor(
-//            color = colorScheme.background,
-//            darkIcons = darkTheme
-//        )
-//        controller.setNavigationBarColor(
-//            color = colorScheme.background,
-//            darkIcons = darkTheme,
-//            navigationBarContrastEnforced = false
-//        )
-    }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
-}
+    },
+    typography = Typography,
+    shapes = Shapes,
+    content = content
+)

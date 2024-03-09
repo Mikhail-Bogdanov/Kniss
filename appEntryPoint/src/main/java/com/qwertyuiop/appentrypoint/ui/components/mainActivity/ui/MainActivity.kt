@@ -1,7 +1,9 @@
 package com.qwertyuiop.appentrypoint.ui.components.mainActivity.ui
 
 import android.os.Bundle
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
@@ -17,6 +19,11 @@ class MainActivity : AppCompatActivity() {
     @OptIn(ExperimentalMaterialNavigationApi::class, ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(0),
+            navigationBarStyle = SystemBarStyle.dark(0)
+        )
+
         setContent {
             val viewModel: MainActivityViewModel = koinViewModel()
             val state = viewModel.collectAsState().value

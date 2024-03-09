@@ -2,7 +2,7 @@ package com.qwertyuiop.appentrypoint.ui.components.mainActivity.mvi
 
 import androidx.lifecycle.viewModelScope
 import com.qwertyuiop.core.mviViewModel.MviViewModel
-import com.qwertyuiop.domainwhite.useCases.theme.GetSavedThemeUseCase
+import com.qwertyuiop.domain.useCases.theme.GetSavedThemeUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.orbitmvi.orbit.syntax.simple.SimpleSyntax

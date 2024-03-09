@@ -5,7 +5,7 @@
     <application
         android:name="com.qwertyuiop.asdfghjkl.App"
         android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:label="Template"
         android:largeHeap="true"
         android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -23,6 +23,3 @@
     </application>
 
 </manifest>
-
-    <!-- TODO SET APP ICON -->
-    <!-- TODO SET NAME -->

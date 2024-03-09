@@ -6,14 +6,10 @@ object Dependencies {
 
     object Modules {
         const val RemoteData = ":data:remoteData"
-        const val LocalDataGray = ":data:localDataGray"
-        const val LocalDataWhite = ":data:localDataWhite"
-        const val Gray = ":presentation:gray"
-        const val White = ":presentation:white"
-        const val EntryPoint = ":presentation:entryPoint"
+        const val LocalData = ":data:localData"
+        const val Presentation = ":presentation"
         const val AppEntryPoint = ":appEntryPoint"
-        const val DomainGray = ":domain:domainGray"
-        const val DomainWhite = ":domain:domainWhite"
+        const val Domain = ":domain"
         const val Core = ":core"
     }
 
@@ -37,14 +33,13 @@ object Dependencies {
         const val AccompanistVersion = "0.31.3-beta"
         const val ComposeCompilerVersion = "1.5.4"
         const val ComposeBomVersion = "2023.10.01"
-        const val ComposeActivityVersion = "1.7.2"
+        const val ComposeActivityVersion = "1.8.2"
         const val ComposeViewModelVersion = "2.6.1"
 
         const val ComposeNavigationVersion = "2.6.0"
         const val ComposeDestinationsVersion = "1.9.55"
 
-        const val MaterialVersion = "1.9.0"
-        const val GridPadVersion = "1.0.0"
+        const val MaterialVersion = "1.11.0"
 
         const val ComposeBOM = "androidx.compose:compose-bom:$ComposeBomVersion"
         const val ComposeActivity = "androidx.activity:activity-compose:$ComposeActivityVersion"
@@ -55,8 +50,6 @@ object Dependencies {
         const val ComposeIcons = "androidx.compose.material:material-icons-extended"
         const val ComposeViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:$ComposeViewModelVersion"
         const val ComposeAnimation = "androidx.compose.animation:animation"
-        const val GridPad = "com.touchlane:gridpad:$GridPadVersion"
-        const val ComposeSystemUiController = "com.google.accompanist:accompanist-systemuicontroller:$AccompanistVersion"
         const val ComposeNavAnimationAccompanist = "com.google.accompanist:accompanist-navigation-animation:$AccompanistVersion"
         const val ComposeWebViewAccompanist = "com.google.accompanist:accompanist-webview:$AccompanistVersion"
         const val ComposePermissionsAccompanist = "com.google.accompanist:accompanist-permissions:$AccompanistVersion"
@@ -178,12 +171,6 @@ object Dependencies {
         const val PreferenceDataStore = "androidx.datastore:datastore-preferences:$DataStoreVersion"
         const val CoreDataStore = "androidx.datastore:datastore-preferences-core:$DataStoreVersion"
         const val ProtoDataStore = "androidx.datastore:datastore:$DataStoreVersion"
-    }
-
-    object OneSignal {
-        const val OneSignalVersion = "4.8.2"
-
-        const val OneSignal = "com.onesignal:OneSignal:$OneSignalVersion"
     }
 
     object DesugarLibrary {
