@@ -19,12 +19,19 @@
     <string name="dark">Dark</string>
     <string name="light">Light</string>
     <string name="settings">Settings</string>
-    <string name="turkish">Turkish</string>
-    <string name="spanish">Spanish</string>
-    <string name="portuguese">Portuguese</string>
-    <string name="ukrainian">Ukrainian</string>
     <string name="continue_use">Continue</string>
     <string name="loading">Loading…</string>
-    <string name="kazakh">Kazakh</string>
     <string name="system_default">System Default</string>
+    <string name="height">Height</string>
+    <string name="width">Width</string>
+    <string name="done">Done</string>
+    <string name="row_done">Row done</string>
+    <string name="undo_row">Undo row</string>
+    <string name="row_index">H: %1$s</string>
+    <string name="loop_index">W: %1$s</string>
+    <string name="end_congratulations">Congratulations!\nYou\'re done!</string>
+    <string name="menu">Menu</string>
+    <string name="stamp">Stamp</string>
+    <string name="stamp_description">Create the pattern you want to knit\nThe entire knitting area will be filled with this stamp\nTry for the first time</string>
+    <string name="app_name" translatable="false">Kniss</string>
 </resources>

@@ -19,12 +19,19 @@
     <string name="dark">Темная</string>
     <string name="light">Светлая</string>
     <string name="settings">Настройки</string>
-    <string name="turkish">Турецкий</string>
-    <string name="spanish">Испанский</string>
-    <string name="portuguese">Португальский</string>
-    <string name="ukrainian">Украинский</string>
     <string name="continue_use">Продолжить</string>
     <string name="loading">Загрузка…</string>
-    <string name="kazakh">Казахский</string>
     <string name="system_default">По умолчанию</string>
+    <string name="height">Высота</string>
+    <string name="width">Ширина</string>
+    <string name="done">Готово</string>
+    <string name="row_done">Закончить ряд</string>
+    <string name="undo_row">Вернуть ряд</string>
+    <string name="row_index">В: %1$s</string>
+    <string name="loop_index">Ш: %1$s</string>
+    <string name="end_congratulations">Все готово!</string>
+    <string name="menu">Меню</string>
+    <string name="stamp">Штамп</string>
+    <string name="stamp_description">Создайте рисунок, который хотите связать\nВся область вязания будет заполнена этим штампом\nПопробуйте для первого раза</string>
+
 </resources>
