@@ -16,52 +16,47 @@ import androidx.compose.ui.text.font.FontWeight.Companion.W900
 import androidx.compose.ui.unit.sp
 import com.evoteam.entrypoint.R
 
-val Inter = FontFamily(
-    Font(R.font.inter_100, W100),
-    Font(R.font.inter_200, W200),
-    Font(R.font.inter_300, W300),
-    Font(R.font.inter_400, W400),
-    Font(R.font.inter_500, W500),
-    Font(R.font.inter_600, W600),
-    Font(R.font.inter_700, W700),
-    Font(R.font.inter_800, W800),
-    Font(R.font.inter_900, W900)
-)
-
-val Nunito = FontFamily(
-    Font(R.font.nunito_200, W200),
-    Font(R.font.nunito_300, W300),
-    Font(R.font.nunito_400, W400),
-    Font(R.font.nunito_500, W500),
-    Font(R.font.nunito_600, W600),
-    Font(R.font.nunito_700, W700),
-    Font(R.font.nunito_800, W800),
-    Font(R.font.nunito_900, W900)
+val SourceCodePro = FontFamily(
+    Font(R.font.source_code_pro_100, W100),
+    Font(R.font.source_code_pro_200, W200),
+    Font(R.font.source_code_pro_300, W300),
+    Font(R.font.source_code_pro_400, W400),
+    Font(R.font.source_code_pro_500, W500),
+    Font(R.font.source_code_pro_600, W600),
+    Font(R.font.source_code_pro_700, W700),
+    Font(R.font.source_code_pro_800, W800),
+    Font(R.font.source_code_pro_900, W900)
 )
 
 val Typography = Typography(
-    titleMedium = TextStyle(
-        fontFamily = Inter,
-        fontWeight = W400,
-        fontSize = 16.sp,
-        lineHeight = 18.sp
-    ),
     bodySmall = TextStyle(
-        fontFamily = Inter,
-        fontWeight = W400,
-        fontSize = 16.sp,
-        lineHeight = 18.sp
+        fontFamily = SourceCodePro,
+        fontWeight = W500,
+        fontSize = 14.sp,
+        lineHeight = 14.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = Inter,
-        fontWeight = W400,
+        fontFamily = SourceCodePro,
+        fontWeight = W600,
         fontSize = 16.sp,
         lineHeight = 18.sp
     ),
-    displaySmall = TextStyle(
-        fontFamily = Inter,
-        fontWeight = W400,
-        fontSize = 16.sp,
+    bodyLarge = TextStyle(
+        fontFamily = SourceCodePro,
+        fontWeight = W700,
+        fontSize = 18.sp,
+        lineHeight = 20.sp
+    ),
+    titleMedium = TextStyle(
+        fontFamily = SourceCodePro,
+        fontWeight = W700,
+        fontSize = 20.sp,
+        lineHeight = 22.sp
+    ),
+    labelMedium = TextStyle(
+        fontFamily = SourceCodePro,
+        fontWeight = W600,
+        fontSize = 18.sp,
         lineHeight = 18.sp
     )
 )

@@ -10,12 +10,10 @@ private val LightColorScheme = lightColorScheme(
     background = BackgroundLight,
     onBackground = OnBackgroundLight,
     primary = PrimaryLight,
+   inversePrimary = InversePrimaryLight,
     onPrimary = OnPrimaryLight,
-    inversePrimary = InversePrimaryLight,
     secondary = SecondaryLight,
     onSecondary = OnSecondaryLight,
-    tertiary = TertiaryLight,
-    onTertiary = OnTertiaryLight,
     error = ErrorLight,
     onError = OnErrorLight
 )
@@ -24,12 +22,10 @@ private val DarkColorScheme = darkColorScheme(
     background = BackgroundDark,
     onBackground = OnBackgroundDark,
     primary = PrimaryDark,
-    onPrimary = OnPrimaryDark,
     inversePrimary = InversePrimaryDark,
+    onPrimary = OnPrimaryDark,
     secondary = SecondaryDark,
     onSecondary = OnSecondaryDark,
-    tertiary = TertiaryDark,
-    onTertiary = OnTertiaryDark,
     error = ErrorDark,
     onError = OnErrorDark
 )

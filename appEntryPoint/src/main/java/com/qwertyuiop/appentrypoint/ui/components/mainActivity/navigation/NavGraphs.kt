@@ -1,6 +1,6 @@
 package com.qwertyuiop.appentrypoint.ui.components.mainActivity.navigation
 
-import com.qwertyuiop.presentation.ui.utilsUI.navigation.NavGraphs.PresentationNavGraph
+import com.qwertyuiop.presentation.ui.utils.navigation.NavGraphs.PresentationNavGraph
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.ramcosta.composedestinations.spec.Route
