@@ -1,4 +1,4 @@
-package com.qwertyuiop.presentation.ui.utilsUI
+package com.qwertyuiop.presentation.ui.utils
 
 object ConstantsUI {
     //TODO PP TOU GMAIL

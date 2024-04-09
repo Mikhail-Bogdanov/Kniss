@@ -1,4 +1,4 @@
-package com.qwertyuiop.presentation.ui.utilsUI
+package com.qwertyuiop.presentation.ui.utils
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -6,10 +6,10 @@ import android.content.Intent
 import android.content.Intent.EXTRA_EMAIL
 import android.net.Uri.parse
 import androidx.browser.customtabs.CustomTabsIntent
-import com.qwertyuiop.presentation.ui.utilsUI.ConstantsUI.DeveloperGmail
-import com.qwertyuiop.presentation.ui.utilsUI.ConstantsUI.MailRequestCode
-import com.qwertyuiop.presentation.ui.utilsUI.ConstantsUI.PlayMarketUri
-import com.qwertyuiop.presentation.ui.utilsUI.ConstantsUI.WebPlayMarketUri
+import com.qwertyuiop.presentation.ui.utils.ConstantsUI.DeveloperGmail
+import com.qwertyuiop.presentation.ui.utils.ConstantsUI.MailRequestCode
+import com.qwertyuiop.presentation.ui.utils.ConstantsUI.PlayMarketUri
+import com.qwertyuiop.presentation.ui.utils.ConstantsUI.WebPlayMarketUri
 
 object UtilsFunctions {
     fun openGmail(
