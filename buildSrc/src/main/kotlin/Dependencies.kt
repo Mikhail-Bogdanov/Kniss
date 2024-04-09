@@ -104,6 +104,15 @@ object Dependencies {
         const val Kotlin = "org.jetbrains.kotlin.android"
     }
 
+    object Serialization {
+        const val SerializationPluginVersion = "1.9.20"
+
+        const val SerializationPlugin = "org.jetbrains.kotlin.plugin.serialization"
+
+        const val SerializationVersion = "1.6.3"
+        const val Serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:$SerializationVersion"
+    }
+
     object Room {
         const val RoomVersion = "2.5.2"
 

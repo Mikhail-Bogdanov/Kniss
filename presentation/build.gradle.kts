@@ -2,6 +2,7 @@ plugins {
     id(Dependencies.Android.Android)
     id(Dependencies.Kotlin.Kotlin)
     id(Dependencies.Ksp.Ksp)
+    id(Dependencies.Serialization.SerializationPlugin)
 }
 
 android {
@@ -56,6 +57,8 @@ dependencies {
     implementation(platform(Dependencies.Compose.ComposeBOM))
 
     implementation(platform(Dependencies.Kotlin.KotlinBOM))
+
+    implementation(Dependencies.Serialization.Serialization)
 
     implementation(Dependencies.Koin.KoinAndroid)
     implementation(Dependencies.Koin.KoinCompose)
