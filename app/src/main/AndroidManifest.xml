@@ -5,7 +5,7 @@
     <application
         android:name="com.qwertyuiop.asdfghjkl.App"
         android:icon="@mipmap/ic_launcher"
-        android:label="Template"
+        android:label="Kniss"
         android:largeHeap="true"
         android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
