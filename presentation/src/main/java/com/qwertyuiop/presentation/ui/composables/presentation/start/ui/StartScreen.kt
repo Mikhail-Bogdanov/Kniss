@@ -72,7 +72,7 @@ fun StartScreen(
             imeAction = ImeAction.Done
         ),
         keyboardActions = KeyboardActions {
-            onEvent(DoneClicked)
+            if (state.isCorrect) onEvent(DoneClicked)
         }
     )
 
