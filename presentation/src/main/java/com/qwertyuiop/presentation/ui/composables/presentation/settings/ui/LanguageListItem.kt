@@ -33,8 +33,7 @@ fun LanguageListItem(
             colors = CheckboxDefaults.colors(
                 disabledCheckedColor = MaterialTheme.colorScheme.primary,
                 disabledUncheckedColor = Color.Transparent,
-                checkmarkColor = MaterialTheme.colorScheme.onPrimary,
-                disabledIndeterminateColor = Color.Yellow
+                checkmarkColor = MaterialTheme.colorScheme.onPrimary
             )
         )
     },

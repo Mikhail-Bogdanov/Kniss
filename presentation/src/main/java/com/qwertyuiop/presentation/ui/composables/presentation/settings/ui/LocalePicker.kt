@@ -65,17 +65,24 @@ fun LocalePicker(
         )
     }
     AnimatedVisibility(visible = state.isLanguagesExpanded) {
-        Language.entries.filterNot { it == state.currentLanguage }.forEach { language ->
-            LanguageListItem(
-                language = language,
-                checked = false,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(MaterialTheme.shapes.medium)
-                    .clickable {
-                        onEvent(LanguageClicked(language))
-                    }
-            )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Language.entries.filterNot { it == state.currentLanguage }.forEach { language ->
+                LanguageListItem(
+                    language = language,
+                    checked = false,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(MaterialTheme.shapes.medium)
+                        .clickable {
+                            onEvent(LanguageClicked(language))
+                        }
+                )
+            }
         }
     }
 }
