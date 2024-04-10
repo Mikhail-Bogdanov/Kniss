@@ -25,8 +25,8 @@
     <string name="height">Height</string>
     <string name="width">Width</string>
     <string name="done">Done</string>
-    <string name="row_done">Row done</string>
-    <string name="undo_row">Undo row</string>
+    <string name="row_done">Done</string>
+    <string name="undo_row">Undo</string>
     <string name="row_index">H: %1$s</string>
     <string name="loop_index">W: %1$s</string>
     <string name="end_congratulations">Congratulations!\nYou\'re done!</string>

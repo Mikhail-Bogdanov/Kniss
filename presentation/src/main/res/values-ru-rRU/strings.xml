@@ -25,8 +25,8 @@
     <string name="height">Высота</string>
     <string name="width">Ширина</string>
     <string name="done">Готово</string>
-    <string name="row_done">Закончить ряд</string>
-    <string name="undo_row">Вернуть ряд</string>
+    <string name="row_done">След.</string>
+    <string name="undo_row">Вернуть</string>
     <string name="row_index">В: %1$s</string>
     <string name="loop_index">Ш: %1$s</string>
     <string name="end_congratulations">Все готово!</string>

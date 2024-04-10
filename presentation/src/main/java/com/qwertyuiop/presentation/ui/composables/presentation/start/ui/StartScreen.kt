@@ -114,6 +114,8 @@ fun StartScreen(
                 onEvent(StampQuestionCloseRequested)
             },
             modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
                 .background(MaterialTheme.colorScheme.secondary)
                 .padding(4.dp)
         ) {
