@@ -33,7 +33,12 @@ class SettingsViewModel(
             is LanguageClicked -> languageClicked(event.language)
             is ThemeClicked -> themeClicked(event.darkTheme)
             Initialize -> initialize()
+            SettingsEvent.ExpandLanguagesClicked -> expandLanguagesClicked()
         }
+    }
+
+    private fun expandLanguagesClicked() = intent {
+        reduce { state.copy(isLanguagesExpanded = !state.isLanguagesExpanded) }
     }
 
     private fun initialize() = intent {
@@ -54,5 +59,6 @@ class SettingsViewModel(
         withContext(Dispatchers.Main) {
             setApplicationLocales(forLanguageTags(language.tag))
         }
+        reduce { state.copy(isLanguagesExpanded = false) }
     }
 }

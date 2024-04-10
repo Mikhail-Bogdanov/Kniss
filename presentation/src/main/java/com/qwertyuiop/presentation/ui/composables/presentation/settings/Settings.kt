@@ -32,6 +32,7 @@ fun Settings(
     ) { paddingValues ->
         SettingsScreen(
             paddingValues,
+            state,
             viewModel::dispatch
         )
     }

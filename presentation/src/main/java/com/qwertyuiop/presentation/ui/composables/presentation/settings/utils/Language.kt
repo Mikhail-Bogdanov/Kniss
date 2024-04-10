@@ -16,4 +16,8 @@ enum class Language(
     val title
         @Composable
         get() = stringResource(id = titleResource)
+
+    companion object {
+        fun getByTag(tag: String) = Language.entries.find { it.tag == tag } ?: Default
+    }
 }
