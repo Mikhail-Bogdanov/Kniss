@@ -7,7 +7,6 @@ import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.Knit
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingSideEffect.NavigateToStart
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingSideEffect.PopBackStack
 import com.qwertyuiop.presentation.ui.composables.presentation.shared.KnittingPatternState
-import org.orbitmvi.orbit.syntax.simple.blockingIntent
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -54,7 +53,7 @@ class KnittingViewModel(
         }
     }
 
-    private fun menuButtonClicked() = blockingIntent {
+    private fun menuButtonClicked() = intent {
         reduce { state.copy(currentRow = -1) } //just for beauty
         postSideEffect(NavigateToStart)
     }
