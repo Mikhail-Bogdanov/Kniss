@@ -60,7 +60,7 @@ fun KnittingRowDoneButton(
                 .scale(scale)
         ) {
             Text(
-                text = stringResource(R.string.row_done),
+                text = stringResource(R.string.finish),
                 style = MaterialTheme.typography.labelMedium
             )
         }
@@ -71,6 +71,7 @@ fun KnittingRowDoneButton(
         enabled = state.currentRow != state.loops.size,
         modifier = Modifier
             .fillMaxWidth(0.5f)
+            .scale(1.25f)
     ) {
         onEvent(KnittingEvent.RowDoneButtonClicked)
     }

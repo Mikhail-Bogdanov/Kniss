@@ -36,4 +36,5 @@
     <string name="app_name" translatable="false">Kniss</string>
     <string name="purl_stitch">Purl stitch</string>
     <string name="knit_stitch">Knit stitch</string>
+    <string name="finish">Finish</string>
 </resources>

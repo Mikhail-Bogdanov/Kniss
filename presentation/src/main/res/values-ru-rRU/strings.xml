@@ -35,4 +35,5 @@
     <string name="stamp_description">Создайте рисунок, который хотите связать\nВся область вязания будет заполнена этим штампом\nПопробуйте для первого раза</string>
     <string name="purl_stitch">Изнаночная петля</string>
     <string name="knit_stitch">Лицевая петля</string>
+    <string name="finish">Завершить</string>
 </resources>
