@@ -3,9 +3,7 @@ package com.qwertyuiop.presentation.ui.composables.presentation.knitting.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.evoteam.presentation.R
 import com.qwertyuiop.domain.entities.Loop
+import com.qwertyuiop.presentation.ui.utils.composables.LoopType
 
 @Composable
 fun KnittingLoopItem(
@@ -46,21 +45,28 @@ fun KnittingLoopItem(
         },
         textAlign = TextAlign.Center
     )
-    repeat(
-        when (loop.type) {
-            Loop.LoopType.Front -> 1
-            Loop.LoopType.Back -> 2
+    LoopType(
+        loopType = loop.type,
+        color = when (isCurrentRow) {
+            true -> MaterialTheme.colorScheme.onPrimary
+            false -> MaterialTheme.colorScheme.onSecondary
         }
-    ) {
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth(0.75f),
-            color = when (isCurrentRow) {
-                true -> MaterialTheme.colorScheme.onPrimary
-                false -> MaterialTheme.colorScheme.onSecondary
-            }
-        )
-    }
+    )
+//    repeat(
+//        when (loop.type) {
+//            Loop.LoopType.Front -> 1
+//            Loop.LoopType.Back -> 2
+//        }
+//    ) {
+//        Divider(
+//            modifier = Modifier
+//                .fillMaxWidth(0.75f),
+//            color = when (isCurrentRow) {
+//                true -> MaterialTheme.colorScheme.onPrimary
+//                false -> MaterialTheme.colorScheme.onSecondary
+//            }
+//        )
+//    }
     Text(
         text = stringResource(R.string.loop_index, loopIndex.plus(1)),
         style = MaterialTheme.typography.bodySmall,
