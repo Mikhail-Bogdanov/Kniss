@@ -34,4 +34,6 @@
     <string name="stamp">Stamp</string>
     <string name="stamp_description">Create the pattern you want to knit\nThe entire knitting area will be filled with this stamp\nTry for the first time</string>
     <string name="app_name" translatable="false">Kniss</string>
+    <string name="purl_stitch">Purl stitch</string>
+    <string name="knit_stitch">Knit stitch</string>
 </resources>
