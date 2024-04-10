@@ -4,7 +4,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -28,9 +27,7 @@ fun StartStamp(
     alignment = Alignment.TopStart
 ) {
     LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(0.7f),
+        modifier = Modifier.fillMaxHeight(0.7f),
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         items(
