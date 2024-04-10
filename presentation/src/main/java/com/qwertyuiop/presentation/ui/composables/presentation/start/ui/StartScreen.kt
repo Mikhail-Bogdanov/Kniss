@@ -47,7 +47,7 @@ fun StartScreen(
         .padding(paddingValues)
         .padding(top = 24.dp)
         .padding(horizontal = 24.dp),
-    verticalArrangement = Arrangement.SpaceEvenly,
+    verticalArrangement = Arrangement.SpaceAround,
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     StartScreenTextField(

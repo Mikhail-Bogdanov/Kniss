@@ -1,15 +1,11 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.start.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,14 +16,15 @@ import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEv
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.LoopClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.RemoveLoopClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartState
+import com.qwertyuiop.presentation.ui.utils.composables.HorizontalScrollBox
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StartStamp(state: StartState, onEvent: (StartEvent) -> Unit) = Column(
-    modifier = Modifier
-        .fillMaxWidth()
-        .horizontalScroll(rememberScrollState()),
-    verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top)
+fun StartStamp(
+    state: StartState,
+    onEvent: (StartEvent) -> Unit
+) = HorizontalScrollBox(
+    alignment = Alignment.TopStart
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxHeight(0.7f),

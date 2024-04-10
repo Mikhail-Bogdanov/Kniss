@@ -1,12 +1,9 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.knitting.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
@@ -16,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingState
+import com.qwertyuiop.presentation.ui.utils.composables.HorizontalScrollBox
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -39,11 +37,7 @@ fun KnittingIndicator(
             verticalScrollState.animateScrollToItem(state.loops.lastIndex)
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .horizontalScroll(horizontalScrollState)
-    ) {
+    HorizontalScrollBox(horizontalScrollState = horizontalScrollState) {
         LazyColumn(
             modifier = Modifier.fillMaxHeight(0.7f),
             verticalArrangement = Arrangement.spacedBy(2.dp),
