@@ -120,6 +120,13 @@ fun StartScreen(
                 modifier = Modifier
                     .padding(bottom = 8.dp)
             )
+            Text(
+                text = stringResource(R.string.remove_description),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSecondary,
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+            )
         }
     }
 
