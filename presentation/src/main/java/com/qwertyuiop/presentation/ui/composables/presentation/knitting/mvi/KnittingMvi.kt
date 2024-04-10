@@ -4,11 +4,9 @@ import com.qwertyuiop.domain.entities.Loop
 
 data class KnittingState(
     val currentRow: Int = -1,
-    val loops: List<List<Loop>> = emptyList() //list of rows
-) {
-    val isEndDialogShowing
-        get() = currentRow >= loops.size
-}
+    val loops: List<List<Loop>> = emptyList(), //list of rows
+    val isEndDialogShowing: Boolean = false
+)
 
 sealed interface KnittingEvent {
     data object RowDoneButtonClicked : KnittingEvent

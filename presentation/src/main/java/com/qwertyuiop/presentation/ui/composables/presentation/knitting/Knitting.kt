@@ -83,7 +83,9 @@ fun Knitting(
             ) {
                 PrimaryButton(
                     text = stringResource(R.string.undo_row),
-                    enabled = state.currentRow != 0
+                    enabled = state.currentRow != 0,
+                    modifier = Modifier
+                        .fillMaxWidth(0.4f)
                 ) {
                     viewModel.dispatch(RowUndoneButtonClicked)
                 }

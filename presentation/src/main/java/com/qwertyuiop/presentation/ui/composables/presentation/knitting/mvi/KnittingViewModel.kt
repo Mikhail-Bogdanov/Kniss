@@ -54,12 +54,17 @@ class KnittingViewModel(
     }
 
     private fun menuButtonClicked() = intent {
-        reduce { state.copy(currentRow = -1) } //just for beauty
+        reduce { state.copy(isEndDialogShowing = false) }
         postSideEffect(NavigateToStart)
     }
 
     private fun rowDoneButtonClicked() = intent {
-        reduce { state.copy(currentRow = state.currentRow + 1) }
+        reduce {
+            state.copy(
+                currentRow = state.currentRow + 1,
+                isEndDialogShowing = state.currentRow == state.loops.size.minus(1)
+            )
+        }
     }
 
     private fun rowUndoneButtonClicked() = intent {

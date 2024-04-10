@@ -7,6 +7,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -55,6 +56,7 @@ fun KnittingRowDoneButton(
                 containerColor = containerColor
             ),
             modifier = Modifier
+                .fillMaxWidth(0.5f)
                 .scale(scale)
         ) {
             Text(
@@ -66,7 +68,9 @@ fun KnittingRowDoneButton(
 
     else -> PrimaryButton(
         text = stringResource(R.string.row_done),
-        enabled = state.currentRow != state.loops.size
+        enabled = state.currentRow != state.loops.size,
+        modifier = Modifier
+            .fillMaxWidth(0.5f)
     ) {
         onEvent(KnittingEvent.RowDoneButtonClicked)
     }
