@@ -37,7 +37,10 @@ fun KnittingIndicator(
             verticalScrollState.animateScrollToItem(state.loops.lastIndex)
     }
 
-    HorizontalScrollBox(horizontalScrollState = horizontalScrollState) {
+    HorizontalScrollBox(
+        horizontalScrollState = horizontalScrollState,
+        alignment = Alignment.BottomEnd
+    ) {
         LazyColumn(
             modifier = Modifier.fillMaxHeight(0.7f),
             verticalArrangement = Arrangement.spacedBy(2.dp),

@@ -1,5 +1,8 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.knitting
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -59,7 +62,16 @@ fun Knitting(
             verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (state.isEndDialogShowing) KnittingEndDialog(onEvent = viewModel::dispatch)
+            AnimatedVisibility(
+                visible = state.isEndDialogShowing,
+                exit = fadeOut(
+                    animationSpec = tween(
+                        durationMillis = 100
+                    )
+                )
+            ) {
+                KnittingEndDialog(onEvent = viewModel::dispatch)
+            }
 
             KnittingIndicator(state = state)
 
