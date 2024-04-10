@@ -1,6 +1,7 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.knitting.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
@@ -9,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -18,20 +20,23 @@ import com.qwertyuiop.presentation.ui.utils.composables.LoopType
 
 @Composable
 fun KnittingLoopItem(
-    loop: Loop,
+    loopType: Loop.LoopType,
     isCurrentRow: Boolean,
     rowIndex: Int,
-    loopIndex: Int
+    loopIndex: Int,
+    clickEnabled: Boolean,
+    onClick: () -> Unit
 ) = Column(
     modifier = Modifier
         .size(64.dp)
+        .clip(MaterialTheme.shapes.small)
         .background(
             color = when (isCurrentRow) {
                 true -> MaterialTheme.colorScheme.primary
                 false -> MaterialTheme.colorScheme.secondary
-            },
-            shape = MaterialTheme.shapes.small
-        ),
+            }
+        )
+        .clickable(enabled = clickEnabled, onClick = onClick),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.SpaceEvenly
 ) {
@@ -46,27 +51,12 @@ fun KnittingLoopItem(
         textAlign = TextAlign.Center
     )
     LoopType(
-        loopType = loop.type,
+        loopType = loopType,
         color = when (isCurrentRow) {
             true -> MaterialTheme.colorScheme.onPrimary
             false -> MaterialTheme.colorScheme.onSecondary
         }
     )
-//    repeat(
-//        when (loop.type) {
-//            Loop.LoopType.Front -> 1
-//            Loop.LoopType.Back -> 2
-//        }
-//    ) {
-//        Divider(
-//            modifier = Modifier
-//                .fillMaxWidth(0.75f),
-//            color = when (isCurrentRow) {
-//                true -> MaterialTheme.colorScheme.onPrimary
-//                false -> MaterialTheme.colorScheme.onSecondary
-//            }
-//        )
-//    }
     Text(
         text = stringResource(R.string.loop_index, loopIndex.plus(1)),
         style = MaterialTheme.typography.bodySmall,

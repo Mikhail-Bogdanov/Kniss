@@ -51,7 +51,7 @@ fun Knitting(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            KnittingTopBar(onEvent = viewModel::dispatch)
+            KnittingTopBar(state = state, onEvent = viewModel::dispatch)
         }
     ) { paddingValues ->
         Column(
@@ -73,7 +73,10 @@ fun Knitting(
                 KnittingEndDialog(onEvent = viewModel::dispatch)
             }
 
-            KnittingIndicator(state = state)
+            KnittingIndicator(
+                state = state,
+                onEvent = viewModel::dispatch
+            )
 
             Row(
                 modifier = Modifier

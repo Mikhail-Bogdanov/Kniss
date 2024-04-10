@@ -13,6 +13,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent
+import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.LoopItemClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingState
 import com.qwertyuiop.presentation.ui.utils.composables.HorizontalScrollBox
 import kotlinx.coroutines.launch
@@ -20,7 +22,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun KnittingIndicator(
-    state: KnittingState
+    state: KnittingState,
+    onEvent: (KnittingEvent) -> Unit
 ) {
     val horizontalScrollState = rememberScrollState()
     val verticalScrollState = rememberLazyListState()
@@ -66,12 +69,17 @@ fun KnittingIndicator(
                             .minus(1)
                             .minus(loopIndex)
 
+                        val loop = state.loops[reversedRowIndex][reversedLoopIndex]
+
                         KnittingLoopItem(
-                            loop = state.loops[reversedRowIndex][reversedLoopIndex],
+                            loopType = loop.type,
                             isCurrentRow = state.currentRow == reversedRowIndex,
                             rowIndex = reversedRowIndex,
-                            loopIndex = reversedLoopIndex
-                        )
+                            loopIndex = reversedLoopIndex,
+                            clickEnabled = state.isInEdit
+                        ) {
+                            onEvent(LoopItemClicked(loop))
+                        }
                     }
                 }
             }
