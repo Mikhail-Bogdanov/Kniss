@@ -2,28 +2,29 @@ package com.qwertyuiop.appentrypoint.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val BackgroundDark = Color(0xFF00080F)
-val OnBackgroundDark = Color(0xFFEDBE82)
 
-val BackgroundLight = Color(0xFF000A14)
-val OnBackgroundLight = Color(0xFFEDBE82)
+val BackgroundDark = Color(0xFF004D40)
+val OnBackgroundDark = Color(0xFFFFFFFF)
 
-val PrimaryDark = Color(0xFF215C40)
-val OnPrimaryDark = Color(0xFF00002F)
-val InversePrimaryDark = Color(0xBF252E3C)
+val BackgroundLight = Color(0xFF00796B)
+val OnBackgroundLight = Color(0xFF000000)
 
-val PrimaryLight = Color(0xFF0BC452)
-val OnPrimaryLight = Color(0xFF00002F)
-val InversePrimaryLight = Color(0xBF44767E)
+val PrimaryDark = Color(0xFF3E9643)
+val OnPrimaryDark = Color(0xFF000000)
+val InversePrimaryDark = Color(0xFF6E926F)
 
-val SecondaryDark = Color(0xFF254134)
-val OnSecondaryDark = Color(0xFF43BB84)
+val PrimaryLight = Color(0xFF64FFDA)
+val OnPrimaryLight = Color(0xFF141414)
+val InversePrimaryLight = Color(0xFF004D40)
 
-val SecondaryLight = Color(0xFF5AC694)
-val OnSecondaryLight = Color(0xFF1C012B)
+val SecondaryDark = Color(0xFF00695C)
+val OnSecondaryDark = Color(0xFFFFFFFF)
 
-val ErrorDark = Color(0xFFE50F44)
-val OnErrorDark = Color(0xFF08060D)
+val SecondaryLight = Color(0xFF69F0AE)
+val OnSecondaryLight = Color(0xFF000000)
 
-val ErrorLight = Color(0xFFE50F44)
-val OnErrorLight = Color(0xFF08060D)
+val ErrorDark = Color(0xFFD32F2F)
+val OnErrorDark = Color(0xFFFFFFFF)
+
+val ErrorLight = Color(0xFFFF8A80)
+val OnErrorLight = Color(0xFF000000)
