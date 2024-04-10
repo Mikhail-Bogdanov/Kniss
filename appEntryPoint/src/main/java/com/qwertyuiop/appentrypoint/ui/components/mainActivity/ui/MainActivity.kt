@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.background
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Modifier
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.qwertyuiop.appentrypoint.ui.components.mainActivity.mvi.MainActivityViewModel
 import com.qwertyuiop.appentrypoint.ui.components.mainActivity.navigation.NavGraphs
@@ -33,7 +36,9 @@ class MainActivity : AppCompatActivity() {
             ) {
                 DestinationsNavHost(
                     navGraph = NavGraphs.root,
-                    engine = rememberAnimatedNavHostEngine()
+                    engine = rememberAnimatedNavHostEngine(),
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.background)
                 )
             }
         }
