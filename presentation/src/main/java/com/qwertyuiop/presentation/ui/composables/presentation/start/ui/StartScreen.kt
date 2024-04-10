@@ -50,7 +50,7 @@ fun StartScreen(
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
     StartScreenTextField(
-        value = state.width,
+        value = state.width?.toString() ?: "",
         onValueChange = { newWidth ->
             onEvent(WidthInput(newWidth))
         },
@@ -62,7 +62,7 @@ fun StartScreen(
     )
 
     StartScreenTextField(
-        value = state.height,
+        value = state.height?.toString() ?: "",
         onValueChange = { newHeight ->
             onEvent(HeightInput(newHeight))
         },

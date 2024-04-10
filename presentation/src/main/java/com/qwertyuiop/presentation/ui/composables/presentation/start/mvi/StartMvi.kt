@@ -2,17 +2,16 @@ package com.qwertyuiop.presentation.ui.composables.presentation.start.mvi
 
 import com.qwertyuiop.domain.entities.Loop
 import com.qwertyuiop.presentation.ui.composables.presentation.shared.KnittingPatternState
-import com.qwertyuiop.presentation.ui.utils.extensions.isBlankOrEmpty
 
 data class StartState(
-    val width: String = "",
-    val height: String = "",
+    val width: Int? = null,
+    val height: Int? = null,
     val loops: List<List<Loop>> = listOf(listOf(Loop())),
     val stampQuestionOpened: Boolean = false
 ) {
     val isCorrect
-        get() = !width.isBlankOrEmpty() &&
-                !height.isBlankOrEmpty() &&
+        get() = width != null &&
+                height != null &&
                 loops.size <= height.toInt() &&
                 loops.all { it.size <= width.toInt() }
 }

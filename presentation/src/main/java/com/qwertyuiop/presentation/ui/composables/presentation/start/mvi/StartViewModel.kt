@@ -11,7 +11,8 @@ import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEv
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.HeightInput
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.RemoveLoopClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.WidthInput
-import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.*
+import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.NavigateToKnitting
+import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.NavigateToSettings
 import com.qwertyuiop.presentation.ui.utils.extensions.extend
 import com.qwertyuiop.presentation.ui.utils.extensions.extendInner
 import com.qwertyuiop.presentation.ui.utils.extensions.isBlankOrEmpty
@@ -87,28 +88,36 @@ class StartViewModel : MviViewModel<StartState, StartSideEffect, StartEvent>(
     }
 
     private fun heightInput(heightString: String) = blockingIntent {
-        if (heightString.isBlankOrEmpty()) {
-            reduce { state.copy(height = "") }
-            return@blockingIntent
+        when {
+            heightString.isBlankOrEmpty() -> {
+                reduce { state.copy(height = null) }
+                return@blockingIntent
+            }
+
+            heightString.toIntOrNull() == null -> return@blockingIntent
         }
-        val height = heightString.toIntOrNull() ?: return@blockingIntent
+        val height = heightString.toInt()
         if (height !in 0..100) return@blockingIntent
-        reduce { state.copy(height = height.toString()) }
+        reduce { state.copy(height = height) }
     }
 
     private fun widthInput(widthString: String) = blockingIntent {
-        if (widthString.isBlankOrEmpty()) {
-            reduce { state.copy(width = "") }
-            return@blockingIntent
+        when {
+            widthString.isBlankOrEmpty() -> {
+                reduce { state.copy(width = null) }
+                return@blockingIntent
+            }
+
+            widthString.toIntOrNull() == null -> return@blockingIntent
         }
-        val width = widthString.toIntOrNull() ?: return@blockingIntent
+        val width = widthString.toInt()
         if (width !in 0..100) return@blockingIntent
-        reduce { state.copy(width = width.toString()) }
+        reduce { state.copy(width = width) }
     }
 
     private fun doneClicked() = intent {
-        val widthInt = state.width.toInt()
-        val heightInt = state.height.toInt()
+        val widthInt = state.width ?: 0 //it won't happen
+        val heightInt = state.height ?: 0 //it won't happen
         postSideEffect(
             NavigateToKnitting(
                 KnittingPatternState(
