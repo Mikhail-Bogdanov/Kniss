@@ -39,7 +39,9 @@ fun SettingsTopBar(state: SettingsState, onEvent: (SettingsEvent) -> Unit) = Gen
     actions = {
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.light_theme_icon),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier
+                .padding(horizontal = 4.dp)
         )
         Switch(
             checked = state.isDarkTheme,
@@ -53,13 +55,13 @@ fun SettingsTopBar(state: SettingsState, onEvent: (SettingsEvent) -> Unit) = Gen
                 uncheckedBorderColor = MaterialTheme.colorScheme.inversePrimary,
                 uncheckedThumbColor = MaterialTheme.colorScheme.inversePrimary,
                 uncheckedTrackColor = MaterialTheme.colorScheme.onSecondary
-            ),
-            modifier = Modifier
-                .padding(horizontal = 4.dp)
+            )
         )
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.dark_theme_icon),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier
+                .padding(horizontal = 4.dp)
         )
     }
 )

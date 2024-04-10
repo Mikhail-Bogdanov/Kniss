@@ -1,6 +1,5 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.start.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,7 +12,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.QuestionMark
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -34,6 +32,7 @@ import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEv
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.StampQuestionMarkClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.WidthInput
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartState
+import com.qwertyuiop.presentation.ui.utils.composables.LoopTypeDropdownMenu
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
 
 @Composable
@@ -108,21 +107,18 @@ fun StartScreen(
                     .size(12.dp)
             )
         }
-        DropdownMenu(
+        LoopTypeDropdownMenu(
             expanded = state.stampQuestionOpened,
             onDismissRequest = {
                 onEvent(StampQuestionCloseRequested)
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-                .background(MaterialTheme.colorScheme.secondary)
-                .padding(4.dp)
+            }
         ) {
             Text(
                 text = stringResource(R.string.stamp_description),
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSecondary
+                color = MaterialTheme.colorScheme.onSecondary,
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
             )
         }
     }
