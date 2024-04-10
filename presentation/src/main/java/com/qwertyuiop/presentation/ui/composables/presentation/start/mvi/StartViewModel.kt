@@ -2,6 +2,10 @@
 
 package com.qwertyuiop.presentation.ui.composables.presentation.start.mvi
 
+import android.annotation.SuppressLint
+import android.os.VibrationEffect
+import android.os.VibrationEffect.DEFAULT_AMPLITUDE
+import android.os.Vibrator
 import com.qwertyuiop.core.mviViewModel.MviViewModel
 import com.qwertyuiop.domain.entities.Loop
 import com.qwertyuiop.presentation.ui.composables.presentation.shared.KnittingPatternState
@@ -25,7 +29,9 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-class StartViewModel : MviViewModel<StartState, StartSideEffect, StartEvent>(
+class StartViewModel(
+    private val vibrator: Vibrator
+) : MviViewModel<StartState, StartSideEffect, StartEvent>(
     initialState = StartState()
 ) {
     override fun dispatch(event: StartEvent) {
@@ -71,11 +77,15 @@ class StartViewModel : MviViewModel<StartState, StartSideEffect, StartEvent>(
         }
     }
 
+    @SuppressLint("MissingPermission")
     private fun removeLoopClicked(loop: Loop) = intent {
-        if (state.loops.any { it.size > 1 } || state.loops.size > 1) reduce {
-            state.copy(
-                loops = state.loops.removeWherever(loop)
-            )
+        if (state.loops.any { it.size > 1 } || state.loops.size > 1) {
+            reduce {
+                state.copy(
+                    loops = state.loops.removeWherever(loop)
+                )
+            }
+            vibrator.vibrate(VibrationEffect.createOneShot(100L, DEFAULT_AMPLITUDE))
         }
     }
 
