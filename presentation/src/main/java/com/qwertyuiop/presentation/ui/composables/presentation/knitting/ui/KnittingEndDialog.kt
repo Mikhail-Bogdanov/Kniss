@@ -44,7 +44,7 @@ fun KnittingEndDialog(onEvent: (KnittingEvent) -> Unit) = Dialog(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.icon),
+            painter = painterResource(id = R.drawable.app_icon),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth(),

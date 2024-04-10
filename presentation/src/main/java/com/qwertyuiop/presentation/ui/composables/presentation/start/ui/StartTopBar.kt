@@ -23,7 +23,7 @@ fun StartTopBar(onEvent: (StartEvent) -> Unit) = GeneralTopAppBar(
     title = stringResource(R.string.app_name),
     navigationIcon = {
         Image(
-            imageVector = ImageVector.vectorResource(R.drawable.icon),
+            imageVector = ImageVector.vectorResource(R.drawable.app_icon),
             contentDescription = null,
             modifier = Modifier
                 .size(48.dp),
