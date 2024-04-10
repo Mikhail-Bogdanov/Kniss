@@ -56,12 +56,12 @@ fun KnittingRowDoneButton(
                 containerColor = containerColor
             ),
             modifier = Modifier
-                .fillMaxWidth(0.5f)
+                .fillMaxWidth(0.55f)
                 .scale(scale)
         ) {
             Text(
                 text = stringResource(R.string.finish),
-                style = MaterialTheme.typography.labelMedium
+                style = MaterialTheme.typography.labelSmall
             )
         }
     }

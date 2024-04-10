@@ -58,5 +58,11 @@ val Typography = Typography(
         fontWeight = W600,
         fontSize = 16.sp,
         lineHeight = 16.sp
+    ),
+    labelSmall = TextStyle(
+        fontFamily = SourceCodePro,
+        fontWeight = W600,
+        fontSize = 14.sp,
+        lineHeight = 14.sp
     )
 )
