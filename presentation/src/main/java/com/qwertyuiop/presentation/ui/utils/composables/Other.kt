@@ -89,7 +89,7 @@ fun LoopTypeDropdownMenu(expanded: Boolean, onDismissRequest: () -> Unit) = Drop
     modifier = Modifier
         .background(MaterialTheme.colorScheme.secondary)
         .fillMaxWidth()
-        .padding(4.dp),
+        .padding(horizontal = 16.dp, vertical = 4.dp),
     offset = DpOffset(
         x = 0.dp,
         y = 12.dp
@@ -137,7 +137,7 @@ fun LoopTypeDropdownMenu(
     modifier = Modifier
         .background(MaterialTheme.colorScheme.secondary)
         .fillMaxWidth()
-        .padding(4.dp),
+        .padding(horizontal = 16.dp, vertical = 3.dp),
     offset = DpOffset(
         x = 0.dp,
         y = 12.dp
