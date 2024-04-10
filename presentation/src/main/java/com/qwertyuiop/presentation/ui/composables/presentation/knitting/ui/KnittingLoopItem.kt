@@ -55,7 +55,8 @@ fun KnittingLoopItem(
         color = when (isCurrentRow) {
             true -> MaterialTheme.colorScheme.onPrimary
             false -> MaterialTheme.colorScheme.onSecondary
-        }
+        },
+        size = 12.dp
     )
     Text(
         text = stringResource(R.string.loop_index, loopIndex.plus(1)),

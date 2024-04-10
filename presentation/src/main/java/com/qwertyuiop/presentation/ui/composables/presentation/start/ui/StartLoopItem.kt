@@ -34,5 +34,9 @@ fun StartLoopItem(loop: Loop, onLoopClick: () -> Unit, onRemoveClick: () -> Unit
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.SpaceEvenly
 ) {
-    LoopType(loopType = loop.type, color = MaterialTheme.colorScheme.onPrimary)
+    LoopType(
+        loopType = loop.type,
+        color = MaterialTheme.colorScheme.onPrimary,
+        size = 20.dp
+    )
 }

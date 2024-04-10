@@ -26,6 +26,7 @@ import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.evoteam.presentation.R
@@ -54,14 +55,14 @@ fun HorizontalScrollBox(
 )
 
 @Composable
-fun LoopType(loopType: Loop.LoopType, color: Color) {
+fun LoopType(loopType: Loop.LoopType, color: Color, size: Dp) {
     //don't know is this okay :/
-    val bigCircleState = bigCircleState()
-    val smallCircleState = smallCircleState(loopType)
+    val bigCircleState = bigCircleState(size)
+    val smallCircleState = smallCircleState(loopType, size)
 
     Spacer(
         modifier = Modifier
-            .size(20.dp)
+            .size(size)
             .drawWithCache {
                 onDrawBehind {
                     drawCircle(
@@ -109,7 +110,8 @@ fun LoopTypeDropdownMenu(expanded: Boolean, onDismissRequest: () -> Unit) = Drop
             ) {
                 LoopType(
                     loopType = type,
-                    color = MaterialTheme.colorScheme.onSecondary
+                    color = MaterialTheme.colorScheme.onSecondary,
+                    size = 16.dp
                 )
                 Text(
                     text = when (type) {
@@ -157,7 +159,8 @@ fun LoopTypeDropdownMenu(
             ) {
                 LoopType(
                     loopType = type,
-                    color = MaterialTheme.colorScheme.onSecondary
+                    color = MaterialTheme.colorScheme.onSecondary,
+                    size = 16.dp
                 )
                 Text(
                     text = when (type) {
