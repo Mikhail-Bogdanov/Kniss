@@ -3,6 +3,7 @@ package com.qwertyuiop.presentation.ui.composables.presentation.start.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +17,7 @@ import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEv
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.LoopClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.RemoveLoopClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartState
+import com.qwertyuiop.presentation.ui.utils.composables.ComposableConstants
 import com.qwertyuiop.presentation.ui.utils.composables.HorizontalScrollBox
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -27,7 +29,9 @@ fun StartStamp(
     alignment = Alignment.TopStart
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxHeight(0.7f),
+        modifier = Modifier
+            .defaultMinSize(minWidth = ComposableConstants.ScreenWidth)
+            .fillMaxHeight(0.7f),
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         items(

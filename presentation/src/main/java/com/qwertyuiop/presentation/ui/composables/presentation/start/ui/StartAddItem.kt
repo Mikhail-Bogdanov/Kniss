@@ -12,12 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.dp
+import com.qwertyuiop.presentation.ui.utils.composables.ComposableConstants.LoopItemSize
 
 @Composable
 fun StartAddItem(modifier: Modifier = Modifier, onClick: () -> Unit) = Box(
     modifier = Modifier
-        .size(64.dp)
+        .size(LoopItemSize)
         .then(modifier)
         .clip(MaterialTheme.shapes.medium)
         .clickable(onClick = onClick)
