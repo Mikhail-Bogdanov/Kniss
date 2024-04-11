@@ -14,11 +14,12 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import com.qwertyuiop.domain.entities.Loop
 import com.qwertyuiop.presentation.ui.utils.composables.LoopType
+import com.qwertyuiop.presentation.ui.utils.composables.ComposableConstants.LoopItemSize
 
 @Composable
 fun StartLoopItem(loop: Loop, onLoopClick: () -> Unit, onRemoveClick: () -> Unit) = Column(
     modifier = Modifier
-        .size(64.dp)
+        .size(LoopItemSize)
         .clip(MaterialTheme.shapes.medium)
         .pointerInput(System.currentTimeMillis()) {
             detectTapGestures(

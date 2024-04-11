@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.evoteam.presentation.R
 import com.qwertyuiop.domain.entities.Loop
 import com.qwertyuiop.presentation.ui.utils.composables.LoopType
+import com.qwertyuiop.presentation.ui.utils.composables.ComposableConstants.LoopItemSize
 
 @Composable
 fun KnittingLoopItem(
@@ -28,7 +29,7 @@ fun KnittingLoopItem(
     onClick: () -> Unit
 ) = Column(
     modifier = Modifier
-        .size(64.dp)
+        .size(LoopItemSize)
         .clip(MaterialTheme.shapes.small)
         .background(
             color = when (isCurrentRow) {

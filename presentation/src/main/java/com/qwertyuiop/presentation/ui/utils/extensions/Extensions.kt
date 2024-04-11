@@ -1,8 +1,14 @@
 package com.qwertyuiop.presentation.ui.utils.extensions
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import com.qwertyuiop.domain.entities.Loop
 import com.qwertyuiop.presentation.ui.composables.destinations.DirectionDestination
 import com.qwertyuiop.presentation.ui.composables.presentation.shared.LoopDTO
+import com.qwertyuiop.presentation.ui.utils.composables.ComposableConstants
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 fun String.isBlankOrEmpty() = isBlank() || isEmpty()
@@ -51,3 +57,11 @@ fun DestinationsNavigator.navigateClear(dest: DirectionDestination) {
 }
 
 fun Loop.toLoopDTO() = LoopDTO(type = type)
+
+@SuppressLint("ComposableModifierFactory")
+@Composable
+fun Modifier.fillScreenWidth() = width(ComposableConstants.ScreenWidth)
+
+@SuppressLint("ComposableModifierFactory")
+@Composable
+fun Modifier.fillScreenHeight() = height(ComposableConstants.ScreenHeight)
