@@ -14,7 +14,7 @@ object Dependencies {
     }
 
     object Android {
-        const val ApplicationVersion = "8.1.0"
+        const val ApplicationVersion = "8.3.2"
         const val Application = "com.android.application"
         const val AppCompatVersion = "1.6.1"
         const val AndroidLifecycleVersion = "2.5.1"
