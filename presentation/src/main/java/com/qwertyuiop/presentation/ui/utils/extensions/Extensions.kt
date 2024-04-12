@@ -52,7 +52,9 @@ fun List<List<Loop>>.removeWherever(l: Loop) = toMutableList().apply {
 
 fun DestinationsNavigator.navigateClear(dest: DirectionDestination) {
     navigate(dest) {
-        popUpTo(popUpToRoute ?: "root")
+        popUpTo("root") {
+            inclusive = true
+        }
     }
 }
 
