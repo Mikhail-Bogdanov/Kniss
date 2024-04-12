@@ -1,5 +1,6 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,10 +13,14 @@ import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.Gre
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
 
 @Composable
-fun WelcomeNextButton(onEvent: (WelcomeEvent) -> Unit) = PrimaryButton(
+fun WelcomeNextButton(
+    greetingContent: GreetingContent,
+    onEvent: (WelcomeEvent) -> Unit
+) = PrimaryButton(
     text = stringResource(R.string.next),
     modifier = Modifier
-        .padding(bottom = 24.dp)
+        .fillMaxWidth(0.8f)
+        .padding(bottom = 72.dp)
 ) {
-    onEvent(NextTipClicked(GreetingContent.Language))
+    onEvent(NextTipClicked(greetingContent))
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -24,6 +25,7 @@ import com.evoteam.presentation.R
 import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.presentation.ui.composables.destinations.StartDestination
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.utils.Language
+import com.qwertyuiop.presentation.ui.composables.presentation.settings.utils.Language.Default
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.ContinueClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.LanguageSelected
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.NavigateToStart
@@ -33,6 +35,7 @@ import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.Welcom
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryInputField
+import com.qwertyuiop.presentation.ui.utils.extensions.fillScreenHeight
 import com.qwertyuiop.presentation.ui.utils.extensions.fillScreenWidth
 import com.qwertyuiop.presentation.ui.utils.extensions.navigateClear
 import com.ramcosta.composedestinations.annotation.Destination
@@ -49,6 +52,7 @@ fun Welcome(
     val viewModel = getViewModel<WelcomeViewModel>()
     val state = viewModel.collectAsState().value
 
+    //ну и наговнокодил я тут
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
@@ -61,7 +65,7 @@ fun Welcome(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .padding(top = 24.dp)
-                .padding(vertical = 24.dp)
+                .padding(horizontal = 24.dp)
                 .background(MaterialTheme.colorScheme.background)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.SpaceBetween,
@@ -69,10 +73,21 @@ fun Welcome(
         ) {
             when (state.remainingGreetingContent.firstOrNull()) {
                 GreetingContent.Language -> {
-                    WelcomeScreenText(text = stringResource(R.string.select_language))
-                    Language.entries.forEach { language ->
-                        PrimaryButton(text = language.title) {
-                            viewModel.dispatch(LanguageSelected(language))
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillScreenHeight(0.6f),
+                        verticalArrangement = Arrangement.spacedBy(
+                            24.dp,
+                            Alignment.CenterVertically
+                        ),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        WelcomeScreenText(text = stringResource(R.string.select_language))
+                        Language.entries.filter { it != Default }.forEach { language ->
+                            PrimaryButton(text = language.title) {
+                                viewModel.dispatch(LanguageSelected(language))
+                            }
                         }
                     }
                 }
@@ -86,38 +101,56 @@ fun Welcome(
                             .fillScreenWidth(),
                         contentScale = ContentScale.FillWidth
                     )
-                    WelcomeNextButton(onEvent = viewModel::dispatch)
+                    WelcomeNextButton(
+                        greetingContent = GreetingContent.Welcome,
+                        onEvent = viewModel::dispatch
+                    )
                 }
 
                 GreetingContent.Size -> {
                     WelcomeScreenText(text = stringResource(R.string.choose_size))
-                    PrimaryInputField(
-                        value = "",
-                        onValueChange = {},
-                        enabled = false,
+                    Column(
                         modifier = Modifier
-                            .fillScreenWidth(),
-                        placeholder = {
-                            Text(
-                                text = stringResource(R.string.width),
-                                style = MaterialTheme.typography.bodySmall
-                            )
-                        }
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.spacedBy(
+                            16.dp,
+                            Alignment.CenterVertically
+                        ),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        PrimaryInputField(
+                            value = "",
+                            onValueChange = {},
+                            enabled = false,
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            placeholder = {
+                                Text(
+                                    text = stringResource(R.string.width),
+                                    style = MaterialTheme.typography.bodySmall
+                                )
+                            },
+                            shape = MaterialTheme.shapes.medium
+                        )
+                        PrimaryInputField(
+                            value = "",
+                            onValueChange = {},
+                            enabled = false,
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            placeholder = {
+                                Text(
+                                    text = stringResource(R.string.height),
+                                    style = MaterialTheme.typography.bodySmall
+                                )
+                            },
+                            shape = MaterialTheme.shapes.medium
+                        )
+                    }
+                    WelcomeNextButton(
+                        greetingContent = GreetingContent.Size,
+                        onEvent = viewModel::dispatch
                     )
-                    PrimaryInputField(
-                        value = "",
-                        onValueChange = {},
-                        enabled = false,
-                        modifier = Modifier
-                            .fillScreenWidth(),
-                        placeholder = {
-                            Text(
-                                text = stringResource(R.string.height),
-                                style = MaterialTheme.typography.bodySmall
-                            )
-                        }
-                    )
-                    WelcomeNextButton(onEvent = viewModel::dispatch)
                 }
 
                 GreetingContent.Stamp -> {
@@ -129,7 +162,10 @@ fun Welcome(
                             .fillScreenWidth(),
                         contentScale = ContentScale.FillWidth
                     )
-                    WelcomeNextButton(onEvent = viewModel::dispatch)
+                    WelcomeNextButton(
+                        greetingContent = GreetingContent.Stamp,
+                        onEvent = viewModel::dispatch
+                    )
                 }
 
                 GreetingContent.Remove -> {
@@ -141,7 +177,10 @@ fun Welcome(
                             .fillScreenWidth(),
                         contentScale = ContentScale.FillWidth
                     )
-                    WelcomeNextButton(onEvent = viewModel::dispatch)
+                    WelcomeNextButton(
+                        greetingContent = GreetingContent.Remove,
+                        onEvent = viewModel::dispatch
+                    )
                 }
 
                 GreetingContent.Track -> {
@@ -153,7 +192,10 @@ fun Welcome(
                             .fillScreenWidth(),
                         contentScale = ContentScale.FillWidth
                     )
-                    WelcomeNextButton(onEvent = viewModel::dispatch)
+                    WelcomeNextButton(
+                        greetingContent = GreetingContent.Track,
+                        onEvent = viewModel::dispatch
+                    )
                 }
 
                 GreetingContent.Edit -> {
@@ -165,15 +207,26 @@ fun Welcome(
                             .fillScreenWidth(),
                         contentScale = ContentScale.FillWidth
                     )
-                    WelcomeNextButton(onEvent = viewModel::dispatch)
+                    WelcomeNextButton(
+                        greetingContent = GreetingContent.Edit,
+                        onEvent = viewModel::dispatch
+                    )
                 }
 
                 GreetingContent.Continue -> {
                     WelcomeScreenText(text = stringResource(R.string.try_now))
+                    Image(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.app_icon),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillScreenWidth(),
+                        contentScale = ContentScale.FillWidth
+                    )
                     PrimaryButton(
                         text = stringResource(id = R.string.continue_use),
                         modifier = Modifier
-                            .padding(bottom = 24.dp)
+                            .fillMaxWidth(0.8f)
+                            .padding(bottom = 72.dp)
                     ) {
                         viewModel.dispatch(ContinueClicked)
                     }

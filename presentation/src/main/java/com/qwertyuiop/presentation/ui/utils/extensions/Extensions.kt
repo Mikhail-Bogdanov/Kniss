@@ -62,8 +62,12 @@ fun Loop.toLoopDTO() = LoopDTO(type = type)
 
 @SuppressLint("ComposableModifierFactory")
 @Composable
-fun Modifier.fillScreenWidth() = width(ComposableConstants.ScreenWidth)
+fun Modifier.fillScreenWidth(
+    fraction: Float = 1f
+) = width(ComposableConstants.ScreenWidth.times(fraction))
 
 @SuppressLint("ComposableModifierFactory")
 @Composable
-fun Modifier.fillScreenHeight() = height(ComposableConstants.ScreenHeight)
+fun Modifier.fillScreenHeight(
+    fraction: Float = 1f
+) = height(ComposableConstants.ScreenHeight.times(fraction))
