@@ -4,7 +4,8 @@ import com.qwertyuiop.presentation.ui.composables.presentation.settings.utils.La
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
 
 data class WelcomeState(
-    val remainingGreetingContent: List<GreetingContent> = GreetingContent.entries.toList()
+    val remainingGreetingContent: List<GreetingContent> = GreetingContent.entries.toList(),
+    val isLoading: Boolean = true
 )
 
 sealed interface WelcomeEvent {
@@ -16,6 +17,7 @@ sealed interface WelcomeEvent {
     data class LanguageSelected(
         val language: Language
     ) : WelcomeEvent
+    data object Initialize : WelcomeEvent
 }
 
 sealed interface WelcomeSideEffect {

@@ -13,6 +13,8 @@ object DataStoreUtils {
     )
 
     private const val THEME = "THEME"
+    private const val TUTORIAL = "TUTORIAL"
 
     val FIELD_THEME = booleanPreferencesKey(THEME)
+    val FIELD_TUTORIAL = booleanPreferencesKey(TUTORIAL)
 }
