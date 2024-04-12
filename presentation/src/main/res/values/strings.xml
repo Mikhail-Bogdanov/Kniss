@@ -38,4 +38,13 @@
     <string name="knit_stitch">Knit stitch</string>
     <string name="finish">Finish</string>
     <string name="remove_description">Long press on stitch to remove</string>
+    <string name="app_welcome_desc">Welcome to Kniss!\nKniss is a knitting assistant app that\nhelps you track your knitting progress\nThis short tutorial will help you get started using Kniss</string>
+    <string name="next">Next</string>
+    <string name="choose_size">First of all, choose the size\nof the knitting area</string>
+    <string name="try_now">Try it now!</string>
+    <string name="make_pattern">Then make a pattern you want to knit</string>
+    <string name="select_language">Please select your language</string>
+    <string name="remove_loop_help_text">If you need to remove a stitch from the stamp long press on it</string>
+    <string name="track_progress_text">Track your progress clicking \"Done\" and \"Undo\"</string>
+    <string name="edit_help_text">Edit any stitch if you need</string>
 </resources>
