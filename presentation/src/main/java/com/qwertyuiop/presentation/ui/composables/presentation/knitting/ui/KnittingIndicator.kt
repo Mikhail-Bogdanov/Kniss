@@ -48,7 +48,11 @@ fun KnittingIndicator(
     ) {
         LazyColumn(
             modifier = Modifier
-                .defaultMinSize(minWidth = ComposableConstants.ScreenWidth)
+                .defaultMinSize(
+                    minWidth = ComposableConstants.ScreenWidth
+                        .minus(24.dp) //paddings
+                        .minus(4.dp) //paddings
+                )
                 .fillMaxHeight(0.7f),
             verticalArrangement = Arrangement.spacedBy(2.dp),
             horizontalAlignment = Alignment.End,
