@@ -69,7 +69,6 @@ fun Welcome(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(top = 24.dp)
                 .padding(horizontal = 24.dp)
                 .background(MaterialTheme.colorScheme.background)
                 .verticalScroll(rememberScrollState()),

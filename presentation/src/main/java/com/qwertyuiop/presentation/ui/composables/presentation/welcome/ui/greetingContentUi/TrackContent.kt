@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
@@ -22,14 +21,14 @@ import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.Welco
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.WelcomeNextButton
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.WelcomeScreenText
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
-import com.qwertyuiop.presentation.ui.utils.extensions.fillScreenWidth
+import com.qwertyuiop.presentation.ui.utils.extensions.fillScreenHeight
 
 @Composable
 fun TrackContent(onEvent: (WelcomeEvent) -> Unit) {
     WelcomeScreenText(text = stringResource(R.string.track_progress_text))
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .border(
                 width = 2.dp,
                 color = MaterialTheme.colorScheme.onBackground,
@@ -46,8 +45,8 @@ fun TrackContent(onEvent: (WelcomeEvent) -> Unit) {
             painter = painterResource(id = R.drawable.track_help_image),
             contentDescription = null,
             modifier = Modifier
-                .fillScreenWidth(),
-            contentScale = ContentScale.FillWidth
+                .fillScreenHeight(0.5f),
+            contentScale = ContentScale.FillHeight
         )
         Row(
             modifier = Modifier

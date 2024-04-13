@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.qwertyuiop.presentation.ui.utils.extensions.fillScreenWidth
 
 @Composable
 fun WelcomeScreenText(text: String) = Text(
@@ -17,6 +16,6 @@ fun WelcomeScreenText(text: String) = Text(
     color = MaterialTheme.colorScheme.onBackground,
     modifier = Modifier
         .fillMaxWidth()
-        .padding(top = 72.dp),
+        .padding(top = 48.dp),
     textAlign = TextAlign.Center
 )

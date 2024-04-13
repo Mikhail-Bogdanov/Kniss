@@ -18,7 +18,7 @@ fun WelcomeNextButton(
     text = stringResource(R.string.next),
     modifier = Modifier
         .fillMaxWidth(0.8f)
-        .padding(bottom = 72.dp)
+        .padding(bottom = 48.dp)
 ) {
     onEvent(NextTipClicked)
 }
