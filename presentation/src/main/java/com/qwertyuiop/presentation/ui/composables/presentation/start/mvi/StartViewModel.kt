@@ -48,10 +48,15 @@ class StartViewModel(
             StartEvent.StampQuestionMarkClicked -> stampQuestionMarkClicked()
             StartEvent.SettingsClicked -> settingsClicked()
             is StartEvent.NameInput -> nameInput(event.valueString)
+            StartEvent.BackButtonClicked -> backButtonClicked()
         }
     }
 
-    private fun nameInput(nameString: String) = intent {
+    private fun backButtonClicked() = intent {
+        postSideEffect(PopBackStack)
+    }
+
+    private fun nameInput(nameString: String) = blockingIntent {
         if (nameString.length in 0..15)
             reduce { state.copy(name = nameString) }
     }

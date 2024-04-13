@@ -48,6 +48,7 @@ sealed interface StartEvent {
     data object StampQuestionMarkClicked : StartEvent
     data object StampQuestionCloseRequested : StartEvent
     data object SettingsClicked : StartEvent
+    data object BackButtonClicked : StartEvent
 }
 
 sealed interface StartSideEffect {

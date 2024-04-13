@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "main_template"
+rootProject.name = "kniss"
 include(":app")
 include(":appEntryPoint")
 include(":data:remoteData")
