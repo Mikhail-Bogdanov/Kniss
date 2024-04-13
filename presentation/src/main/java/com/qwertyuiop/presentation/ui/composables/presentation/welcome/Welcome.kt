@@ -18,39 +18,51 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.unit.dp
 import com.qwertyuiop.core.navigation.Transitions
-import com.qwertyuiop.presentation.ui.composables.destinations.StartDestination
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.NavigateToStart
+import com.qwertyuiop.presentation.ui.composables.destinations.MenuDestination
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.NavigateToMenu
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.PopBackStack
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeViewModel
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.WelcomeTopBar
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.ContinueContent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.EditContent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.LanguageContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.PropertiesContent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.RemoveContent
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.SizeContent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.StampContent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.TrackContent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.WelcomeContent
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Continue
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Edit
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Language
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Properties
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Remove
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Stamp
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Track
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent.Welcome
 import com.qwertyuiop.presentation.ui.utils.extensions.navigateClear
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Destination(style = Transitions::class)
 @Composable
 fun Welcome(
-    navigator: DestinationsNavigator
+    navigator: DestinationsNavigator,
+    isWatchingAgain: Boolean = false
 ) {
-    val viewModel = getViewModel<WelcomeViewModel>()
+    val viewModel = getViewModel<WelcomeViewModel> {
+        parametersOf(isWatchingAgain)
+    }
     val state = viewModel.collectAsState().value
 
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            WelcomeTopBar()
+            WelcomeTopBar(state, viewModel::dispatch)
         }
     ) { paddingValues ->
         Column(
@@ -75,21 +87,22 @@ fun Welcome(
                 strokeCap = StrokeCap.Round
             )
             else when (state.currentGreetingContent) {
-                GreetingContent.Language -> LanguageContent(viewModel::dispatch)
-                GreetingContent.Welcome -> WelcomeContent(viewModel::dispatch)
-                GreetingContent.Size -> SizeContent(viewModel::dispatch)
-                GreetingContent.Stamp -> StampContent(viewModel::dispatch)
-                GreetingContent.Remove -> RemoveContent(viewModel::dispatch)
-                GreetingContent.Track -> TrackContent(viewModel::dispatch)
-                GreetingContent.Edit -> EditContent(viewModel::dispatch)
-                GreetingContent.Continue -> ContinueContent(viewModel::dispatch)
+                Language -> LanguageContent(viewModel::dispatch)
+                Welcome -> WelcomeContent(viewModel::dispatch)
+                Properties -> PropertiesContent(viewModel::dispatch)
+                Stamp -> StampContent(viewModel::dispatch)
+                Remove -> RemoveContent(viewModel::dispatch)
+                Track -> TrackContent(viewModel::dispatch)
+                Edit -> EditContent(state, viewModel::dispatch)
+                Continue -> ContinueContent(viewModel::dispatch)
             }
         }
     }
 
     viewModel.collectSideEffect { sideEffect ->
         when (sideEffect) {
-            NavigateToStart -> navigator.navigateClear(StartDestination)
+            NavigateToMenu -> navigator.navigateClear(MenuDestination)
+            PopBackStack -> navigator.popBackStack()
         }
     }
 }

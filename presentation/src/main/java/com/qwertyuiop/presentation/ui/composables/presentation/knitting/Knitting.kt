@@ -17,18 +17,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.evoteam.presentation.R
 import com.qwertyuiop.core.navigation.Transitions
-import com.qwertyuiop.presentation.ui.composables.destinations.StartDestination
+import com.qwertyuiop.domain.entities.Knitting
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.RowUndoneButtonClicked
-import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingSideEffect.NavigateToStart
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingSideEffect.PopBackStack
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingViewModel
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.ui.KnittingEndDialog
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.ui.KnittingIndicator
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.ui.KnittingRowDoneButton
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.ui.KnittingTopBar
-import com.qwertyuiop.presentation.ui.composables.presentation.shared.KnittingPatternState
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
-import com.qwertyuiop.presentation.ui.utils.extensions.navigateClear
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.getViewModel
@@ -40,10 +37,10 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 @Composable
 fun Knitting(
     navigator: DestinationsNavigator,
-    knittingPatternState: KnittingPatternState
+    knitting: Knitting
 ) {
     val viewModel = getViewModel<KnittingViewModel> {
-        parametersOf(knittingPatternState)
+        parametersOf(knitting)
     }
     val state = viewModel.collectAsState().value
 
@@ -104,7 +101,6 @@ fun Knitting(
     viewModel.collectSideEffect { sideEffect ->
         when (sideEffect) {
             PopBackStack -> navigator.popBackStack()
-            NavigateToStart -> navigator.navigateClear(StartDestination)
         }
     }
 }

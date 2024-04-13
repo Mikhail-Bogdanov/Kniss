@@ -6,10 +6,13 @@ import android.content.Intent
 import android.content.Intent.EXTRA_EMAIL
 import android.net.Uri.parse
 import androidx.browser.customtabs.CustomTabsIntent
+import com.qwertyuiop.domain.entities.Knitting
+import com.qwertyuiop.domain.entities.Loop
 import com.qwertyuiop.presentation.ui.utils.ConstantsUI.DeveloperGmail
 import com.qwertyuiop.presentation.ui.utils.ConstantsUI.MailRequestCode
 import com.qwertyuiop.presentation.ui.utils.ConstantsUI.PlayMarketUri
 import com.qwertyuiop.presentation.ui.utils.ConstantsUI.WebPlayMarketUri
+import java.util.UUID
 
 object UtilsFunctions {
     fun openGmail(
@@ -43,4 +46,37 @@ object UtilsFunctions {
         .Builder()
         .build()
         .launchUrl(context, parse(link))
+
+    fun generateKnitting(
+        width: Int,
+        height: Int,
+        pattern: List<List<Loop>>,
+        name: String
+    ): Knitting {
+        val stampHeight = pattern.size
+
+        val stamp = MutableList(stampHeight) { rowIndex ->
+            val loopsInRow = pattern[rowIndex].size
+            var currentLoop = -1
+            MutableList(width) {
+                if (currentLoop++ == loopsInRow.minus(1)) currentLoop = 0
+                pattern[rowIndex][currentLoop]
+            }
+        }
+
+        var currentRow = -1
+        val updatedLoops = List(height) {
+            if (currentRow++ == stampHeight.minus(1)) currentRow = 0
+            stamp[currentRow].map { Loop(it.type) } //to recreate object reference
+        }
+
+        return Knitting(
+            id = UUID.randomUUID().toString(),
+            currentRow = 0,
+            width = width,
+            height = height,
+            loops = updatedLoops,
+            name = name
+        )
+    }
 }

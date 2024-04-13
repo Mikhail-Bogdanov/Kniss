@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import com.evoteam.presentation.R
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent
+import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.*
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingState
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
 
@@ -50,7 +51,7 @@ fun KnittingRowDoneButton(
         )
 
         Button(
-            onClick = { onEvent(KnittingEvent.RowDoneButtonClicked) },
+            onClick = { onEvent(RowDoneButtonClicked) },
             colors = ButtonDefaults.buttonColors(
                 contentColor = MaterialTheme.colorScheme.onPrimary,
                 containerColor = containerColor
@@ -73,6 +74,6 @@ fun KnittingRowDoneButton(
             .fillMaxWidth(0.5f)
             .scale(1.25f)
     ) {
-        onEvent(KnittingEvent.RowDoneButtonClicked)
+        onEvent(RowDoneButtonClicked)
     }
 }

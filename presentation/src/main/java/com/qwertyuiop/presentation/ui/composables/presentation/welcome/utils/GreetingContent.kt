@@ -3,7 +3,7 @@ package com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils
 enum class GreetingContent {
     Language,
     Welcome,
-    Size,
+    Properties,
     Stamp,
     Remove,
     Track,

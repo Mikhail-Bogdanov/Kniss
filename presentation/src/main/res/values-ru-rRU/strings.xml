@@ -39,11 +39,17 @@
     <string name="remove_description">Удерживайте на петле, чтобы удалить</string>
     <string name="app_welcome_desc">Добро пожаловать в Kniss!\nKniss это приложение, которое позволит Вам отслеживать прогресс во время вязания\nНо сперва ознакомтесь с этим коротким руководством</string>
     <string name="next">Дальше</string>
-    <string name="choose_size">Сначала выберите размер изделия</string>
+    <string name="choose_properties">Сначала выберите размер изделия и название</string>
     <string name="try_now">Попробуйте сами!</string>
     <string name="make_pattern">Потом создайте узор который хотите связать, добавляя петли в штамп</string>
     <string name="select_language">Пожалуйста выберите язык</string>
     <string name="remove_loop_help_text">Для удаления петли из штампа нажмите на нее и удерживайте</string>
     <string name="track_progress_text">Отслеживайте Ваш прогресс, используя \"След.\" и \"Вернуть\"</string>
     <string name="edit_help_text">Измените любую петлю, если потребуется</string>
+    <string name="close">Закрыть</string>
+    <string name="watch_tutorial">Руководство</string>
+    <string name="current_row_menu_item">Текущий ряд: %1$s</string>
+    <string name="width_menu_item">Ширина: %1$s</string>
+    <string name="height_menu_item">Высота: %1$s</string>
+    <string name="name">Название</string>
 </resources>

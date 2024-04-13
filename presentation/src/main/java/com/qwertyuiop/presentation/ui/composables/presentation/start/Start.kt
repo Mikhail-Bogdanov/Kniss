@@ -5,10 +5,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.qwertyuiop.core.navigation.Transitions
-import com.qwertyuiop.presentation.ui.composables.destinations.KnittingDestination
 import com.qwertyuiop.presentation.ui.composables.destinations.SettingsDestination
-import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.NavigateToKnitting
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.NavigateToSettings
+import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.PopBackStack
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartViewModel
 import com.qwertyuiop.presentation.ui.composables.presentation.start.ui.StartScreen
 import com.qwertyuiop.presentation.ui.composables.presentation.start.ui.StartTopBar
@@ -42,11 +41,8 @@ fun Start(
 
     viewModel.collectSideEffect { sideEffect ->
         when (sideEffect) {
-            is NavigateToKnitting -> navigator.navigate(
-                KnittingDestination(sideEffect.knittingPatternState)
-            )
-
             NavigateToSettings -> navigator.navigate(SettingsDestination)
+            PopBackStack -> navigator.popBackStack()
         }
     }
 }

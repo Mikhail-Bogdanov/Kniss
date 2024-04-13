@@ -7,7 +7,9 @@ data class KnittingState(
     val loops: List<List<Loop>> = emptyList(), //list of rows
     val isEndDialogShowing: Boolean = false,
     val isInEdit: Boolean = false,
-    val isHelpMenuOpened: Boolean = false
+    val isHelpMenuOpened: Boolean = false,
+    val id: String,
+    val name: String
 )
 
 sealed interface KnittingEvent {
@@ -26,5 +28,4 @@ sealed interface KnittingEvent {
 
 sealed interface KnittingSideEffect {
     data object PopBackStack : KnittingSideEffect
-    data object NavigateToStart : KnittingSideEffect
 }

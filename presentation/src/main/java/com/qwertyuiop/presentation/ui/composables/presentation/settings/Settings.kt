@@ -5,6 +5,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.qwertyuiop.core.navigation.Transitions
+import com.qwertyuiop.presentation.ui.composables.destinations.WelcomeDestination
+import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsSideEffect.NavigateToWelcome
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsSideEffect.PopBackStack
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsViewModel
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.ui.SettingsScreen
@@ -38,8 +40,9 @@ fun Settings(
     }
 
     viewModel.collectSideEffect { sideEffect ->
-        when(sideEffect) {
+        when (sideEffect) {
             PopBackStack -> navigator.popBackStack()
+            NavigateToWelcome -> navigator.navigate(WelcomeDestination(isWatchingAgain = true))
         }
     }
 }

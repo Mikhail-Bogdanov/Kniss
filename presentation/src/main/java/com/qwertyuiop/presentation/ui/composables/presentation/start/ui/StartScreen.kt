@@ -28,6 +28,7 @@ import com.evoteam.presentation.R
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.DoneClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.HeightInput
+import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.NameInput
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.StampQuestionCloseRequested
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.StampQuestionMarkClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.WidthInput
@@ -49,6 +50,17 @@ fun StartScreen(
     verticalArrangement = Arrangement.SpaceAround,
     horizontalAlignment = Alignment.CenterHorizontally
 ) {
+    StartScreenTextField(
+        value = state.name,
+        onValueChange = { newName ->
+            onEvent(NameInput(newName))
+        },
+        placeholderText = stringResource(R.string.name),
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Next
+        )
+    )
+
     StartScreenTextField(
         value = state.width?.toString() ?: "",
         onValueChange = { newWidth ->

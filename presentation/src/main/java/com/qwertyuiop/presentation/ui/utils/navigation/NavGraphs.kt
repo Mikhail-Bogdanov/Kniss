@@ -1,8 +1,9 @@
 package com.qwertyuiop.presentation.ui.utils.navigation
 
-import com.qwertyuiop.presentation.ui.composables.destinations.StartDestination
 import com.qwertyuiop.presentation.ui.composables.destinations.KnittingDestination
+import com.qwertyuiop.presentation.ui.composables.destinations.MenuDestination
 import com.qwertyuiop.presentation.ui.composables.destinations.SettingsDestination
+import com.qwertyuiop.presentation.ui.composables.destinations.StartDestination
 import com.qwertyuiop.presentation.ui.composables.destinations.WelcomeDestination
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
@@ -15,7 +16,8 @@ object NavGraphs {
             StartDestination,
             KnittingDestination,
             SettingsDestination,
-            WelcomeDestination
+            WelcomeDestination,
+            MenuDestination
         ).associateBy { it.route }
         override val route: String = "presentation_root"
         override val startRoute: Route = WelcomeDestination

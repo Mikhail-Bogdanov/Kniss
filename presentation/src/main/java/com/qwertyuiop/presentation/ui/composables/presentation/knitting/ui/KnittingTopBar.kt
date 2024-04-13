@@ -10,9 +10,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.evoteam.presentation.R
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.BackButtonClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.EndEditingButtonClicked
@@ -25,7 +23,7 @@ import com.qwertyuiop.presentation.ui.utils.composables.LoopTypeDropdownMenu
 
 @Composable
 fun KnittingTopBar(state: KnittingState, onEvent: (KnittingEvent) -> Unit) = GeneralTopAppBar(
-    title = stringResource(id = R.string.app_name),
+    title = state.name,
     navigationIcon = {
         IconButton(
             onClick = {

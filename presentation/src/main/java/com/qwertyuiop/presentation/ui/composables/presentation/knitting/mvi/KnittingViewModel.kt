@@ -1,7 +1,11 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi
 
 import com.qwertyuiop.core.mviViewModel.MviViewModel
+import com.qwertyuiop.domain.entities.Knitting
 import com.qwertyuiop.domain.entities.Loop
+import com.qwertyuiop.domain.useCases.knitting.RemoveKnittingUseCase
+import com.qwertyuiop.domain.useCases.knitting.UpdateKnittingLoopsByIdUseCase
+import com.qwertyuiop.domain.useCases.knitting.UpdateKnittingRowByIdUseCase
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.BackButtonClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.EndEditingButtonClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.HelpButtonClicked
@@ -11,47 +15,25 @@ import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.Knit
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.RowDoneButtonClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.RowUndoneButtonClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingEvent.StartEditingButtonClicked
-import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingSideEffect.NavigateToStart
 import com.qwertyuiop.presentation.ui.composables.presentation.knitting.mvi.KnittingSideEffect.PopBackStack
-import com.qwertyuiop.presentation.ui.composables.presentation.shared.KnittingPatternState
 import com.qwertyuiop.presentation.ui.utils.extensions.updateInnerItem
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class KnittingViewModel(
-    knittingPatternState: KnittingPatternState
+    private val knitting: Knitting,
+    private val updateKnittingRowByIdUseCase: UpdateKnittingRowByIdUseCase,
+    private val removeKnittingUseCase: RemoveKnittingUseCase,
+    private val updateKnittingLoopsByIdUseCase: UpdateKnittingLoopsByIdUseCase
 ) : MviViewModel<KnittingState, KnittingSideEffect, KnittingEvent>(
-    initialState = KnittingState()
+    initialState = KnittingState(
+        id = knitting.id,
+        loops = knitting.loops,
+        currentRow = knitting.currentRow,
+        name = knitting.name
+    )
 ) {
-    init {
-        val stampHeight = knittingPatternState.pattern.size
-
-        val stamp = MutableList(stampHeight) { rowIndex ->
-            val loopsInRow = knittingPatternState.pattern[rowIndex].size
-            var currentLoop = -1
-            MutableList(knittingPatternState.width) {
-                if (currentLoop++ == loopsInRow.minus(1)) currentLoop = 0
-                knittingPatternState.pattern[rowIndex][currentLoop].toLoop()
-            }
-        }
-
-        var currentRow = -1
-        val updatedLoops = List(knittingPatternState.height) {
-            if (currentRow++ == stampHeight.minus(1)) currentRow = 0
-            stamp[currentRow].map { Loop(it.type) } //to recreate object reference
-        }
-
-        intent {
-            reduce {
-                state.copy(
-                    loops = updatedLoops,
-                    currentRow = 0
-                )
-            }
-        }
-    }
-
     override fun dispatch(event: KnittingEvent) {
         when (event) {
             BackButtonClicked -> backButtonClicked()
@@ -67,11 +49,15 @@ class KnittingViewModel(
     }
 
     private fun loopItemClicked(loop: Loop) = intent {
+        val updatedLoops = state.loops.updateInnerItem(loop) {
+            Loop(loop.swapType())
+        }
         reduce {
             state.copy(
-                loops = state.loops.updateInnerItem(loop) { Loop(loop.swapType()) }
+                loops = updatedLoops
             )
         }
+        updateKnittingLoopsByIdUseCase(updatedLoops, state.id)
     }
 
     private fun endEditingButtonClicked() = intent {
@@ -91,20 +77,31 @@ class KnittingViewModel(
     }
 
     private fun menuButtonClicked() = intent {
+        removeKnittingUseCase(knitting)
         reduce { state.copy(isEndDialogShowing = false) }
-        postSideEffect(NavigateToStart)
+        postSideEffect(PopBackStack)
     }
 
     private fun rowDoneButtonClicked() = intent {
+        val newCurrentRow = if (state.currentRow == state.loops.size.minus(1))
+            state.currentRow
+        else
+            state.currentRow + 1
+
+        if (state.currentRow != state.loops.size.minus(1))
+            updateKnittingRowByIdUseCase(newCurrentRow, state.id)
+
         reduce {
             state.copy(
-                currentRow = state.currentRow + 1,
+                currentRow = newCurrentRow,
                 isEndDialogShowing = state.currentRow == state.loops.size.minus(1)
             )
         }
     }
 
     private fun rowUndoneButtonClicked() = intent {
+        updateKnittingRowByIdUseCase(state.currentRow - 1, state.id)
+
         reduce { state.copy(currentRow = state.currentRow - 1) }
     }
 

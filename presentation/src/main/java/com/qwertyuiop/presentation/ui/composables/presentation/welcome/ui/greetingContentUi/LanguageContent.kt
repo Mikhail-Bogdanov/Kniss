@@ -30,7 +30,7 @@ fun LanguageContent(onEvent: (WelcomeEvent) -> Unit) {
     ) {
         WelcomeScreenText(text = stringResource(R.string.select_language))
         Language.entries.filter { it != Language.Default }.forEach { language ->
-            PrimaryButton(text = language.title) {
+            PrimaryButton(text = language.untranslatableTitle) {
                 onEvent(LanguageSelected(language))
             }
         }

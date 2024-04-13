@@ -1,17 +1,19 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.start.mvi
 
 import com.qwertyuiop.domain.entities.Loop
-import com.qwertyuiop.presentation.ui.composables.presentation.shared.KnittingPatternState
 
 data class StartState(
     val width: Int? = null,
     val height: Int? = null,
     val loops: List<List<Loop>> = listOf(listOf(Loop())),
-    val stampQuestionOpened: Boolean = false
+    val stampQuestionOpened: Boolean = false,
+    val name: String = ""
 ) {
     val isCorrect
         get() = width != null &&
                 height != null &&
+                name.isNotBlank() &&
+                name.isNotEmpty() &&
                 loops.size <= height.toInt() &&
                 loops.all { it.size <= width.toInt() }
 }
@@ -22,6 +24,10 @@ sealed interface StartEvent {
     ) : StartEvent
 
     data class HeightInput(
+        val valueString: String
+    ) : StartEvent
+
+    data class NameInput(
         val valueString: String
     ) : StartEvent
 
@@ -45,9 +51,7 @@ sealed interface StartEvent {
 }
 
 sealed interface StartSideEffect {
-    data class NavigateToKnitting(
-        val knittingPatternState: KnittingPatternState
-    ) : StartSideEffect
+    data object PopBackStack : StartSideEffect
 
     data object NavigateToSettings : StartSideEffect
 }

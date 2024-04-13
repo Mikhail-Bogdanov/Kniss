@@ -40,11 +40,20 @@
     <string name="remove_description">Long press on stitch to remove</string>
     <string name="app_welcome_desc">Welcome to Kniss!\nKniss is a knitting assistant app that helps you track your knitting progress\nThis short tutorial will help you get started using Kniss</string>
     <string name="next">Next</string>
-    <string name="choose_size">First of all, choose the size of the knitting area</string>
+    <string name="choose_properties">First of all, choose the size of the knitting area and it\'s name</string>
     <string name="try_now">Try it now!</string>
     <string name="make_pattern">Then make a pattern you want to knit by adding stitches to the stamp</string>
     <string name="select_language">Please select your language</string>
     <string name="remove_loop_help_text">If you need to remove a stitch from the stamp long press on it</string>
     <string name="track_progress_text">Track your progress clicking \"Done\" and \"Undo\"</string>
     <string name="edit_help_text">Edit any stitch if you need</string>
+    <string name="close">Close</string>
+    <string name="watch_tutorial">Watch tutorial</string>
+    <string name="current_row_menu_item">Current row: %1$s</string>
+    <string name="width_menu_item">Width: %1$s</string>
+    <string name="height_menu_item">Height: %1$s</string>
+    <string name="name">Name</string>
+    <string name="system_default_untransl" translatable="false">System Default</string>
+    <string name="english_untransl" translatable="false">English</string>
+    <string name="russian_untransl" translatable="false">Русский</string>
 </resources>

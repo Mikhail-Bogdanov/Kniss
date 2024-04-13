@@ -23,8 +23,10 @@ sealed interface SettingsEvent {
 
     data object Initialize : SettingsEvent
     data object ExpandLanguagesClicked : SettingsEvent
+    data object WatchTutorialAgainClicked : SettingsEvent
 }
 
 sealed interface SettingsSideEffect {
     data object PopBackStack : SettingsSideEffect
+    data object NavigateToWelcome : SettingsSideEffect
 }

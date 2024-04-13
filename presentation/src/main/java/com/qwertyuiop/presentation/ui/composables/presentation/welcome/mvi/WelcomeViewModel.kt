@@ -10,7 +10,8 @@ import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.Welco
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.Initialize
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.LanguageSelected
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.NextTipClicked
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.NavigateToStart
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.NavigateToMenu
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.PopBackStack
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,9 +22,10 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 
 class WelcomeViewModel(
     private val endTutorialUseCase: EndTutorialUseCase,
-    private val getTutorialEndedUseCase: GetTutorialEndedUseCase
+    private val getTutorialEndedUseCase: GetTutorialEndedUseCase,
+    isWatchingAgain: Boolean
 ) : MviViewModel<WelcomeState, WelcomeSideEffect, WelcomeEvent>(
-    initialState = WelcomeState()
+    initialState = WelcomeState(isWatchingAgain = isWatchingAgain)
 ) {
     init {
         dispatch(Initialize)
@@ -35,14 +37,28 @@ class WelcomeViewModel(
             is NextTipClicked -> nextTipClicked()
             is LanguageSelected -> languageSelected(event.language)
             Initialize -> initialize()
+            WelcomeEvent.BackButtonClicked -> backButtonClicked()
         }
     }
 
+    private fun backButtonClicked() = intent {
+        postSideEffect(PopBackStack)
+    }
+
     private fun initialize() = intent {
-        if (getTutorialEndedUseCase())
-            postSideEffect(NavigateToStart)
-        else
-            reduce { state.copy(isLoading = false) }
+        when {
+            getTutorialEndedUseCase() &&
+                    !state.isWatchingAgain -> postSideEffect(NavigateToMenu)
+
+            state.isWatchingAgain -> reduce {
+                state.copy(
+                    isLoading = false,
+                    currentGreetingContent = GreetingContent.Properties
+                )
+            }
+
+            else -> reduce { state.copy(isLoading = false) }
+        }
     }
 
     private fun languageSelected(language: Language) = intent {
@@ -53,7 +69,10 @@ class WelcomeViewModel(
     }
 
     private fun continueClicked() = intent {
-        postSideEffect(NavigateToStart)
+        when (state.isWatchingAgain) {
+            true -> postSideEffect(PopBackStack)
+            false -> postSideEffect(NavigateToMenu)
+        }
         endTutorialUseCase()
     }
 

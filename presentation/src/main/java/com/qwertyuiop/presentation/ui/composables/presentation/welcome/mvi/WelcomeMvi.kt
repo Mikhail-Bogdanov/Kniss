@@ -5,7 +5,8 @@ import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.Gre
 
 data class WelcomeState(
     val isLoading: Boolean = true,
-    val currentGreetingContent: GreetingContent = GreetingContent.Language
+    val currentGreetingContent: GreetingContent = GreetingContent.Language,
+    val isWatchingAgain: Boolean
 )
 
 sealed interface WelcomeEvent {
@@ -17,8 +18,10 @@ sealed interface WelcomeEvent {
     ) : WelcomeEvent
 
     data object Initialize : WelcomeEvent
+    data object BackButtonClicked : WelcomeEvent
 }
 
 sealed interface WelcomeSideEffect {
-    data object NavigateToStart : WelcomeSideEffect
+    data object NavigateToMenu : WelcomeSideEffect
+    data object PopBackStack : WelcomeSideEffect
 }

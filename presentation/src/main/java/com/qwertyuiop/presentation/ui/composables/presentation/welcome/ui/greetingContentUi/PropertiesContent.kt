@@ -20,8 +20,8 @@ import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.Welcom
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryInputField
 
 @Composable
-fun SizeContent(onEvent: (WelcomeEvent) -> Unit) {
-    WelcomeScreenText(text = stringResource(R.string.choose_size))
+fun PropertiesContent(onEvent: (WelcomeEvent) -> Unit) {
+    WelcomeScreenText(text = stringResource(R.string.choose_properties))
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,6 +37,20 @@ fun SizeContent(onEvent: (WelcomeEvent) -> Unit) {
         ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        PrimaryInputField(
+            value = "",
+            onValueChange = {},
+            enabled = false,
+            modifier = Modifier
+                .fillMaxWidth(),
+            placeholder = {
+                Text(
+                    text = stringResource(R.string.name),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
+            shape = MaterialTheme.shapes.medium
+        )
         PrimaryInputField(
             value = "",
             onValueChange = {},

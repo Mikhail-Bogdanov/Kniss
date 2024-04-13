@@ -8,20 +8,20 @@ import android.os.VibrationEffect.DEFAULT_AMPLITUDE
 import android.os.Vibrator
 import com.qwertyuiop.core.mviViewModel.MviViewModel
 import com.qwertyuiop.domain.entities.Loop
-import com.qwertyuiop.presentation.ui.composables.presentation.shared.KnittingPatternState
+import com.qwertyuiop.domain.useCases.knitting.AddKnittingUseCase
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.AddLoopClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.AddRowClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.DoneClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.HeightInput
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.RemoveLoopClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartEvent.WidthInput
-import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.NavigateToKnitting
 import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.NavigateToSettings
+import com.qwertyuiop.presentation.ui.composables.presentation.start.mvi.StartSideEffect.PopBackStack
+import com.qwertyuiop.presentation.ui.utils.UtilsFunctions.generateKnitting
 import com.qwertyuiop.presentation.ui.utils.extensions.extend
 import com.qwertyuiop.presentation.ui.utils.extensions.extendInner
 import com.qwertyuiop.presentation.ui.utils.extensions.isBlankOrEmpty
 import com.qwertyuiop.presentation.ui.utils.extensions.removeWherever
-import com.qwertyuiop.presentation.ui.utils.extensions.toLoopDTO
 import com.qwertyuiop.presentation.ui.utils.extensions.updateInnerItem
 import org.orbitmvi.orbit.annotation.OrbitExperimental
 import org.orbitmvi.orbit.syntax.simple.blockingIntent
@@ -30,7 +30,8 @@ import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class StartViewModel(
-    private val vibrator: Vibrator
+    private val vibrator: Vibrator,
+    private val addKnittingUseCase: AddKnittingUseCase
 ) : MviViewModel<StartState, StartSideEffect, StartEvent>(
     initialState = StartState()
 ) {
@@ -46,7 +47,13 @@ class StartViewModel(
             StartEvent.StampQuestionCloseRequested -> stampQuestionCloseRequested()
             StartEvent.StampQuestionMarkClicked -> stampQuestionMarkClicked()
             StartEvent.SettingsClicked -> settingsClicked()
+            is StartEvent.NameInput -> nameInput(event.valueString)
         }
+    }
+
+    private fun nameInput(nameString: String) = intent {
+        if (nameString.length in 0..15)
+            reduce { state.copy(name = nameString) }
     }
 
     private fun settingsClicked() = intent {
@@ -126,16 +133,14 @@ class StartViewModel(
     }
 
     private fun doneClicked() = intent {
-        val widthInt = state.width ?: 0 //it won't happen
-        val heightInt = state.height ?: 0 //it won't happen
-        postSideEffect(
-            NavigateToKnitting(
-                KnittingPatternState(
-                    width = widthInt,
-                    height = heightInt,
-                    pattern = state.loops.map { it.map { it.toLoopDTO() } }
-                )
+        addKnittingUseCase(
+            generateKnitting(
+                width = state.width ?: 0,
+                height = state.height ?: 0,
+                pattern = state.loops,
+                name = state.name
             )
         )
+        postSideEffect(PopBackStack)
     }
 }

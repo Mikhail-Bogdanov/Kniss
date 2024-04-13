@@ -9,6 +9,7 @@ import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.Sett
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsEvent.Initialize
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsEvent.LanguageClicked
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsEvent.ThemeClicked
+import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsSideEffect.NavigateToWelcome
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.mvi.SettingsSideEffect.PopBackStack
 import com.qwertyuiop.presentation.ui.composables.presentation.settings.utils.Language
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +35,12 @@ class SettingsViewModel(
             is ThemeClicked -> themeClicked(event.darkTheme)
             Initialize -> initialize()
             SettingsEvent.ExpandLanguagesClicked -> expandLanguagesClicked()
+            SettingsEvent.WatchTutorialAgainClicked -> watchTutorialAgainClicked()
         }
+    }
+
+    private fun watchTutorialAgainClicked() = intent {
+        postSideEffect(NavigateToWelcome)
     }
 
     private fun expandLanguagesClicked() = intent {
