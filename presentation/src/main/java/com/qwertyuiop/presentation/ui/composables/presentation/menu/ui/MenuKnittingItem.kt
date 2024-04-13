@@ -66,7 +66,7 @@ fun MenuKnittingItem(
             color = MaterialTheme.colorScheme.onSecondary
         )
         Text(
-            text = stringResource(R.string.current_row_menu_item, knitting.currentRow),
+            text = stringResource(R.string.current_row_menu_item, knitting.currentRow.plus(1)),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSecondary
         )
