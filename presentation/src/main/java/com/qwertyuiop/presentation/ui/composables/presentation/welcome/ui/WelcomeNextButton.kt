@@ -9,12 +9,10 @@ import androidx.compose.ui.unit.dp
 import com.evoteam.presentation.R
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.NextTipClicked
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
 import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
 
 @Composable
 fun WelcomeNextButton(
-    greetingContent: GreetingContent,
     onEvent: (WelcomeEvent) -> Unit
 ) = PrimaryButton(
     text = stringResource(R.string.next),
@@ -22,5 +20,5 @@ fun WelcomeNextButton(
         .fillMaxWidth(0.8f)
         .padding(bottom = 72.dp)
 ) {
-    onEvent(NextTipClicked(greetingContent))
+    onEvent(NextTipClicked)
 }

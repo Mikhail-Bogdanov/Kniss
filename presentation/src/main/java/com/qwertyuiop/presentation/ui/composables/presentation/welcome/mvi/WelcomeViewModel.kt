@@ -14,6 +14,7 @@ import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.Welco
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.orbitmvi.orbit.syntax.simple.SimpleSyntax
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -31,7 +32,7 @@ class WelcomeViewModel(
     override fun dispatch(event: WelcomeEvent) {
         when (event) {
             ContinueClicked -> continueClicked()
-            is NextTipClicked -> nextTipClicked(event.contentToRemove)
+            is NextTipClicked -> nextTipClicked()
             is LanguageSelected -> languageSelected(event.language)
             Initialize -> initialize()
         }
@@ -48,13 +49,7 @@ class WelcomeViewModel(
         withContext(Dispatchers.Main) {
             setApplicationLocales(forLanguageTags(language.tag))
         }
-        reduce {
-            state.copy(
-                remainingGreetingContent = state.remainingGreetingContent.filterNot {
-                    it == GreetingContent.Language
-                }
-            )
-        }
+        setNextTip()
     }
 
     private fun continueClicked() = intent {
@@ -62,12 +57,16 @@ class WelcomeViewModel(
         endTutorialUseCase()
     }
 
-    private fun nextTipClicked(greetingContent: GreetingContent) = intent {
+    private fun nextTipClicked() = intent {
+        setNextTip()
+    }
+
+    private suspend fun SimpleSyntax<WelcomeState, WelcomeSideEffect>.setNextTip() {
+        val currentIndex = GreetingContent.entries.indexOf(state.currentGreetingContent)
+        if (currentIndex == GreetingContent.entries.lastIndex) return
         reduce {
             state.copy(
-                remainingGreetingContent = state.remainingGreetingContent.filterNot {
-                    it == greetingContent
-                }
+                currentGreetingContent = GreetingContent.entries[currentIndex + 1]
             )
         }
     }

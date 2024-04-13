@@ -1,6 +1,7 @@
 package com.qwertyuiop.presentation.ui.utils.composables
 
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -14,18 +15,19 @@ fun PrimaryButton(
     modifier: Modifier = Modifier,
     shape: Shape = ButtonDefaults.shape,
     enabled: Boolean = true,
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        contentColor = MaterialTheme.colorScheme.onPrimary,
+        containerColor = MaterialTheme.colorScheme.primary,
+        disabledContainerColor = MaterialTheme.colorScheme.inversePrimary,
+        disabledContentColor = MaterialTheme.colorScheme.onPrimary
+    ),
     onClick: () -> Unit
 ) = Button(
     onClick = onClick,
     modifier = modifier,
     shape = shape,
     enabled = enabled,
-    colors = ButtonDefaults.buttonColors(
-        contentColor = MaterialTheme.colorScheme.onPrimary,
-        containerColor = MaterialTheme.colorScheme.primary,
-        disabledContainerColor = MaterialTheme.colorScheme.inversePrimary,
-        disabledContentColor = MaterialTheme.colorScheme.onPrimary
-    )
+    colors = colors
 ) {
     Text(
         text = text,

@@ -1,6 +1,5 @@
 package com.qwertyuiop.presentation.ui.composables.presentation.welcome
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,33 +12,25 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.evoteam.presentation.R
 import com.qwertyuiop.core.navigation.Transitions
 import com.qwertyuiop.presentation.ui.composables.destinations.StartDestination
-import com.qwertyuiop.presentation.ui.composables.presentation.settings.utils.Language
-import com.qwertyuiop.presentation.ui.composables.presentation.settings.utils.Language.Default
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.ContinueClicked
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeEvent.LanguageSelected
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeSideEffect.NavigateToStart
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.mvi.WelcomeViewModel
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.WelcomeNextButton
-import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.WelcomeScreenText
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.WelcomeTopBar
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.ContinueContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.EditContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.LanguageContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.RemoveContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.SizeContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.StampContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.TrackContent
+import com.qwertyuiop.presentation.ui.composables.presentation.welcome.ui.greetingContentUi.WelcomeContent
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
-import com.qwertyuiop.presentation.ui.utils.composables.PrimaryButton
-import com.qwertyuiop.presentation.ui.utils.composables.PrimaryInputField
-import com.qwertyuiop.presentation.ui.utils.extensions.fillScreenHeight
-import com.qwertyuiop.presentation.ui.utils.extensions.fillScreenWidth
 import com.qwertyuiop.presentation.ui.utils.extensions.navigateClear
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -55,12 +46,11 @@ fun Welcome(
     val viewModel = getViewModel<WelcomeViewModel>()
     val state = viewModel.collectAsState().value
 
-    //ну и наговнокодил я тут
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-
+            WelcomeTopBar()
         }
     ) { paddingValues ->
         Column(
@@ -74,181 +64,26 @@ fun Welcome(
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (state.isLoading)
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                        .aspectRatio(1f),
-                    color = MaterialTheme.colorScheme.onBackground,
-                    trackColor = MaterialTheme.colorScheme.background,
-                    strokeWidth = 4.dp,
-                    strokeCap = StrokeCap.Round
-                )
-            else
-                when (state.remainingGreetingContent.firstOrNull()) {
-                    GreetingContent.Language -> {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .fillScreenHeight(0.6f),
-                            verticalArrangement = Arrangement.spacedBy(
-                                24.dp,
-                                Alignment.CenterVertically
-                            ),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            WelcomeScreenText(text = stringResource(R.string.select_language))
-                            Language.entries.filter { it != Default }.forEach { language ->
-                                PrimaryButton(text = language.title) {
-                                    viewModel.dispatch(LanguageSelected(language))
-                                }
-                            }
-                        }
-                    }
-
-                    GreetingContent.Welcome -> {
-                        WelcomeScreenText(text = stringResource(R.string.app_welcome_desc))
-                        Image(
-                            imageVector = ImageVector.vectorResource(id = R.drawable.app_icon),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillScreenWidth(),
-                            contentScale = ContentScale.FillWidth
-                        )
-                        WelcomeNextButton(
-                            greetingContent = GreetingContent.Welcome,
-                            onEvent = viewModel::dispatch
-                        )
-                    }
-
-                    GreetingContent.Size -> {
-                        WelcomeScreenText(text = stringResource(R.string.choose_size))
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize(),
-                            verticalArrangement = Arrangement.spacedBy(
-                                16.dp,
-                                Alignment.CenterVertically
-                            ),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            PrimaryInputField(
-                                value = "",
-                                onValueChange = {},
-                                enabled = false,
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                placeholder = {
-                                    Text(
-                                        text = stringResource(R.string.width),
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                },
-                                shape = MaterialTheme.shapes.medium
-                            )
-                            PrimaryInputField(
-                                value = "",
-                                onValueChange = {},
-                                enabled = false,
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                placeholder = {
-                                    Text(
-                                        text = stringResource(R.string.height),
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
-                                },
-                                shape = MaterialTheme.shapes.medium
-                            )
-                        }
-                        WelcomeNextButton(
-                            greetingContent = GreetingContent.Size,
-                            onEvent = viewModel::dispatch
-                        )
-                    }
-
-                    GreetingContent.Stamp -> {
-                        WelcomeScreenText(text = stringResource(R.string.make_pattern))
-                        Image(
-                            painter = painterResource(id = R.drawable.stamp_help_image),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillScreenWidth(),
-                            contentScale = ContentScale.FillWidth
-                        )
-                        WelcomeNextButton(
-                            greetingContent = GreetingContent.Stamp,
-                            onEvent = viewModel::dispatch
-                        )
-                    }
-
-                    GreetingContent.Remove -> {
-                        WelcomeScreenText(text = stringResource(R.string.remove_loop_help_text))
-                        Image(
-                            painter = painterResource(id = R.drawable.stamp_help_image),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillScreenWidth(),
-                            contentScale = ContentScale.FillWidth
-                        )
-                        WelcomeNextButton(
-                            greetingContent = GreetingContent.Remove,
-                            onEvent = viewModel::dispatch
-                        )
-                    }
-
-                    GreetingContent.Track -> {
-                        WelcomeScreenText(text = stringResource(R.string.track_progress_text))
-                        Image(
-                            painter = painterResource(id = R.drawable.track_help_image),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillScreenWidth(),
-                            contentScale = ContentScale.FillWidth
-                        )
-                        WelcomeNextButton(
-                            greetingContent = GreetingContent.Track,
-                            onEvent = viewModel::dispatch
-                        )
-                    }
-
-                    GreetingContent.Edit -> {
-                        WelcomeScreenText(text = stringResource(R.string.edit_help_text))
-                        Image(
-                            painter = painterResource(id = R.drawable.edit_help_image),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillScreenWidth(),
-                            contentScale = ContentScale.FillWidth
-                        )
-                        WelcomeNextButton(
-                            greetingContent = GreetingContent.Edit,
-                            onEvent = viewModel::dispatch
-                        )
-                    }
-
-                    GreetingContent.Continue -> {
-                        WelcomeScreenText(text = stringResource(R.string.try_now))
-                        Image(
-                            imageVector = ImageVector.vectorResource(id = R.drawable.app_icon),
-                            contentDescription = null,
-                            modifier = Modifier
-                                .fillScreenWidth(),
-                            contentScale = ContentScale.FillWidth
-                        )
-                        PrimaryButton(
-                            text = stringResource(id = R.string.continue_use),
-                            modifier = Modifier
-                                .fillMaxWidth(0.8f)
-                                .padding(bottom = 72.dp)
-                        ) {
-                            viewModel.dispatch(ContinueClicked)
-                        }
-                    }
-
-                    null -> {} //nothing
-                }
+            if (state.isLoading) CircularProgressIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .aspectRatio(1f),
+                color = MaterialTheme.colorScheme.onBackground,
+                trackColor = MaterialTheme.colorScheme.background,
+                strokeWidth = 4.dp,
+                strokeCap = StrokeCap.Round
+            )
+            else when (state.currentGreetingContent) {
+                GreetingContent.Language -> LanguageContent(viewModel::dispatch)
+                GreetingContent.Welcome -> WelcomeContent(viewModel::dispatch)
+                GreetingContent.Size -> SizeContent(viewModel::dispatch)
+                GreetingContent.Stamp -> StampContent(viewModel::dispatch)
+                GreetingContent.Remove -> RemoveContent(viewModel::dispatch)
+                GreetingContent.Track -> TrackContent(viewModel::dispatch)
+                GreetingContent.Edit -> EditContent(viewModel::dispatch)
+                GreetingContent.Continue -> ContinueContent(viewModel::dispatch)
+            }
         }
     }
 

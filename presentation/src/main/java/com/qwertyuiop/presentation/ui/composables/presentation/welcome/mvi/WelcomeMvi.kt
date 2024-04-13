@@ -4,19 +4,18 @@ import com.qwertyuiop.presentation.ui.composables.presentation.settings.utils.La
 import com.qwertyuiop.presentation.ui.composables.presentation.welcome.utils.GreetingContent
 
 data class WelcomeState(
-    val remainingGreetingContent: List<GreetingContent> = GreetingContent.entries.toList(),
-    val isLoading: Boolean = true
+    val isLoading: Boolean = true,
+    val currentGreetingContent: GreetingContent = GreetingContent.Language
 )
 
 sealed interface WelcomeEvent {
-    data class NextTipClicked(
-        val contentToRemove: GreetingContent
-    ) : WelcomeEvent
+    data object NextTipClicked : WelcomeEvent
 
     data object ContinueClicked : WelcomeEvent
     data class LanguageSelected(
         val language: Language
     ) : WelcomeEvent
+
     data object Initialize : WelcomeEvent
 }
 
