@@ -2,6 +2,7 @@ plugins {
     id(Dependencies.Android.Android)
     id(Dependencies.Kotlin.Kotlin)
     id(Dependencies.Ksp.Ksp)
+    id(Dependencies.Serialization.SerializationPlugin)
 }
 
 android {
@@ -44,6 +45,8 @@ dependencies {
     implementation(Dependencies.DataStore.PreferenceDataStore)
 
     implementation(platform(Dependencies.Compose.ComposeBOM))
+
+    implementation(Dependencies.Serialization.Serialization)
 
     //TESTS
 

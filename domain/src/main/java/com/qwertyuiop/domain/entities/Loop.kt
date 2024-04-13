@@ -1,5 +1,8 @@
 package com.qwertyuiop.domain.entities
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Loop(
     val type: LoopType = LoopType.Front
 ) {
