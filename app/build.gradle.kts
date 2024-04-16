@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "${Settings.PackageName}.asdfghjkl"
+    namespace = "${Settings.PackageName}.kniss"
     compileSdk = Settings.CompileSDK
 
     defaultConfig {
-        applicationId = "${Settings.PackageName}.asdfghjkl"
+        applicationId = "${Settings.PackageName}.kniss"
         minSdk = Settings.MinSDK
         targetSdk = Settings.TargetSDK
         versionCode = Settings.VersionCode

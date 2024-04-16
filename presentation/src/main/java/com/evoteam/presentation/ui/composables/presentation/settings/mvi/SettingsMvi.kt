@@ -1,0 +1,32 @@
+package com.evoteam.presentation.ui.composables.presentation.settings.mvi
+
+import androidx.appcompat.app.AppCompatDelegate.getApplicationLocales
+import com.evoteam.presentation.ui.composables.presentation.settings.utils.Language
+
+data class SettingsState(
+    val isDarkTheme: Boolean = false,
+    val isLanguagesExpanded: Boolean = false
+) {
+    val currentLanguage
+        get() = Language.getByTag(getApplicationLocales().toLanguageTags())
+}
+
+sealed interface SettingsEvent {
+    data object BackButtonClicked : SettingsEvent
+    data class LanguageClicked(
+        val language: Language
+    ) : SettingsEvent
+
+    data class ThemeClicked(
+        val darkTheme: Boolean
+    ) : SettingsEvent
+
+    data object Initialize : SettingsEvent
+    data object ExpandLanguagesClicked : SettingsEvent
+    data object WatchTutorialAgainClicked : SettingsEvent
+}
+
+sealed interface SettingsSideEffect {
+    data object PopBackStack : SettingsSideEffect
+    data object NavigateToWelcome : SettingsSideEffect
+}

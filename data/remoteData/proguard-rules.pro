@@ -10,4 +10,4 @@
     public static int e(...);
 }
 
--keepclassmembers class com.qwertyuiop.remoteData.dtos.** { *; }
+-keepclassmembers class com.evoteam.remoteData.dtos.** { *; }
