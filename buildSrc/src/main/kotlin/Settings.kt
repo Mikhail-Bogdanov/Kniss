@@ -4,7 +4,7 @@ object Settings {
     const val MinSDK = 26
     const val TargetSDK = 34
 
-    const val MajorVersion = 2
+    const val MajorVersion = 3
     const val MinorVersion = 0
     const val PatchCode = 0
 

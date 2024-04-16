@@ -9,7 +9,7 @@ android {
     compileSdk = Settings.CompileSDK
 
     defaultConfig {
-        applicationId = "${Settings.PackageName}.kniss"
+        applicationId = "${Settings.PackageName}.asdfghjkl"
         minSdk = Settings.MinSDK
         targetSdk = Settings.TargetSDK
         versionCode = Settings.VersionCode
