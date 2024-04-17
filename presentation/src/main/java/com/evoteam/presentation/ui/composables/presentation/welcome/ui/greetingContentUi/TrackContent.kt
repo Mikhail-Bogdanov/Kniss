@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -21,7 +22,7 @@ import com.evoteam.presentation.ui.composables.presentation.welcome.mvi.WelcomeE
 import com.evoteam.presentation.ui.composables.presentation.welcome.ui.WelcomeNextButton
 import com.evoteam.presentation.ui.composables.presentation.welcome.ui.WelcomeScreenText
 import com.evoteam.presentation.ui.utils.composables.PrimaryButton
-import com.evoteam.presentation.ui.utils.extensions.fillScreenHeight
+import com.evoteam.presentation.ui.utils.extensions.fillScreenWidth
 
 @Composable
 fun TrackContent(onEvent: (WelcomeEvent) -> Unit) {
@@ -45,8 +46,9 @@ fun TrackContent(onEvent: (WelcomeEvent) -> Unit) {
             painter = painterResource(id = R.drawable.track_help_image),
             contentDescription = null,
             modifier = Modifier
-                .fillScreenHeight(0.5f),
-            contentScale = ContentScale.FillHeight
+                .fillScreenWidth(0.75f)
+                .clip(MaterialTheme.shapes.medium),
+            contentScale = ContentScale.FillWidth
         )
         Row(
             modifier = Modifier
@@ -59,14 +61,16 @@ fun TrackContent(onEvent: (WelcomeEvent) -> Unit) {
                 colors = ButtonDefaults.buttonColors(
                     disabledContainerColor = MaterialTheme.colorScheme.primary,
                     disabledContentColor = MaterialTheme.colorScheme.onPrimary
-                )
+                ),
+                enabled = false
             ) {}
             PrimaryButton(
                 text = stringResource(id = R.string.row_done),
                 colors = ButtonDefaults.buttonColors(
                     disabledContainerColor = MaterialTheme.colorScheme.primary,
                     disabledContentColor = MaterialTheme.colorScheme.onPrimary
-                )
+                ),
+                enabled = false
             ) {}
         }
     }

@@ -5,7 +5,7 @@ object Settings {
     const val TargetSDK = 34
 
     const val MajorVersion = 3
-    const val MinorVersion = 0
+    const val MinorVersion = 1
     const val PatchCode = 0
 
     const val VersionCode = 10_000 * MajorVersion + 100 * MinorVersion + PatchCode

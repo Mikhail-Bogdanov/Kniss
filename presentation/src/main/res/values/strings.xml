@@ -56,4 +56,5 @@
     <string name="system_default_untransl" translatable="false">System Default</string>
     <string name="english_untransl" translatable="false">English</string>
     <string name="russian_untransl" translatable="false">Русский</string>
+    <string name="empty_menu_text">Here is nothing yet…\nCreate a new pattern</string>
 </resources>

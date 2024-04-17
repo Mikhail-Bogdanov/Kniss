@@ -3,8 +3,10 @@ package com.evoteam.presentation.ui.composables.presentation.welcome.ui.greeting
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -25,7 +27,9 @@ fun EditContent(state: WelcomeState, onEvent: (WelcomeEvent) -> Unit) {
         painter = painterResource(id = R.drawable.edit_help_image),
         contentDescription = null,
         modifier = Modifier
-            .fillScreenWidth(),
+            .fillScreenWidth()
+            .padding(vertical = 8.dp)
+            .clip(MaterialTheme.shapes.medium),
         contentScale = ContentScale.FillWidth
     )
     when (state.isWatchingAgain) {

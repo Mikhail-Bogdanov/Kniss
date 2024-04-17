@@ -10,12 +10,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun WelcomeScreenText(text: String) = Text(
+fun WelcomeScreenText(text: String, minLines: Int = 1) = Text(
     text = text,
     style = MaterialTheme.typography.bodyLarge,
     color = MaterialTheme.colorScheme.onBackground,
     modifier = Modifier
         .fillMaxWidth()
         .padding(top = 48.dp),
-    textAlign = TextAlign.Center
+    textAlign = TextAlign.Center,
+    minLines = minLines
 )

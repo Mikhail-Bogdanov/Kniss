@@ -52,4 +52,5 @@
     <string name="width_menu_item">Ширина: %1$s</string>
     <string name="height_menu_item">Высота: %1$s</string>
     <string name="name">Название</string>
+    <string name="empty_menu_text">Как-то здесь пустовато…\nСоздайте новый узор</string>
 </resources>

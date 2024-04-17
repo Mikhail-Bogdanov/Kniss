@@ -5,11 +5,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.evoteam.presentation.R
 import com.evoteam.presentation.ui.composables.destinations.KnittingDestination
 import com.evoteam.presentation.ui.composables.destinations.SettingsDestination
 import com.evoteam.presentation.ui.composables.destinations.StartDestination
@@ -49,26 +54,38 @@ fun Menu(
             }
         }
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 24.dp)
-                .padding(top = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            items(
-                items = state.knittings,
-                key = { it.id }
-            ) { knitting ->
-                MenuKnittingItem(
-                    knitting = knitting,
-                    onItemClick = { viewModel.dispatch(KnittingClicked(knitting)) },
-                    onRemoveClick = { viewModel.dispatch(RemoveKnittingClicked(knitting)) }
-                )
+        if (state.knittings.isEmpty())
+            Text(
+                text = stringResource(R.string.empty_menu_text),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 16.dp)
+                    .padding(paddingValues),
+                textAlign = TextAlign.Center
+            )
+        else
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = 24.dp)
+                    .padding(top = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                items(
+                    items = state.knittings,
+                    key = { it.id }
+                ) { knitting ->
+                    MenuKnittingItem(
+                        knitting = knitting,
+                        onItemClick = { viewModel.dispatch(KnittingClicked(knitting)) },
+                        onRemoveClick = { viewModel.dispatch(RemoveKnittingClicked(knitting)) }
+                    )
+                }
             }
-        }
     }
 
     viewModel.collectSideEffect { sideEffect ->
