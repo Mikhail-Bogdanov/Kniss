@@ -61,7 +61,7 @@ fun KnittingLoopItem(
     )
     Text(
         text = stringResource(R.string.loop_index, loopIndex.plus(1)),
-        style = MaterialTheme.typography.bodySmall,
+        style = MaterialTheme.typography.headlineSmall,
         color = when (isCurrentRow) {
             true -> MaterialTheme.colorScheme.onPrimary
             false -> MaterialTheme.colorScheme.onSecondary

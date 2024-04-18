@@ -31,7 +31,7 @@ val SourceCodePro = FontFamily(
 val Typography = Typography(
     bodySmall = TextStyle(
         fontFamily = SourceCodePro,
-        fontWeight = W500,
+        fontWeight = W400,
         fontSize = 14.sp,
         lineHeight = 14.sp
     ),
@@ -64,5 +64,11 @@ val Typography = Typography(
         fontWeight = W600,
         fontSize = 14.sp,
         lineHeight = 14.sp
+    ),
+    headlineSmall = TextStyle(
+        fontFamily = SourceCodePro,
+        fontWeight = W400,
+        fontSize = 10.sp,
+        lineHeight = 10.sp
     )
 )

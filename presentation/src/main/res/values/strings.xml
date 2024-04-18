@@ -27,8 +27,8 @@
     <string name="done">Done</string>
     <string name="row_done">Done</string>
     <string name="undo_row">Undo</string>
-    <string name="row_index">H: %1$s</string>
-    <string name="loop_index">W: %1$s</string>
+    <string name="row_index">Row: %1$s</string>
+    <string name="loop_index">Stitch: %1$s</string>
     <string name="end_congratulations">Congratulations!\nYou\'re done!</string>
     <string name="menu">Menu</string>
     <string name="stamp">Stamp</string>
@@ -57,4 +57,6 @@
     <string name="english_untransl" translatable="false">English</string>
     <string name="russian_untransl" translatable="false">Русский</string>
     <string name="empty_menu_text">Here is nothing yet…\nCreate a new pattern</string>
+    <string name="space_is_space">" is "</string>
+    <string name="add_pattern">Add pattern</string>
 </resources>

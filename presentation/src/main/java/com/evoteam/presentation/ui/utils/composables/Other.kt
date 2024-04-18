@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.evoteam.presentation.R
 import com.evoteam.domain.entities.Loop
+import com.evoteam.domain.entities.Loop.LoopType.Back
+import com.evoteam.domain.entities.Loop.LoopType.Front
 import com.evoteam.presentation.ui.composables.presentation.shared.loopType.bigCircleState
 import com.evoteam.presentation.ui.composables.presentation.shared.loopType.smallCircleState
 
@@ -98,28 +100,37 @@ fun LoopTypeDropdownMenu(expanded: Boolean, onDismissRequest: () -> Unit) = Drop
     Column(
         modifier = Modifier
             .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Loop.LoopType.entries.forEach { type ->
             Row(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .border(
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        shape = MaterialTheme.shapes.medium
+                    )
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                Text(
+                    text = when (type) {
+                        Front -> stringResource(R.string.knit_stitch)
+                        Back -> stringResource(R.string.purl_stitch)
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSecondary
+                )
+                Text(
+                    text = stringResource(R.string.space_is_space),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
                 LoopType(
                     loopType = type,
                     color = MaterialTheme.colorScheme.onSecondary,
                     size = 16.dp
-                )
-                Text(
-                    text = when (type) {
-                        Loop.LoopType.Front -> stringResource(R.string.knit_stitch)
-                        Loop.LoopType.Back -> stringResource(R.string.purl_stitch)
-                    },
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSecondary
                 )
             }
         }
@@ -147,28 +158,37 @@ fun LoopTypeDropdownMenu(
     Column(
         modifier = Modifier
             .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Loop.LoopType.entries.forEach { type ->
             Row(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .border(
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        shape = MaterialTheme.shapes.medium
+                    )
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                Text(
+                    text = when (type) {
+                        Front -> stringResource(R.string.knit_stitch)
+                        Back -> stringResource(R.string.purl_stitch)
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSecondary
+                )
+                Text(
+                    text = stringResource(R.string.space_is_space),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
                 LoopType(
                     loopType = type,
                     color = MaterialTheme.colorScheme.onSecondary,
                     size = 16.dp
-                )
-                Text(
-                    text = when (type) {
-                        Loop.LoopType.Front -> stringResource(R.string.knit_stitch)
-                        Loop.LoopType.Back -> stringResource(R.string.purl_stitch)
-                    },
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSecondary
                 )
             }
         }
